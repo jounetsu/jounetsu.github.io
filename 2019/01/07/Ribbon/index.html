@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Eureka · null</title>
+    <title>Ribbon · null</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">jounetsu&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Eureka</a>
+                <a href="#" class="post-name">Ribbon</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Eureka
+            Ribbon
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">658</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/01/05</span>
+                    <span class="post-intro-time">2019/01/07</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,55 +395,49 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="Eureka简介"><a href="#Eureka简介" class="headerlink" title="Eureka简介"></a>Eureka简介</h2><h4 id="什么是Eureka"><a href="#什么是Eureka" class="headerlink" title="什么是Eureka"></a>什么是Eureka</h4><p>Eureka是一个用于服务注册和发现的组件。Eureka分为Eureka Server和Eureka Client，Eureka Server为Eureka服务注册中心，Eureka Client为Eureka客户端。</p>
-<h4 id="Eureka的基本架构"><a href="#Eureka的基本架构" class="headerlink" title="Eureka的基本架构"></a>Eureka的基本架构</h4><p>主要包括以下3种角色</p>
+        <h4 id="RestTemplate"><a href="#RestTemplate" class="headerlink" title="RestTemplate"></a>RestTemplate</h4><p>RestTemplate是Spring Resources中一个访问第三方RESTful API接口的网络请求框架。RestTemplate是用来消费REST服务的，所以RestTemplate的主要方法都与REST的Http协议的一些方法紧密相连，例如HEAD、GET、POST、DELETE和OPTIONS等方法，这些方法在RestTemplate类对应的方法为headForHeaders()、getForObject()、postForObject()、put()和delete()等。以下代码可以将返回的JSON字符串转换成一个User对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User user = restTemplate.getForObject(<span class="string">"https://www.xxx.com/"</span>, User.class);</span><br></pre></td></tr></table></figure>
+<h4 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h4><p>负载均衡是指将负载分摊到多个执行单元上，常见的负载均衡有两种方式。一种是独立进程单元，通过负责均衡策略，将请求转发到不同的执行单元上，例如Ngnix。另一种是将负载均衡逻辑以代码的形式封装到服务消费者的客户的，服务消费者客户端维护了一份服务提供者的信息列表。有了信息列表，通过负载均衡策略将请求分摊给多个服务提供者，从而达到负载均衡的目的。</p>
+<p>目前NetFlix用于生产环境的Ribbon子模块：</p>
 <ul>
-<li>Register Service:：服务注册中心，它是一个Eureka Server，提供服务注册和发现的功能</li>
-<li>Provide Service：服务提供者，它是一个Eureka Client，提供服务</li>
-<li>Consumer Service：服务消费者，它是一个Eureka Client，消费服务</li>
+<li>ribbon-loadbalancer：可以独立使用或与其他模块一起使用的负载均衡器API。</li>
+<li>ribbon-eureka：Ribbon结合Eureka客户端的API，为负载均衡器提供动态服务注册列表。</li>
+<li>ribbon-core：Ribbon的核心API。</li>
 </ul>
-<h4 id="Eureka-Server"><a href="#Eureka-Server" class="headerlink" title="Eureka Server"></a>Eureka Server</h4><p>在pom文件中引入Eureka Server依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在application.yml中做配置。通过server.port制定Eureka Server的端口为8761。在默认情况下，Eureka Server 会向自己注册，这时需要配置eureka.client.registerWithEurkea和eureka.client.fetchRegistry为false，防止自己注册自己。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8761</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">    hostname: localhost</span><br><span class="line">  client:</span><br><span class="line">    registerWithEureka: false</span><br><span class="line">    fetchRegistry: false</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span><br></pre></td></tr></table></figure>
-<p>在工程的启动类EurekaServerApplication加上注解@EnableEurekaServer，开启Eureka Server的功能。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaServerApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(EurekaServerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Eureka-Client"><a href="#Eureka-Client" class="headerlink" title="Eureka Client"></a>Eureka Client</h4><p>在pom中引入依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在bootstrap.yml做Eureka Client客户端的相关配置，配置了程序名为eureka-client，程序端口为8762，服务注册地址为<a href="http://localhost:8761/eureka/" target="_blank" rel="noopener">http://localhost:8761/eureka/</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8762</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: eureka-client</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka</span><br></pre></td></tr></table></figure>
-<p>在程序的启动类加上@EnableEurekaClient开启Eureka Client功能</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaClientApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(EurekaClientApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Eureka概念"><a href="#Eureka概念" class="headerlink" title="Eureka概念"></a>Eureka概念</h4><ul>
-<li>Register–服务注册</li>
-</ul>
-<p>当Eureka Client向Eureka Server注册时，Eureka Client提供自身的元数据，比如IP地址、端口、运行状况指标的Url、主页地址等信息。</p>
-<ul>
-<li>Renew–服务续约</li>
-</ul>
-<p>Eureka Client在默认的情况下会每隔30秒发送一次心跳来进行服务续约。通过服务续约来告知Eureka Server该Eureka Client仍然可用，没有出现故障。</p>
-<ul>
-<li>Fetch Registries–获取服务注册列表信息</li>
-</ul>
-<p>Eureka Client从Eureka Server获取服务注册表信息，并将其缓存在本地。</p>
-<ul>
-<li>Cancel–服务下线</li>
-</ul>
-<p>Eureka Client在程序关闭时可以向Eureka Server发送下线请求。发送请求后，该客户端的实例信息将从Eureka Server的服务注册列表中删除。该下线请求不会自动完成，需要在程序中调用:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DiscoveryManager.getInstance().shutdownComponent();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Eviction–服务剔除</li>
-</ul>
-<p>在默认情况下，当Eureka Client连续90秒没有向Eureka Server发送服务续约(即心跳)时，Eureka Server会将该服务实例从服务注册列表中删除。</p>
+<h4 id="使用RestTemplate和Ribbon来消费服务"><a href="#使用RestTemplate和Ribbon来消费服务" class="headerlink" title="使用RestTemplate和Ribbon来消费服务"></a>使用RestTemplate和Ribbon来消费服务</h4><p>引入Eureka Client的起步依赖spring-cloud-starter-eureka、Ribbon的起步依赖spring-cloud-starter-ribbon，以及Web的起步依赖spring-boot-starter-web。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-ribbon<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>配置application.yml，指定程序名、端口号、服务注册地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: eureka-ribbon-client</span><br><span class="line">server:</span><br><span class="line">  port: 8764</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka/</span><br></pre></td></tr></table></figure>
+<p>作为Eureka Client需要在程序的入口类加上注解@EnableEurekaClient开启Eureka Client功能。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaRibbonClientApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(EurekaRibbonClientApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写一个RESTful API接口，在该API接口内部需要调用eureka-client的API接口”/hi”，即服务消费。这时需要将RestTemplate和Ribbon相结合，进行负载均衡。</p>
+<p>需要在程序的IoC容器中注入一个restTemplate的Bean，并在这个Bean上加上@LoadBalanced注解，此时RestTemplate就结合了Ribbon开启了负载均衡功能。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RibbonConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span></span><br><span class="line">    <span class="function">RestTemplate <span class="title">restTemplate</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写一个RibbonService类，在该类的hi()方法用restTemplate调用eureka-client的API接口，此时Uri不需要使用硬编码(如ip)，只需要写服务名即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RibbonService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hi</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForObject(<span class="string">"http://eureka-client/hi?name="</span>+name, String.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写RibbonController，调用servcie的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RibbonController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    RibbonService ribbonService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/hi"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hi</span><span class="params">(@RequestParam(required = <span class="keyword">false</span>, defaultValue = <span class="string">"zhangsan"</span>)</span> String name)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ribbonService.hi(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="LoadBalanceClient"><a href="#LoadBalanceClient" class="headerlink" title="LoadBalanceClient"></a>LoadBalanceClient</h4><p>负载均衡器的核心类为LoadBalanceClient，LoadBalanceClient可以获取负载均衡的服务提供者的实例信息。</p>
+<p>获取Eureka Client的实例信息时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RibbonController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> LoadBalancerClient loadBalancerClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/testRibbon"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testRibbon</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ServiceInstance instance = loadBalancerClient.choose(<span class="string">"eureka-client"</span>);</span><br><span class="line">        <span class="keyword">return</span> instance.getHost() + <span class="string">":"</span> + instance.getPort();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不从Eureka Client获取注册列表信息时：</p>
+<p>在启动类中增加@SpringBootApplication注解。</p>
+<p>配置文件application.yml，配置ribbon.eureka.enable为false来禁止调用Eureka Client获取注册列表。配置程序名为stores的服务，通过stores.ribbon.listOfServers来配置这些服务实例的Url。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">stores:</span><br><span class="line">  ribbon:</span><br><span class="line">    listOfServers: example.com,google.com</span><br><span class="line">ribbon:</span><br><span class="line">  eureka:</span><br><span class="line">    enabled: false</span><br><span class="line">server:</span><br><span class="line">  port: 8769</span><br></pre></td></tr></table></figure>
+<p>新建RestController类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RibbonController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> LoadBalancerClient loadBalancerClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/testRibbon"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testRibbon</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ServiceInstance instance = loadBalancerClient.choose(<span class="string">"stores"</span>);</span><br><span class="line">        <span class="keyword">return</span> instance.getHost() + <span class="string">":"</span> + instance.getPort();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在浏览器上多次访问<a href="http://localhost:8769/testRibbon，浏览器会交替出现以下内容：" target="_blank" rel="noopener">http://localhost:8769/testRibbon，浏览器会交替出现以下内容：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">example.com:80</span><br><span class="line">google.com:80</span><br></pre></td></tr></table></figure>
+<p>在Ribbon中的负载均衡客户端为LoadBalancerClient，在Spring Cloud项目中，负载均衡器Ribbon会默认从Eureka Client的服务注册列表中获取服务的信息，并缓存一份。如果禁止从Eureka获取注册列表信息，则需要自己维护一份服务注册列表信息。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="">jounetsu</a>
-            </p><p>原文链接：<a href="/2019/01/05/Eureka/">/2019/01/05/Eureka/</a>
-            </p><p>发表日期：<a href="/2019/01/05/Eureka/">January 5th 2019, 9:13:26 pm</a>
-            </p><p>更新日期：<a href="/2019/01/05/Eureka/">January 6th 2019, 7:51:07 pm</a>
+            </p><p>原文链接：<a href="/2019/01/07/Ribbon/">/2019/01/07/Ribbon/</a>
+            </p><p>发表日期：<a href="/2019/01/07/Ribbon/">January 7th 2019, 9:20:18 pm</a>
+            </p><p>更新日期：<a href="/2019/01/07/Ribbon/">January 7th 2019, 10:53:23 pm</a>
             </p><p>版权声明：</p>
         </div>
     
@@ -451,17 +445,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/01/07/Ribbon/" title="Ribbon">
-                    <div class="nextTitle">Ribbon</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2018/12/17/Spring-Boot/" title="Spring Boot">
-                    <div class="prevTitle">Spring Boot</div>
+                <a href="/2019/01/05/Eureka/" title="Eureka">
+                    <div class="prevTitle">Eureka</div>
                 </a>
             
         </li>
@@ -565,7 +554,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka简介"><span class="toc-number">1.</span> <span class="toc-text">Eureka简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是Eureka"><span class="toc-number">1.0.1.</span> <span class="toc-text">什么是Eureka</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka的基本架构"><span class="toc-number">1.0.2.</span> <span class="toc-text">Eureka的基本架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka-Server"><span class="toc-number">1.0.3.</span> <span class="toc-text">Eureka Server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka-Client"><span class="toc-number">1.0.4.</span> <span class="toc-text">Eureka Client</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka概念"><span class="toc-number">1.0.5.</span> <span class="toc-text">Eureka概念</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#RestTemplate"><span class="toc-number">1.</span> <span class="toc-text">RestTemplate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ribbon"><span class="toc-number">2.</span> <span class="toc-text">Ribbon</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用RestTemplate和Ribbon来消费服务"><span class="toc-number">3.</span> <span class="toc-text">使用RestTemplate和Ribbon来消费服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LoadBalanceClient"><span class="toc-number">4.</span> <span class="toc-text">LoadBalanceClient</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
