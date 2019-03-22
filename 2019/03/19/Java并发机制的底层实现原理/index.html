@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>(二)Java并发机制的底层实现原理 · null</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -201,14 +203,23 @@
 </head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">jounetsu&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">(二)Java并发机制的底层实现原理</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">jounetsu's blog</a>
 </header>
@@ -227,17 +238,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            jounetsu's blog
-            <!-- 文章页  -->
+            (二)Java并发机制的底层实现原理
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -245,10 +256,43 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/03/19</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -349,315 +393,72 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/22/Java内存模型/">
-            
-                <span>(三)Java内存模型</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/22</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/19/Java并发机制的底层实现原理/">
-            
-                <span>(二)Java并发机制的底层实现原理</span>
-        </a>
-        <div class="abstract-content">
-            volatile定义​    Java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致地更新，线程应该确保通过排他锁单独获得这个变量。Java语言提供了volatile，在某些情况下比锁要更加方便。如果一个字段被声明成volatile，Java线程内存模型确保所有线程看到这个变量的值是一致的。
-实现原则1）Lock前缀指令会引起处理器缓存回写到内存。
-2）一个处理器的缓存回写到内存会导致其他处理器的缓存无效。
-Synchronized利用Synchronized实现同步的基础：Java中的每一个对象都可以作为锁。具体表现在以下三种形式。
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>​    Java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致地更新，线程应该确保通过排他锁单独获得这个变量。Java语言提供了volatile，在某些情况下比锁要更加方便。如果一个字段被声明成volatile，Java线程内存模型确保所有线程看到这个变量的值是一致的。</p>
+<h3 id="实现原则"><a href="#实现原则" class="headerlink" title="实现原则"></a>实现原则</h3><p>1）Lock前缀指令会引起处理器缓存回写到内存。</p>
+<p>2）一个处理器的缓存回写到内存会导致其他处理器的缓存无效。</p>
+<h2 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h2><p>利用Synchronized实现同步的基础：Java中的每一个对象都可以作为锁。具体表现在以下三种形式。</p>
+<ul>
+<li>对于普通同步方法，锁是当前实例对象。</li>
+<li>对于静态同步方法，锁是当前类的Class对象。</li>
+<li>对于同步方法块，锁是Synchronized括号里配置的对象。</li>
+</ul>
+<h3 id="Java对象头"><a href="#Java对象头" class="headerlink" title="Java对象头"></a>Java对象头</h3><p>​    synchronized用的锁是存在Java对象头里的。如果对象是数组类型，则虚拟机用3个自宽(Word)存储对象头，如果对象是非数组类型，则用2自宽存储。在32位虚拟机中，1字宽澄宇4字节，即32bit。</p>
+<p>​    Java对象头里的Mark Word里默认存储对象的HashCode、分代年龄和锁标记位。在运行期间，Mark Word里存储的数据会随着锁标记位的变化而变化。</p>
+<h3 id="锁的升级与对比"><a href="#锁的升级与对比" class="headerlink" title="锁的升级与对比"></a>锁的升级与对比</h3><p>​    锁一共有4种状态，级别从低到高依次是：无锁状态、偏向锁状态、轻量级锁状态和重量级锁状态，这几个状态会随着竞争情况逐渐升级。锁可以升级但不能降级，意味着偏向锁升级成轻量级锁后不能降级成偏向锁。</p>
+<h4 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h4><p>​    大多数情况下，锁不仅不存在多线程竞争，而且总是由同一线程多次获得，为了让线程获得锁的代价更低而引入了偏向锁。当一个线程访问同步块获取锁时，会在对象头和栈桢中的锁记录里存储锁偏向的线程ID，以后该进程在进入和退出同步块时不需要进行CAS操作来加锁和解锁，只需简单地测试一下对象头的Mark Word里是否存储着指向当前线程的偏向锁。</p>
+<h5 id="偏向锁的撤销"><a href="#偏向锁的撤销" class="headerlink" title="偏向锁的撤销"></a>偏向锁的撤销</h5><p>​    偏向锁使用了一种等到竞争出现才释放锁的机制，所以当其他线程尝试竞争偏向锁时，持有偏向锁的线程才会释放锁。偏向锁的撤销，需要等待全局安全点（在这个时间点上没有正在执行的字节码）。它会首先暂停拥有偏向锁的线程，然后检查持有偏向锁的线程是否活着，如果线程不处于活动状态，则将对象头设置成无锁状态；如果线程仍然活着，拥有偏向锁的栈会被执行，遍历偏向对象的锁记录，栈中的锁记录和对象头的Mark Word要么重新偏向于其他线程，要么恢复到无锁状态或者标记对象不适合作为偏向锁，最后唤醒暂停的线程。</p>
+<h5 id="关闭偏向锁"><a href="#关闭偏向锁" class="headerlink" title="关闭偏向锁"></a>关闭偏向锁</h5><p>​    默认为启用状态，在应用程序启动几秒钟后才激活，可使用JVM参数来关闭延迟:-XX:BiasedLockingStartupDelay=0。确定如果程序里所有的锁通常情况下处于竞争状态，可通过JVM参数关闭偏向锁:-XX:-UseBiasedLocking=false，那么程序默认会进入轻量级锁状态。</p>
+<h4 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h4><h5 id="轻量级锁加锁"><a href="#轻量级锁加锁" class="headerlink" title="轻量级锁加锁"></a>轻量级锁加锁</h5><p>​    线程在执行同步块之前，JVM会先在当前线程的栈桢中创建用于存储锁记录的空间，并将对象头中的Mark Word复制到锁记录中，称为Displaced Mark Word。然后线程尝试使用CAS将对象头中的Mark Word替换为指向锁记录的指针。如果成功，当前线程获得锁，如果失败，表示其他线程竞争锁，当前线程便尝试使用自旋来获取锁。</p>
+<h5 id="轻量级锁解锁"><a href="#轻量级锁解锁" class="headerlink" title="轻量级锁解锁"></a>轻量级锁解锁</h5><p>​    轻量级解锁时，会使用原子的CAS操作将Displaced Mark Word替换回到对象头，如果成功，则表示没有竞争发生。如果失败，表示当前存在锁竞争，锁就会膨胀成重量级锁。</p>
 
-对于普通同步方法，锁是当前实例对象。...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/19</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/03/设计模式/">
-            
-                <span>设计模式</span>
-        </a>
-        <div class="abstract-content">
-            观察者模式定义观察者模式定义了对象之间的的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。
-Java内置的观察者模式把对象编程观察者实现观察者接口（java.util.Observer），然后调用任何Observable对象的addObserver()方法。不想再当观察者时，调用deleteObserver()方法。
-可观察者送出通知首先利用java.util.Observable接口产生“可观察者”类，然后，需要两个步骤：
-
-先调用setChanged()方法，标记状态已经改变的事实。
-然后调用两种notifyObservers()方法中的一个：not...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="">jounetsu</a>
+            </p><p>原文链接：<a href="/2019/03/19/Java并发机制的底层实现原理/">/2019/03/19/Java并发机制的底层实现原理/</a>
+            </p><p>发表日期：<a href="/2019/03/19/Java并发机制的底层实现原理/">March 19th 2019, 9:40:17 am</a>
+            </p><p>更新日期：<a href="/2019/03/19/Java并发机制的底层实现原理/">March 22nd 2019, 3:12:16 pm</a>
+            </p><p>版权声明：</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/03</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/14/Zuul/">
-            
-                <span>Zuul</span>
-        </a>
-        <div class="abstract-content">
-            为什么需要ZuulZuul作为路由网关组件体现在以下6个方面：
-
-Zuul、Ribbon以及Eureak相结合，可以实现智能路由和负载均衡的功能，Zuul能够将请求流量按某种策略分发到集群状态的多个服务实例。
-网关将所有服务的API接口统一聚合，并统一对外暴露。
-网关服务可以做用户身份认证和权限认证，防止非法请求操作API接口，对服务器起到保护作用。
-网关可以实现监控功能，实时日志输出，对请求进行记录。
-网关可以用来实现流量监控，在高流量的情况下，对服务进行降级。
-API接口从内部服务分离出来，方便做测试。 
-
-Zuul的工作原理Zuul是通过Servlet实现的，Zuul通过自定义的Z...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/14</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/01/09/Hystrix/">
-            
-                <span>Hystrix</span>
-        </a>
-        <div class="abstract-content">
-            HystrixHystrix是Netflix公司开源的一个项目，它提供了熔断器功能，能够阻止分布式系统中出现联动故障。Hystrix是通过隔离服务的访问点阻止联动故障的，并提供了故障的解决方法，从而提高了整个分布式系统的弹性。
-Hystrix的设计原则
-防止单个服务的故障耗尽整个服务的Servlet容器(如Tomcat)的线程资源。
-快速失败机制，如果某个服务出现了故障，则调用该服务的请求快速失败，而不是线程等待。
-提供回退方案，在请求发生故障时，提供设定好的回退方案。
-使用熔断机制，防止故障扩散到其他服务。
-提供熔断器的监控组件Hystrix Dashboard，可以实时监控熔断器的状...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/01/08/Feign/">
-            
-                <span>Feign</span>
-        </a>
-        <div class="abstract-content">
-            编写Feign客户端增加Feign的起步依赖spring-cloud-starter-feig、Eureka Client的起步依赖spring-cloud-starter-eureka、Web功能的起步依赖spring-boot-starter-web，pom文件如下：
-12345678910111213141516171819&lt;dependencies&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;        &lt;artifactId&gt...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/08</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/01/07/Ribbon/">
-            
-                <span>Ribbon</span>
-        </a>
-        <div class="abstract-content">
-            RestTemplateRestTemplate是Spring Resources中一个访问第三方RESTful API接口的网络请求框架。RestTemplate是用来消费REST服务的，所以RestTemplate的主要方法都与REST的Http协议的一些方法紧密相连，例如HEAD、GET、POST、DELETE和OPTIONS等方法，这些方法在RestTemplate类对应的方法为headForHeaders()、getForObject()、postForObject()、put()和delete()等。以下代码可以将返回的JSON字符串转换成一个User对象。
-1User us...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/07</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/01/05/Eureka/">
-            
-                <span>Eureka</span>
-        </a>
-        <div class="abstract-content">
-            Eureka简介什么是EurekaEureka是一个用于服务注册和发现的组件。Eureka分为Eureka Server和Eureka Client，Eureka Server为Eureka服务注册中心，Eureka Client为Eureka客户端。
-Eureka的基本架构主要包括以下3种角色
-
-Register Service:：服务注册中心，它是一个Eureka Server，提供服务注册和发现的功能
-Provide Service：服务提供者，它是一个Eureka Client，提供服务
-Consumer Service：服务消费者，它是一个Eureka Client，消费服务
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/05</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/12/17/Spring-Boot/">
-            
-                <span>Spring Boot</span>
-        </a>
-        <div class="abstract-content">
-            @SpringBootApplication注解@SpringBootApplication开启了Spring的组件扫描和Spring Boot的自动配置功能呢。实际上，它将三个有用的注解组合在了一起。
-@Configuration:标明该类使用Spring基于Java的配置。
-@ComponentScan:启用组件扫描。
-@EnableAutoConfiguration:开启自动配置。
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/17</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src="/avatar/work.jpg">
-    <div class="profile-name">jounetsu</div>
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/03/22/Java内存模型/" title="(三)Java内存模型">
+                    <div class="nextTitle">(三)Java内存模型</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/03/03/设计模式/" title="设计模式">
+                    <div class="prevTitle">设计模式</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <div class="profile-signature">
-        人生是一场蹉跎 愿你别错过
-    </div>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-    <div class="profile-social">
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
-    </div>
-    
-    
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -725,6 +526,24 @@ Consumer Service：服务消费者，它是一个Eureka Client，消费服务
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#volatile"><span class="toc-number">1.</span> <span class="toc-text">volatile</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现原则"><span class="toc-number">1.2.</span> <span class="toc-text">实现原则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Synchronized"><span class="toc-number">2.</span> <span class="toc-text">Synchronized</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java对象头"><span class="toc-number">2.1.</span> <span class="toc-text">Java对象头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#锁的升级与对比"><span class="toc-number">2.2.</span> <span class="toc-text">锁的升级与对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#偏向锁"><span class="toc-number">2.2.1.</span> <span class="toc-text">偏向锁</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#偏向锁的撤销"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">偏向锁的撤销</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#关闭偏向锁"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">关闭偏向锁</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#轻量级锁"><span class="toc-number">2.2.2.</span> <span class="toc-text">轻量级锁</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#轻量级锁加锁"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">轻量级锁加锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#轻量级锁解锁"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">轻量级锁解锁</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -983,6 +802,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
