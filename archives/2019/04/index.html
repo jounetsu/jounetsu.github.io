@@ -346,21 +346,22 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/12/17/Spring-Boot/">
+        <a class="abstract-title" href="/2019/04/01/Java中的锁/">
             
-                <span>Spring Boot</span>
+                <span>(四)Java中的锁</span>
         </a>
         <div class="abstract-content">
-            @SpringBootApplication注解@SpringBootApplication开启了Spring的组件扫描和Spring Boot的自动配置功能呢。实际上，它将三个有用的注解组合在了一起。
-@Configuration:标明该类使用Spring基于Java的配置。
-@ComponentScan:启用组件扫描。
-@EnableAutoConfiguration:开启自动配置。
-
+            Lock接口​    锁是用来控制多个线程访问共享资源的方式，一般来说，一个锁能够防止多个线程同时访问共享资源。
+​    Lock的使用：
+1234567Lock lock = new ReentrantLock();lock.lock();tyr&#123;&#125; finally&#123;lock.unlock();&#125;
+​    在finally块中释放锁，目的是保证在获取到锁之后，最终能够被释放。
+​    不要将获取锁的过程写在try块中，因为如果在获取锁(自定义锁的实现)时发生了异常，异常抛出的同时，也会导致锁无故释放。
+​    Lock接口提供的synch...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/17</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/01</span>
             </div>
             <!-- tags  -->
             

@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>(四)Java中的锁 · null</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">jounetsu&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">(四)Java中的锁</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">jounetsu's blog</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            (四)Java中的锁
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/01</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,37 +393,149 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/12/17/Spring-Boot/">
-            
-                <span>Spring Boot</span>
-        </a>
-        <div class="abstract-content">
-            @SpringBootApplication注解@SpringBootApplication开启了Spring的组件扫描和Spring Boot的自动配置功能呢。实际上，它将三个有用的注解组合在了一起。
-@Configuration:标明该类使用Spring基于Java的配置。
-@ComponentScan:启用组件扫描。
-@EnableAutoConfiguration:开启自动配置。
+            <main class="main post-page">
+    <article class="article-entry">
+        <h4 id="Lock接口"><a href="#Lock接口" class="headerlink" title="Lock接口"></a>Lock接口</h4><p>​    锁是用来控制多个线程访问共享资源的方式，一般来说，一个锁能够防止多个线程同时访问共享资源。</p>
+<p>​    Lock的使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">lock.lock();</span><br><span class="line">tyr&#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">finally</span>&#123;</span><br><span class="line">lock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    在finally块中释放锁，目的是保证在获取到锁之后，最终能够被释放。</p>
+<p>​    不要将获取锁的过程写在try块中，因为如果在获取锁(自定义锁的实现)时发生了异常，异常抛出的同时，也会导致锁无故释放。</p>
+<p>​    Lock接口提供的synchronized关键字所不具备的主要特性。</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>尝试非阻塞地获取锁</td>
+<td>当前线程尝试获取锁，如果这一时刻锁没有被其他线程获取到，则成功获取并持有锁</td>
+</tr>
+<tr>
+<td>能被中断地获取锁</td>
+<td>与synchronized不同，获取到锁的线程能够响应中断，当获取到锁的线程被中断时，中断异常将会被抛出，同时锁会被释放</td>
+</tr>
+<tr>
+<td>超时获取锁</td>
+<td>在指定的截止时间之前获取锁，如果截止时间到了仍旧无法获取锁，则返回</td>
+</tr>
+</tbody>
+</table>
+<p>​    Lock是一个接口，它定义了锁获取和释放的基本操作。</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>void lock()</td>
+<td>获取锁，调用该方法当前线程将会获取锁，当锁获得后，从该方法返回</td>
+</tr>
+<tr>
+<td>void lockInterruptibly() throws InterruptedException</td>
+<td>可中断地获取锁，和lock()方法的不同之处在于该方法会响应中断，即在锁的获取中可以中断当前线程</td>
+</tr>
+<tr>
+<td>boolean tryLock()</td>
+<td>尝试非阻塞的获取锁，调用该方法后立刻返回，如果能够获取则返回true，否则返回false</td>
+</tr>
+<tr>
+<td>boolean tryLock(long time, TimeUnit unit) throws InterruptedException</td>
+<td>超时的获取锁，当前线程在以下3种情况下会返回：1.当前线程在超时时间内获得了锁 2.当前线程在超时时间内被中断 3.超时时间结束，返回false</td>
+</tr>
+<tr>
+<td>void unlock()</td>
+<td>释放锁</td>
+</tr>
+<tr>
+<td>Condition newCondition()</td>
+<td>获取等待通知组件，该组件和当前的锁绑定，当前线程只有获得了锁，才能调用该组件的wait()方法，而调用后，当前线程将释放锁</td>
+</tr>
+</tbody>
+</table>
+<h4 id="队列同步器"><a href="#队列同步器" class="headerlink" title="队列同步器"></a>队列同步器</h4><p>​    队列同步器AbstractQueuedSynchronized，是用来构建锁或者其他同步组件的基础框架，它使用了一个int成员变量表示同步状态，通过内置的FIFO队列来完成资源获取线程的排队工作。</p>
+<h5 id="同步队列"><a href="#同步队列" class="headerlink" title="同步队列"></a>同步队列</h5><p>​    同步器依赖内部的同步队列(一个FIFO双向队列)来完成同步状态的管理，当前线程获取同步状态失败时，同步器会将当前线程以及等待状态等信息构造成为一个节点并将其加入同步队列，同时会阻塞当前线程，当同步状态释放时，会把首节点中的线程唤醒，使其再次尝试获取同步状态。</p>
+<p>​    同步队列中的节点用来保存获取同步状态失败的线程引用、等待状态以及前驱和后继节点。</p>
+<h5 id="独占式同步状态获取与释放"><a href="#独占式同步状态获取与释放" class="headerlink" title="独占式同步状态获取与释放"></a>独占式同步状态获取与释放</h5><p>​    通过调用同步器的acquire(int arg)方法可以获取同步状态，该方法对中断不敏感，也就是由于线程获取同步状态失败后进入同步队列中，后续对线程进行中断操作时，线程不会从同步队列中移出。</p>
+<p>​    当前线程获取同步状态并执行了相应逻辑之后，就需要释放同步状态，使得后续节点能够继续获取同步状态。通过调用同步器的release(int arg)方法可以释放同步状态，该方法在释放了同步状态之后，会唤醒其后继节点(进而使后继节点重新尝试获取同步状态)。</p>
+<h5 id="共享式同步状态获取与释放"><a href="#共享式同步状态获取与释放" class="headerlink" title="共享式同步状态获取与释放"></a>共享式同步状态获取与释放</h5><p>​    通过调用同步器的acquireShared(int arg)方法可以共享式地获取同步状态。通过调用realeaseShared(int arg)方法可以释放同步状态。</p>
+<h4 id="重入锁"><a href="#重入锁" class="headerlink" title="重入锁"></a>重入锁</h4><p>​    重入锁ReentrantLock，就是支持重进入的锁，它表示该锁能够支持一个线程对资源的重复加锁。除此之外，该锁还支持获取锁时的公平和非公平选择。</p>
+<h4 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h4><p>​    读写锁在同一时刻可以允许多个读线程访问，但是在写线程访问时，所有的读线程和其他写线程均被阻塞。读写锁维护了一对锁，一个读锁和一个写锁，通过分离读锁和写锁，使得并发性相比一般的排他锁有了很大提升。</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公平性选择</td>
+<td>支持非公平(默认)和公平的锁获取方式，吞吐量还是非公平优于公平</td>
+</tr>
+<tr>
+<td>重进入</td>
+<td>该锁支持重进入，以读写线程为例：读线程在获取了读锁之后，能够再次获取读锁。而写线程在获取了写锁之后能够再次获取读写锁，同时也可以获取读锁</td>
+</tr>
+<tr>
+<td>锁降级</td>
+<td>遵循获取写锁、获取读锁再释放写锁的次序，写锁能够降级成为读锁</td>
+</tr>
+</tbody>
+</table>
+<h5 id="写锁的获取与释放"><a href="#写锁的获取与释放" class="headerlink" title="写锁的获取与释放"></a>写锁的获取与释放</h5><p>​    写锁是一个支持重进入的排他锁。如果当前线程已经获取了写锁，则增加写状态。如果当前线程在获取写锁时，读锁已经被获取(读状态不为0)或者该线程不是已经获取写锁的线程，则当前线程进入等待状态。</p>
+<p>​    写锁的释放与ReentrantLock的释放过程基本类似，每次释放均减少写状态，当写状态为0时表示写锁已被释放，从而等待的读写线程能够继续访问读写锁，同时前次写线程的修改对后续读写线程可见。</p>
+<h5 id="读锁的获取释放"><a href="#读锁的获取释放" class="headerlink" title="读锁的获取释放"></a>读锁的获取释放</h5><p>​    读锁是一个支持重进入的共享锁，它能够被多个线程同时获取，在没有其他写线程访问(或者写状态为0)时，读锁总会被成功地获取，而所做的也只是(线程安全的)增加读状态。如果当前线程已经获取了读锁，则增加读状态。如果当前线程在获取读锁时，写锁已被其他线程获取，则进入等待状态。</p>
+<h5 id="锁降级"><a href="#锁降级" class="headerlink" title="锁降级"></a>锁降级</h5><p>​    锁降级指的是写锁降级成为读锁。锁降级是指把持住(当前拥有的)写锁，再获取到读锁，随后释放(先前拥有的)写锁的过程。</p>
+<h4 id="Condition接口"><a href="#Condition接口" class="headerlink" title="Condition接口"></a>Condition接口</h4><p>​    Condition定义了等待/通知两种类型的方法，当前线程调用这些方法时，需要提前获取到Condition对象关联的锁。Condition对象时由Lock对象(调用Lock对象的newCondition()方法)创建出来的，Condition是依赖Lock对象的。</p>
+<h5 id="等待队列"><a href="#等待队列" class="headerlink" title="等待队列"></a>等待队列</h5><p>​    等待队列是一个FIFO的队列，在队列的每个节点都包含了一个线程引用，该线程就是在Condition对象上等待的线程，如果一个线程调用了Condition.await()方法，那么该线程会释放锁、构造成节点加入等待队列并进入等待状态。</p>
+<h5 id="等待"><a href="#等待" class="headerlink" title="等待"></a>等待</h5><p>​    调用Condition的await()方法，会使当前线程进入等待队列并释放锁，同时线程状态变为等待状态。当从await()方法返回时，当前线程一定获取了Condition相关联的锁。</p>
+<h5 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h5><p>​    调用Condition的signal()方法，将会唤醒在等待队列中等待时间最长的节点(首节点)，在唤醒节点之前，会将节点移到同步队列中。</p>
 
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/17</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="">jounetsu</a>
+            </p><p>原文链接：<a href="/2019/04/01/Java中的锁/">/2019/04/01/Java中的锁/</a>
+            </p><p>发表日期：<a href="/2019/04/01/Java中的锁/">April 1st 2019, 10:00:49 am</a>
+            </p><p>更新日期：<a href="/2019/04/01/Java中的锁/">April 3rd 2019, 2:18:34 pm</a>
+            </p><p>版权声明：</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/03/28/Java并发编程基础/" title="(三)Java并发编程基础">
+                    <div class="prevTitle">(三)Java并发编程基础</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -438,6 +605,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lock接口"><span class="toc-number">1.</span> <span class="toc-text">Lock接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#队列同步器"><span class="toc-number">2.</span> <span class="toc-text">队列同步器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#同步队列"><span class="toc-number">2.1.</span> <span class="toc-text">同步队列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#独占式同步状态获取与释放"><span class="toc-number">2.2.</span> <span class="toc-text">独占式同步状态获取与释放</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#共享式同步状态获取与释放"><span class="toc-number">2.3.</span> <span class="toc-text">共享式同步状态获取与释放</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重入锁"><span class="toc-number">3.</span> <span class="toc-text">重入锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#读写锁"><span class="toc-number">4.</span> <span class="toc-text">读写锁</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#写锁的获取与释放"><span class="toc-number">4.1.</span> <span class="toc-text">写锁的获取与释放</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#读锁的获取释放"><span class="toc-number">4.2.</span> <span class="toc-text">读锁的获取释放</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#锁降级"><span class="toc-number">4.3.</span> <span class="toc-text">锁降级</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Condition接口"><span class="toc-number">5.</span> <span class="toc-text">Condition接口</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#等待队列"><span class="toc-number">5.1.</span> <span class="toc-text">等待队列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#等待"><span class="toc-number">5.2.</span> <span class="toc-text">等待</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#通知"><span class="toc-number">5.3.</span> <span class="toc-text">通知</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -734,6 +919,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
