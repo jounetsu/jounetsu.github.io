@@ -346,22 +346,47 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/03/03/设计模式/">
+        <a class="abstract-title" href="/2019/01/07/Ribbon/">
             
-                <span>设计模式</span>
+                <span>Ribbon</span>
         </a>
         <div class="abstract-content">
-            观察者模式定义观察者模式定义了对象之间的的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。
-Java内置的观察者模式把对象编程观察者实现观察者接口（java.util.Observer），然后调用任何Observable对象的addObserver()方法。不想再当观察者时，调用deleteObserver()方法。
-可观察者送出通知首先利用java.util.Observable接口产生“可观察者”类，然后，需要两个步骤：
-
-先调用setChanged()方法，标记状态已经改变的事实。
-然后调用两种notifyObservers()方法中的一个：not...
+            RestTemplateRestTemplate是Spring Resources中一个访问第三方RESTful API接口的网络请求框架。RestTemplate是用来消费REST服务的，所以RestTemplate的主要方法都与REST的Http协议的一些方法紧密相连，例如HEAD、GET、POST、DELETE和OPTIONS等方法，这些方法在RestTemplate类对应的方法为headForHeaders()、getForObject()、postForObject()、put()和delete()等。以下代码可以将返回的JSON字符串转换成一个User对象。
+1User us...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/03</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/07</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/01/05/Eureka/">
+            
+                <span>Eureka</span>
+        </a>
+        <div class="abstract-content">
+            Eureka简介什么是EurekaEureka是一个用于服务注册和发现的组件。Eureka分为Eureka Server和Eureka Client，Eureka Server为Eureka服务注册中心，Eureka Client为Eureka客户端。
+Eureka的基本架构主要包括以下3种角色
+
+Register Service:：服务注册中心，它是一个Eureka Server，提供服务注册和发现的功能
+Provide Service：服务提供者，它是一个Eureka Client，提供服务
+Consumer Service：服务消费者，它是一个Eureka Client，消费服务
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/05</span>
             </div>
             <!-- tags  -->
             
@@ -369,6 +394,10 @@ Java内置的观察者模式把对象编程观察者实现观察者接口（java
     </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/2019/">&#60; PREV</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
+    </nav>
     
 </main>
             <!-- profile -->
