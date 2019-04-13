@@ -357,6 +357,67 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/02/14/Zuul/">
+            
+                <span>Zuul</span>
+        </a>
+        <div class="abstract-content">
+            为什么需要ZuulZuul作为路由网关组件体现在以下6个方面：
+
+Zuul、Ribbon以及Eureak相结合，可以实现智能路由和负载均衡的功能，Zuul能够将请求流量按某种策略分发到集群状态的多个服务实例。
+网关将所有服务的API接口统一聚合，并统一对外暴露。
+网关服务可以做用户身份认证和权限认证，防止非法请求操作API接口，对服务器起到保护作用。
+网关可以实现监控功能，实时日志输出，对请求进行记录。
+网关可以用来实现流量监控，在高流量的情况下，对服务进行降级。
+API接口从内部服务分离出来，方便做测试。 
+
+Zuul的工作原理Zuul是通过Servlet实现的，Zuul通过自定义的Z...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/14</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/01/09/Hystrix/">
+            
+                <span>Hystrix</span>
+        </a>
+        <div class="abstract-content">
+            HystrixHystrix是Netflix公司开源的一个项目，它提供了熔断器功能，能够阻止分布式系统中出现联动故障。Hystrix是通过隔离服务的访问点阻止联动故障的，并提供了故障的解决方法，从而提高了整个分布式系统的弹性。
+Hystrix的设计原则
+防止单个服务的故障耗尽整个服务的Servlet容器(如Tomcat)的线程资源。
+快速失败机制，如果某个服务出现了故障，则调用该服务的请求快速失败，而不是线程等待。
+提供回退方案，在请求发生故障时，提供设定好的回退方案。
+使用熔断机制，防止故障扩散到其他服务。
+提供熔断器的监控组件Hystrix Dashboard，可以实时监控熔断器的状...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/09</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/01/08/Feign/">
             
                 <span>Feign</span>
@@ -756,9 +817,65 @@ Consumer Service：服务消费者，它是一个Eureka Client，消费服务
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 14
+        Total : 16
         </div>
         <!-- search  -->
         
@@ -771,6 +888,16 @@ Consumer Service：服务消费者，它是一个Eureka Client，消费服务
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/11</span><a class="archive-post-title" href="/2019/04/11/Executor框架/">(九)Executor框架</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2019/04/10/Java中的线程池/">(八)Java中的线程池</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -889,9 +1016,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Spring-Cloud"><span class="iconfont-archer">&#xe60a;</span>Spring-Cloud</span>
-    
         <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="Spring-Cloud"><span class="iconfont-archer">&#xe60a;</span>Spring-Cloud</span>
     
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     

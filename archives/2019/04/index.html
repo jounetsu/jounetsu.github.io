@@ -346,6 +346,71 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/11/Executor框架/">
+            
+                <span>(九)Executor框架</span>
+        </a>
+        <div class="abstract-content">
+            简介Executor框架的结构​    Executor框架主要由3大部分组成。
+
+任务。包括被执行任务需要实现的接口：Runnable接口或Callable接口。
+
+任务的执行。包括任务执行机制的核心接口Executor，以及继承自Executor的ExecutorService接口。Executor框架有两个关键类实现了ExecutorService接口(ThreadPoolExecutor和ScheduledThreadPoolExecutor)
+
+异步计算的结果。包括接口Future和实现Future接口的FutureTask类。
+类和接口的简介。
+
+Executor是一个接口，...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/11</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/10/Java中的线程池/">
+            
+                <span>(八)Java中的线程池</span>
+        </a>
+        <div class="abstract-content">
+            使用线程池的好处：
+
+降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。
+提高响应速度。当任务到达时，任务可以不需要等到线程创建就能立即执行。
+提高线程的课管理型。线程是稀缺资源，如果无限制地创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一分配、调优和监控。
+
+线程池的实现原理​    当提交一个新任务到线程池时，线程池的处理流程如下。
+
+线程池判断核心线程池里的线程是否都在执行任务。如果不是，则创建一个新的工作线程来执行任务。如果核心线程池都在执行任务，则进入下个流程。
+
+线程池判断工作队列是否已经满。如果工作队列没有满，则将新提交的任务存储在这...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/10</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/09/Java中的并发工具类/">
             
                 <span>(七)Java中的并发工具类</span>
@@ -682,9 +747,65 @@ AtomicLong：原子更新长整型
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 14
+        Total : 16
         </div>
         <!-- search  -->
         
@@ -697,6 +818,16 @@ AtomicLong：原子更新长整型
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/11</span><a class="archive-post-title" href="/2019/04/11/Executor框架/">(九)Executor框架</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2019/04/10/Java中的线程池/">(八)Java中的线程池</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -815,9 +946,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Spring-Cloud"><span class="iconfont-archer">&#xe60a;</span>Spring-Cloud</span>
-    
         <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="Spring-Cloud"><span class="iconfont-archer">&#xe60a;</span>Spring-Cloud</span>
     
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     

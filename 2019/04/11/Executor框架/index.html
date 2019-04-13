@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>(九)Executor框架 · null</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -201,14 +203,23 @@
 </head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">jounetsu&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">(九)Executor框架</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">jounetsu's blog</a>
 </header>
@@ -227,17 +238,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            jounetsu's blog
-            <!-- 文章页  -->
+            (九)Executor框架
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -245,10 +256,43 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/11</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -349,348 +393,116 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/11/Executor框架/">
-            
-                <span>(九)Executor框架</span>
-        </a>
-        <div class="abstract-content">
-            简介Executor框架的结构​    Executor框架主要由3大部分组成。
+            <main class="main post-page">
+    <article class="article-entry">
+        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><h5 id="Executor框架的结构"><a href="#Executor框架的结构" class="headerlink" title="Executor框架的结构"></a>Executor框架的结构</h5><p>​    Executor框架主要由3大部分组成。</p>
+<ul>
+<li><p>任务。包括被执行任务需要实现的接口：Runnable接口或Callable接口。</p>
+</li>
+<li><p>任务的执行。包括任务执行机制的核心接口Executor，以及继承自Executor的ExecutorService接口。Executor框架有两个关键类实现了ExecutorService接口(ThreadPoolExecutor和ScheduledThreadPoolExecutor)</p>
+</li>
+<li><p>异步计算的结果。包括接口Future和实现Future接口的FutureTask类。</p>
+<p>类和接口的简介。</p>
+</li>
+<li><p>Executor是一个接口，它是Executor框架的基础，它将任务的提交与任务的执行分离开来。</p>
+</li>
+<li>ThreadPoolExecutor是线程池的核心实现类，用来执行被提交的任务。</li>
+<li>ScheduledThreadPoolExecutor是一个实现类，可以在给定的延迟后运行命令，或者定期执行命令。ScheduledThreadPoolExecutor比Timer更灵活，功能更强大。</li>
+<li>Futrue接口和实现Future接口的FutureTask类，代表异步计算的结果。</li>
+<li>Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或ScheduledThreadPoolExecutor执行。</li>
+</ul>
+<h5 id="Executor框架的成员"><a href="#Executor框架的成员" class="headerlink" title="Executor框架的成员"></a>Executor框架的成员</h5><p>(1)ThreadPoolExecutor</p>
+<p>​    ThreadPoolExecutor通常使用工厂类Executors来创建。Executors可以创建3种类型的ThreadPoolExecutor:SingleThreadExecutor、FixedThreadPool和CachedThreadPool。</p>
+<p>​    1)FixedThreadPool。适用于为了满足资源管理的需求，而需要限制当前线程数量的应用场景，它适用于负载比较重的服务器。</p>
+<p>​    2)SingleThreadExecutor。适用于需要保证顺序地执行各个任务；并且在任意时间点，不会有多个线程是活动的应用场景。</p>
+<p>​    3)CachedThreadPool。是大小无界的线程池，适用于执行很多的短期异步任务的小程序，或者是负载较轻的服务器。</p>
+<p>(2)ScheduledThredPoolExecutor</p>
+<p>​    ScheduledThreadPoolExecutor通常使用工厂类Executor来创建。Executors可以创建两种类型的ScheduledThreadPoolExecutor。</p>
+<p>​    1)ScheduledThreadPoolExecutor。包含若干个线程的ScheduledThreadPoolExecutor。适用于需要多个后台线程执行周期任务，同时为了满足资源管理的需求而需要限制后台线程的数量的应用场景。</p>
+<p>​    2)SingleThreadScheduledExecutor。只包含一个线程的ScheduledThreadPoolExecutor。适用于需要单个后台线程执行周期任务，同时需要保证顺序地执行各个任务的应用场景。</p>
+<p>(3)Future接口</p>
+<p>​    Future接口和实现Future接口的FutureTask类用来表示异步计算的结果。当把Runnable接口或Callable接口的实现类提交(submit)给ThreadPoolExecutor或ScheduledThreadPoolExecutor时，会返回一个FutureTask对象。</p>
+<p>(4)Runnable接口和Callable接口</p>
+<p>​    Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或ScheduledThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结果。</p>
+<h4 id="ThreadPoolExecutor详解"><a href="#ThreadPoolExecutor详解" class="headerlink" title="ThreadPoolExecutor详解"></a>ThreadPoolExecutor详解</h4><p>​    Executor框架最核心的类是ThreadPoolExecutor，它是线程池的实现类，主要由4个组件构成。</p>
+<ul>
+<li>corePool：核心线程池的大小。</li>
+<li>maximumPool：最大线程池的大小。</li>
+<li>BlockingQueue：用来暂时保存任务的工作队列。</li>
+<li>RejectedExecutionHandler：当ThreadPoolExecutor已经关闭或ThreadPoolExecutor已经饱和时(达到了最大线程池大小且工作队列已满)，execute()方法将要调用的Handler。</li>
+</ul>
+<h5 id="FixedThreadPool详解"><a href="#FixedThreadPool详解" class="headerlink" title="FixedThreadPool详解"></a>FixedThreadPool详解</h5><p>​    FixedThreadPool被称为可重用固定线程数的线程池。</p>
+<p>​    FixedThreadPool的corePoolSize和maximumPoolSize都被设置为创建FixedThreadPool时指定的参数nThreads。</p>
+<p>​    当线程池中的线程数大于corePoolSize时，keepAliveTiem为多余的空闲线程等待新任务的最长时间，超过这个时间后多余的线程将被终止。这里把keepAliveTime设置为0L，意味着多余的空闲线程会被立即终止。</p>
+<h5 id="SingleThreadExecutor详解"><a href="#SingleThreadExecutor详解" class="headerlink" title="SingleThreadExecutor详解"></a>SingleThreadExecutor详解</h5><p>​    SingleThreadExecutor是使用单个worker线程的Executor。SignleThreadExecutor的corePoolSize和maximumPoolSize被设置为1。其他参数与FixedThreadPool相同。SingleThreadExecutor使用无界队列LinkedBlockingQueue作为线程池的工作队列(队列的容量为Integer.MAX_VALUE)。</p>
+<h5 id="CachedThreadPool详解"><a href="#CachedThreadPool详解" class="headerlink" title="CachedThreadPool详解"></a>CachedThreadPool详解</h5><p>​    CachedThreadPool是一个会根据需要创建新线程的线程池。</p>
+<p>​    CachedThreadPool的corePoolSize被设置为0，即corePool为空；maximumPoolSize被设置为Integer.MAX_VALUE，即maximumPool是无界的。这里把keepAliveTime设置为60L，意味着CachedThreadPool中的空闲线程等待新任务的最长时间为60秒，空闲线程超过60秒后将会被终止。</p>
+<p>​    FixedThreadPool和SingleThreadExecutor使用无界队列LinkeBlockingQueue作为线程池的工作队列。CachedThreadPool使用没有容量的SynchronousQueue作为线程池的工作队列，但CachedThreadPool的maximumPool是无界的。意味着如果主线程提交任务的速度高于maximumPool中线程处理任务的速度时，CachedThreadPool会不断创建新线程。极端情况下，CachedThreadPool会因为创建过多线程而耗尽CPU和内存资源。</p>
+<h4 id="ScheduledThreadPoolExecutor详解"><a href="#ScheduledThreadPoolExecutor详解" class="headerlink" title="ScheduledThreadPoolExecutor详解"></a>ScheduledThreadPoolExecutor详解</h4><p>​    ScheduledThreadPoolExecutor继承自ThreadPoolExecutor。它主要用来在给定的延迟之后运行任务，或者定期执行任务。ScheduledThreadPoolExecutor的功能与Timer类似，Timer对应的是单个后台线程，而ScheduledThreadPoolExecutor可以在构造函数中指定多个对应的后台线程数。</p>
+<h5 id="ScheduledThreadPoolExecutor的运行机制"><a href="#ScheduledThreadPoolExecutor的运行机制" class="headerlink" title="ScheduledThreadPoolExecutor的运行机制"></a>ScheduledThreadPoolExecutor的运行机制</h5><p>​    ScheduledThreadPoolExecutor的执行主要分为两大部分。</p>
+<ol>
+<li>当调用ScheduledThreadPoolExecutor的scheduleAtFixedRate()方法或者schedWithFixedDelay()方法时，会向ScheduledThreadPoolExecutor的DalayQueue添加一个实现了RunnableScheduledFutur接口的ScheduledFutureTask。</li>
+<li>线程池中的线程从DelayQueue中获取ScheduledFutureTask，然后执行任务。</li>
+</ol>
+<h5 id="ScheduledThreadPoolExecutor的实现"><a href="#ScheduledThreadPoolExecutor的实现" class="headerlink" title="ScheduledThreadPoolExecutor的实现"></a>ScheduledThreadPoolExecutor的实现</h5><p>​    ScheduledFutureTask主要包含3个成员变量。</p>
+<ul>
+<li><p>long型成员变量time，表示这个任务将要被执行的具体时间。</p>
+</li>
+<li><p>long型成员变量sequenceNumber，表示这个任务被添加到ScheduledThreadPoolExecutor中的序号。</p>
+</li>
+<li><p>long型成员变量period，表示任务执行的间隔周期。</p>
+<p>DelayQueue封装了一个PriorityQueue，这个PriorityQueue会对队列中的ScheduledFutureTask进行排序。排序时，time小的排在前面(时间早的任务将被先执行)。如果两个ScheduledFutureTask的time相同，就比较sequenceNumber，sequenceNumber小的排在前面(也就是说，如果两个任务的执行时间相同，那么先提交的任务将被先执行)。</p>
+</li>
+</ul>
+<h4 id="FutureTask详解"><a href="#FutureTask详解" class="headerlink" title="FutureTask详解"></a>FutureTask详解</h4><p>​    Future接口和实现FutureTask类，代表异步计算的结果。</p>
+<h5 id="FutureTask简介"><a href="#FutureTask简介" class="headerlink" title="FutureTask简介"></a>FutureTask简介</h5><p>​    FutureTask除了实现Future接口外，还实现了Runnable接口。因此，FutureTask可以交给Executor执行，也可以由调用线程直接执行(FutureTask.run())。根据FutureTask.run()方法被执行的时机，有3种状态。</p>
+<ol>
+<li>未启动。FutureTask.run()方法还没有被执行之前，FutureTask处于未启动状态。当创建一个FutureTask，且没有执行FutureTask.run()方法之前，这个FutureTask处于未启动状态。</li>
+<li>已启动。FutureTask.run()方法被执行的过程中，FutureTask处于已启动状态。</li>
+<li>已完成。FutureTask.run()方法执行完后正常结束，或被取消(FutureTask.cancel(…))，或执行FutureTask.run()方法时抛出异常而异常结束，FutureTask处于已完成状态。</li>
+</ol>
 
-任务。包括被执行任务需要实现的接口：Runnable接口或Callable接口。
-
-任务的执行。包括任务执行机制的核心接口Executor，以及继承自Executor的ExecutorService接口。Executor框架有两个关键类实现了ExecutorService接口(ThreadPoolExecutor和ScheduledThreadPoolExecutor)
-
-异步计算的结果。包括接口Future和实现Future接口的FutureTask类。
-类和接口的简介。
-
-Executor是一个接口，...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/11</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/10/Java中的线程池/">
-            
-                <span>(八)Java中的线程池</span>
-        </a>
-        <div class="abstract-content">
-            使用线程池的好处：
-
-降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。
-提高响应速度。当任务到达时，任务可以不需要等到线程创建就能立即执行。
-提高线程的课管理型。线程是稀缺资源，如果无限制地创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一分配、调优和监控。
-
-线程池的实现原理​    当提交一个新任务到线程池时，线程池的处理流程如下。
-
-线程池判断核心线程池里的线程是否都在执行任务。如果不是，则创建一个新的工作线程来执行任务。如果核心线程池都在执行任务，则进入下个流程。
-
-线程池判断工作队列是否已经满。如果工作队列没有满，则将新提交的任务存储在这...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="">jounetsu</a>
+            </p><p>原文链接：<a href="/2019/04/11/Executor框架/">/2019/04/11/Executor框架/</a>
+            </p><p>发表日期：<a href="/2019/04/11/Executor框架/">April 11th 2019, 9:18:59 pm</a>
+            </p><p>更新日期：<a href="/2019/04/11/Executor框架/">April 13th 2019, 2:11:59 pm</a>
+            </p><p>版权声明：</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/10</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/09/Java中的并发工具类/">
-            
-                <span>(七)Java中的并发工具类</span>
-        </a>
-        <div class="abstract-content">
-            等待多线程完成的CountDownLatch​    CountDownLatch允许一个或多个线程等待其他线程完成操作。
-12345678910111213141516public class CountDownLatchTest &#123;    public static void main(String[] args) throws Exception&#123;        CountDownLatch c = new CountDownLatch(2);        new Thread(new Runnable() &#123;            @Overrid...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/09/Java中的12个原子操作类/">
-            
-                <span>(六)Java中的12个原子操作类</span>
-        </a>
-        <div class="abstract-content">
-            原子更新基本类型类​    使用原子的方式更新基本类型，Atomic包提供了以下3个类。
-
-AtomicBoolean：原子更新布尔型
-AtomicInteger：原子更新整型
-AtomicLong：原子更新长整型
-
-12345678910public class AtomicIntegerTest &#123;    public static void main(String[] args) &#123;        AtomicInteger atomicInteger = new AtomicInteger(1);        System.out.println(atomi...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/03/Java并发容器和框架/">
-            
-                <span>(五)Java并发容器和框架</span>
-        </a>
-        <div class="abstract-content">
-            ConcurrentHashMap的实现原理与使用ConcurrentHashMap的结构​    ConcurrentHashMap是由Segment数组结构和HashEntry数据结构组成。Segment是一种可重入锁(ReentrantLock)，HashEntry则用于存储键值对数据。一个ConcurrentHashMap里包含一个Segment数组。Segment的结构和HashMap类似，是一种数组和链表结构。一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护着一个HashEntry数组里的元素,当对Hash...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/03</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/01/Java中的锁/">
-            
-                <span>(四)Java中的锁</span>
-        </a>
-        <div class="abstract-content">
-            Lock接口​    锁是用来控制多个线程访问共享资源的方式，一般来说，一个锁能够防止多个线程同时访问共享资源。
-​    Lock的使用：
-1234567Lock lock = new ReentrantLock();lock.lock();tyr&#123;&#125; finally&#123;lock.unlock();&#125;
-​    在finally块中释放锁，目的是保证在获取到锁之后，最终能够被释放。
-​    不要将获取锁的过程写在try块中，因为如果在获取锁(自定义锁的实现)时发生了异常，异常抛出的同时，也会导致锁无故释放。
-​    Lock接口提供的synch...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/28/Java并发编程基础/">
-            
-                <span>(三)Java并发编程基础</span>
-        </a>
-        <div class="abstract-content">
-            线程简介线程优先级​    现代操作系统基本采用时分的形式调度运行的线程，操作系统会分出一个个时间片，线程会分配到若干时间片，当线程的时间片用完了就会发生线程调度，并等待着下次分配。线程分配到的时间片多少也就决定了线程使用处理器资源的多少，而线程优先级就是决定线程需要多或者少分配一些处理器资源的线程属性。
-​    在Java线程中，通过一个整型成员变量priority来控制优先级，优先级的范围从1～10，在线程构建的时候可以通过setPriority(int)方法来修改优先级，默认优先级是5，优先级高的线程分配时间片的数量要多于优先级低的线程。设置线程优先级时，针对频繁阻塞(休眠或者I...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/28</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/22/Java内存模型/">
-            
-                <span>(三)Java内存模型</span>
-        </a>
-        <div class="abstract-content">
-            Java内存模型的基础Java内存模型的抽象结构​    在Java中，所有实例域、静态域和数组元素都存储在堆内存中，堆内存在线程之间共享。局部变量，方法定义参数和异常处理器参数不会在线程之间共享，它们不会有内存可见性问题，也不受内存模型的影响。
-​    Java线程之间的通信由Java内存模型(JMM)控制，JMM定义了一个线程对共享变量的写入何时对另一个线程可见。从抽象的角度来看，JMM定义了线程和主内存之间的抽象关系：线程之间的共享变量存储在主内存中，每个线程都有一个私有的本地内存，本地内存中存储了该线程以读/写共享变量的副本。本地内存是JMM的一个抽象概念，并不真实存在。它涵盖...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/22</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/19/Java并发机制的底层实现原理/">
-            
-                <span>(二)Java并发机制的底层实现原理</span>
-        </a>
-        <div class="abstract-content">
-            volatile定义​    Java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致地更新，线程应该确保通过排他锁单独获得这个变量。Java语言提供了volatile，在某些情况下比锁要更加方便。如果一个字段被声明成volatile，Java线程内存模型确保所有线程看到这个变量的值是一致的。
-实现原则1）Lock前缀指令会引起处理器缓存回写到内存。
-2）一个处理器的缓存回写到内存会导致其他处理器的缓存无效。
-Synchronized利用Synchronized实现同步的基础：Java中的每一个对象都可以作为锁。具体表现在以下三种形式。
-
-对于普通同步方法，锁是当前实例对象。...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/19</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/03/设计模式/">
-            
-                <span>设计模式</span>
-        </a>
-        <div class="abstract-content">
-            观察者模式定义观察者模式定义了对象之间的的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。
-Java内置的观察者模式把对象编程观察者实现观察者接口（java.util.Observer），然后调用任何Observable对象的addObserver()方法。不想再当观察者时，调用deleteObserver()方法。
-可观察者送出通知首先利用java.util.Observable接口产生“可观察者”类，然后，需要两个步骤：
-
-先调用setChanged()方法，标记状态已经改变的事实。
-然后调用两种notifyObservers()方法中的一个：not...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/03</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">NEXT &#62;</a>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src="/avatar/work.jpg">
-    <div class="profile-name">jounetsu</div>
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/04/10/Java中的线程池/" title="(八)Java中的线程池">
+                    <div class="prevTitle">(八)Java中的线程池</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <div class="profile-signature">
-        人生是一场蹉跎 愿你别错过
-    </div>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-    <div class="profile-social">
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
-    </div>
-    
-    
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -758,6 +570,24 @@ Java内置的观察者模式把对象编程观察者实现观察者接口（java
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Executor框架的结构"><span class="toc-number">1.1.</span> <span class="toc-text">Executor框架的结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Executor框架的成员"><span class="toc-number">1.2.</span> <span class="toc-text">Executor框架的成员</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ThreadPoolExecutor详解"><span class="toc-number">2.</span> <span class="toc-text">ThreadPoolExecutor详解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#FixedThreadPool详解"><span class="toc-number">2.1.</span> <span class="toc-text">FixedThreadPool详解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SingleThreadExecutor详解"><span class="toc-number">2.2.</span> <span class="toc-text">SingleThreadExecutor详解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#CachedThreadPool详解"><span class="toc-number">2.3.</span> <span class="toc-text">CachedThreadPool详解</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ScheduledThreadPoolExecutor详解"><span class="toc-number">3.</span> <span class="toc-text">ScheduledThreadPoolExecutor详解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ScheduledThreadPoolExecutor的运行机制"><span class="toc-number">3.1.</span> <span class="toc-text">ScheduledThreadPoolExecutor的运行机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ScheduledThreadPoolExecutor的实现"><span class="toc-number">3.2.</span> <span class="toc-text">ScheduledThreadPoolExecutor的实现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FutureTask详解"><span class="toc-number">4.</span> <span class="toc-text">FutureTask详解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#FutureTask简介"><span class="toc-number">4.1.</span> <span class="toc-text">FutureTask简介</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1164,6 +994,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
