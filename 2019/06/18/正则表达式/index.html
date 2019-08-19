@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>(六)Java中的12个原子操作类 · null</title>
+    <title>正则表达式 · null</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">jounetsu&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">(六)Java中的12个原子操作类</a>
+                <a href="#" class="post-name">正则表达式</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            (六)Java中的12个原子操作类
+            正则表达式
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">792</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/09</span>
+                    <span class="post-intro-time">2019/06/18</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,44 +395,59 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h4 id="原子更新基本类型类"><a href="#原子更新基本类型类" class="headerlink" title="原子更新基本类型类"></a>原子更新基本类型类</h4><p>​    使用原子的方式更新基本类型，Atomic包提供了以下3个类。</p>
-<ul>
-<li>AtomicBoolean：原子更新布尔型</li>
-<li>AtomicInteger：原子更新整型</li>
-<li>AtomicLong：原子更新长整型</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AtomicIntegerTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AtomicInteger atomicInteger = <span class="keyword">new</span> AtomicInteger(<span class="number">1</span>);</span><br><span class="line">        System.out.println(atomicInteger.getAndIncrement());</span><br><span class="line">        System.out.println(atomicInteger.get());</span><br><span class="line">        atomicInteger.addAndGet(<span class="number">5</span>);</span><br><span class="line">        System.out.println(atomicInteger.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="原子更新数组"><a href="#原子更新数组" class="headerlink" title="原子更新数组"></a>原子更新数组</h4><p>​    通过原子的方式更新数组里的某个元素，Atomic包提供了以下3个类。</p>
-<ul>
-<li>AtomicIntegerArray：原子更新整型数组里的元素</li>
-<li>AtomicLongArray：原子更新长整型数组里的元素</li>
-<li>AtmoicReferenceArray：原子更新引用类型数组里的元素</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AtomicIntegerArrayTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] value = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>&#125;;</span><br><span class="line">        AtomicIntegerArray integerArray = <span class="keyword">new</span> AtomicIntegerArray(value);</span><br><span class="line">        integerArray.getAndSet(<span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line">        System.out.println(integerArray.get(<span class="number">0</span>));</span><br><span class="line">        System.out.println(value[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    数组value通过构造方法传递进去，然后AtomicIntegerArray会将当前数组复制一份，所以当AtomicIntegerArray对内部的数组元素进行修改时，不会影响传入的数组。</p>
-<h4 id="原子更新引用类型"><a href="#原子更新引用类型" class="headerlink" title="原子更新引用类型"></a>原子更新引用类型</h4><p>​    原子更新基本类型的AtomicInteger，只能更新一个变量，如果要原子更新多个变量，就需要使用这个原子更新引用类型提供的类。Atomic包提供了以下3个类。</p>
-<ul>
-<li>AtomicReference：原子更新引用类型</li>
-<li>AtomicReferenceFieldUpdater：原子更新引用类型里的字段</li>
-<li>AtomicMarkableReference：原子更新带有标记位的引用类型。可以原子更新一个布尔类型的标记位和引用类型</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AtomicReferenceTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AtomicReference&lt;User&gt; userAtomicReference = <span class="keyword">new</span> AtomicReference&lt;&gt;();</span><br><span class="line">        User user = <span class="keyword">new</span> User(<span class="string">"张三"</span>, <span class="number">18</span>);</span><br><span class="line">        userAtomicReference.set(user);</span><br><span class="line">        User updateUser = <span class="keyword">new</span> User(<span class="string">"李四"</span>, <span class="number">20</span>);</span><br><span class="line">        userAtomicReference.compareAndSet(user, updateUser);</span><br><span class="line">        System.out.println(userAtomicReference.get().getName());</span><br><span class="line">        System.out.println(userAtomicReference.get().getOld());</span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> old;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name, <span class="keyword">int</span> old)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            <span class="keyword">this</span>.old = old;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOld</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> old;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="原子更新字段类"><a href="#原子更新字段类" class="headerlink" title="原子更新字段类"></a>原子更新字段类</h4><p>​    如果需原子地更新某个类里的某个字段时，就需要使用原子更新字段类，Atomic包提供了以下3个类进行原子字段更新。</p>
-<ul>
-<li>AtomicIntegerFieldUpdater：原子更新整型的字段的更新器</li>
-<li>AtomicLongFieldUpdate：原子更新整型字段的更新器</li>
-<li>AtomicStampedReference：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于原子的更新数据和数据的版本号，可以解决使用CAS进行原子更新时可能出现的ABA问题</li>
-</ul>
-<p>要想原子地更新字段需要两步。第一步，因为原子更新字段类都是抽象类，每次使用的时候必须使用静态方法newUpdater()创建一个更新器，并且需要设置想要更新的类和属性。第二步，更新类的字段(属性)必须使用public volatile修饰符。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AtomicIntegerFieldUpdaterTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AtomicIntegerFieldUpdater&lt;User&gt; a = AtomicIntegerFieldUpdater.newUpdater(User.class, <span class="string">"old"</span>);</span><br><span class="line">        User user = <span class="keyword">new</span> User(<span class="string">"张三"</span>, <span class="number">18</span>);</span><br><span class="line">        System.out.println(a.getAndIncrement(user));</span><br><span class="line">        System.out.println(a.get(user));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">volatile</span> <span class="keyword">int</span> old;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name, <span class="keyword">int</span> old)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            <span class="keyword">this</span>.old = old;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOld</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> old;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="一-Egrep元字符"><a href="#一-Egrep元字符" class="headerlink" title="一.Egrep元字符"></a>一.Egrep元字符</h3><p>使用·表示空格</p>
+<h4 id="行的起始和结束"><a href="#行的起始和结束" class="headerlink" title="行的起始和结束"></a>行的起始和结束</h4><p>「^」代表一行的开始，「$」代表结束。</p>
+<p>「^cat$」：匹配的条件是，行开头，然后是字符c·a·t，然后是行末尾。只包含cat的行—没有多余的单词、空白字符……只有’cat’。</p>
+<p>「^$」：匹配的条件是行开头，然后就行末尾。表示是空行。</p>
+<p>「^」：匹配条件是行的开头。应用意义为无意义，每一行都有开头，所以都能匹配，空行也可以。</p>
+<h4 id="字符组"><a href="#字符组" class="headerlink" title="字符组"></a>字符组</h4><h5 id="匹配若干字符之一"><a href="#匹配若干字符之一" class="headerlink" title="匹配若干字符之一"></a>匹配若干字符之一</h5><p>使用正则表达式结构体[…]，它容许使用者列出在某处期望匹配的字符，通常被称作字符组。正则表达式[ea]能匹配a或者e。</p>
+<p>在字符组以外，普通字符(例如gr[ae]y中的g和r)都有接下来是的意思—首先匹配g，接下来是r。字符组的内容是在同一个位置能够匹配的若干字符，它的意思是或。</p>
+<p>在字符组内部，字符组元字符’-‘表示一个范围：在&lt;H[1-6]&gt;与&lt;H[123456]&gt;是完全一样的。只有在字符组内部，连字符才是元字符，否则它就只能匹配普通的连字符号。如果连字符出现在字符组的开头，它表示的就只是一个普通字符，而不是一个范围。</p>
+<h5 id="排除型字符组"><a href="#排除型字符组" class="headerlink" title="排除型字符组"></a>排除型字符组</h5><p>用[^]取代[]，这个字符组就会匹配任何未列出的字符。例如[^1-6]匹配除了1到6以外的任何字符。</p>
+<p>排除型字符组表示””匹配一个未列出的字符””，而不是”不要匹配列出的字符”。</p>
+<h4 id="用点号匹配任意字符"><a href="#用点号匹配任意字符" class="headerlink" title="用点号匹配任意字符"></a>用点号匹配任意字符</h4><p>元字符「.」是用来匹配任意字符的字符组的简便写法。</p>
+<p>例如：需要搜索03/19/76、03-19-76或03.19.76，不怕麻烦的话用一个明确容许’/‘、’-‘、’.’的字符组来构建正则表达式，例如「03[-./]19[-./]76」。也可以使用「03.19.76」。</p>
+<h4 id="多选结构"><a href="#多选结构" class="headerlink" title="多选结构"></a>多选结构</h4><h5 id="匹配任意子表达式"><a href="#匹配任意子表达式" class="headerlink" title="匹配任意子表达式"></a>匹配任意子表达式</h5><p>「|」是一个非常简捷的元字符，它的意思是”或”。</p>
+<p>「Bob」,「Robert」是两个正则表达式，「Bob|Robert」表示可以同时匹配其中任意一个的正则表达式。</p>
+<p>「gr[ae]y」，可以写成「gray|grey」或者「gr(a|e)y」。</p>
+<h4 id="忽略大小写"><a href="#忽略大小写" class="headerlink" title="忽略大小写"></a>忽略大小写</h4><p>把-i写在正则表达式之前。</p>
+<h4 id="单词分界符"><a href="#单词分界符" class="headerlink" title="单词分界符"></a>单词分界符</h4><p>「\ &lt;」和「\ &gt;」可以使用它们来匹配单词分界的位置。「&lt;」和「&gt;」本身并不是元字符，只有它们与斜线结合起来的时候，整个序列才具有特殊意义。</p>
+<p>某些版本的egrp可能不支持。</p>
+<h4 id="可选项元素"><a href="#可选项元素" class="headerlink" title="可选项元素"></a>可选项元素</h4><p>「?」代表可选项，把它加在一个字符的后面，就表示此处容许出现这个字符，它的出现并非匹配成功的必要条件。</p>
+<p>color和colour可以用「colou?r」进行匹配。「u?」只作用于之前紧邻的元素。</p>
+<h4 id="其他量词：重复出现"><a href="#其他量词：重复出现" class="headerlink" title="其他量词：重复出现"></a>其他量词：重复出现</h4><p>「+」和「<em>」的作用与问号类似。元字符「+」表示”之前紧邻的元素出现一次或多次”，「 </em>」表示”之前紧邻的元素出现任意多次，或者不出现”。换种说法就是「··· *」表示”匹配尽可能多的次数，如果实在无法匹配，也不要紧”。「···+」的意思与之类似，也是匹配尽可能多的次数，但如果连一次匹配都无法完成，就报告失败。</p>
+<p>&lt;HR·SIZE=14&gt;匹配：「&lt;HR·+SIZE· <em>= · </em>[0-9]+· *&gt;」</p>
+<p>如果size也是可选的，则为「&lt;HR(·+SIZE·<em>=· </em>[0-9]+)？· *&gt;」</p>
+<h5 id="规定重现次数的范围：区间"><a href="#规定重现次数的范围：区间" class="headerlink" title="规定重现次数的范围：区间"></a>规定重现次数的范围：区间</h5><p>某些版本的egrep能够使用元字符序列来自定义重现次数的区间:「···{min,max}」，这成为”区间量词”。例如，「···{3,12}」能够容许的重现次数在3到12之间。</p>
+<h4 id="括号及反向引用"><a href="#括号及反向引用" class="headerlink" title="括号及反向引用"></a>括号及反向引用</h4><p>括号能够”记住”它们包含的子表达式匹配的文本。如果确切知道重复单词的第一个单词（比如是”the”），就能够明确无误的找到它，例如「the the」，但是还是会匹配到the theory的情况，所以加上单词分界符「\ <the the\="">」。</the></p>
+<p>反向引用是正则表达式的特性之一，它容许我们匹配与表达式先前部分匹配的同样的文本。</p>
+<p>先把「\ <the the\="">」中的第一个「the」替换为能够匹配任意单词的正则表达式「[A-Za-z]+」；然后在两端加上括号；最后把后一个’the’替换为特殊的元字符序列「\1」，就得到了「\ &lt;([A-Za-z]+)·+\1\ &gt;」。如果一个单词在某行末尾，另一个单词在下一行的开头，该表达式无法找到。</the></p>
+<p>也可以在一个表达式中使用多个括号，再用「\1」「\2」「\3」来表示第一、第二、第三组括号匹配的文本。「([a-z])([0-9])\1\2」中的「\1」代表[a-z]匹配的内容，「\2」代表[0-9]匹配的内容。</p>
+<h4 id="神奇的转义"><a href="#神奇的转义" class="headerlink" title="神奇的转义"></a>神奇的转义</h4><p>反斜线\为转义符，它作用的元字符会失去特殊意义，成了普通字符。</p>
+<p>如匹配ega.att.com，则为「ega\ .att\ .com」</p>
+<p>还可以使用「\ ([a-zA-Z]+\ )」来匹配一个括号内的单词，如(very)。</p>
+<h3 id="二-常用的元字符和特性"><a href="#二-常用的元字符和特性" class="headerlink" title="二.常用的元字符和特性"></a>二.常用的元字符和特性</h3><h4 id="字符组简记法"><a href="#字符组简记法" class="headerlink" title="字符组简记法"></a>字符组简记法</h4><p>\d 数字：等价于「[0-9]」。</p>
+<p>\D 非数字字符：等价于「[^\d]」。</p>
+<p>\w 单词中的字符：一般等价于「[a-zA-Z0-9_]」。</p>
+<p>\W 非单词字符：等价于「[^\w]」。</p>
+<p>\s 空白字符：在支持ASCII的系统中，它通常等价于「[·\f\n\r\r\t\v]」。</p>
+<p>\S 非空白字符：等价于「[^\s]」。</p>
+<h4 id="锚点及其他”零长度断言”"><a href="#锚点及其他”零长度断言”" class="headerlink" title="锚点及其他”零长度断言”"></a>锚点及其他”零长度断言”</h4><h5 id="行-字符串的起始位置：-、-A"><a href="#行-字符串的起始位置：-、-A" class="headerlink" title="行/字符串的起始位置：^、\A"></a>行/字符串的起始位置：^、\A</h5><h5 id="行-字符串的结束为止：-、-Z和-z"><a href="#行-字符串的结束为止：-、-Z和-z" class="headerlink" title="行/字符串的结束为止：$、\Z和\z"></a>行/字符串的结束为止：$、\Z和\z</h5><h5 id="匹配的起始位置（或者是上一次匹配的结束位置）：-G"><a href="#匹配的起始位置（或者是上一次匹配的结束位置）：-G" class="headerlink" title="匹配的起始位置（或者是上一次匹配的结束位置）：\G"></a>匹配的起始位置（或者是上一次匹配的结束位置）：\G</h5><h4 id="单词分界符：-b、-B、-lt-、-gt"><a href="#单词分界符：-b、-B、-lt-、-gt" class="headerlink" title="单词分界符：\b、\B、\ &lt;、\ &gt;"></a>单词分界符：\b、\B、\ &lt;、\ &gt;</h4><p>单词分界符可以分成两类，一类中单词起始位置分界符和结束位置分界符是相同的(通常是\ &lt;和\ &gt;)，另一类则以统一的分界符来匹配（通常是\b）。两类都提供了非单词分界符序列（通常是\B）。</p>
+<h4 id="注释和模式修饰符"><a href="#注释和模式修饰符" class="headerlink" title="注释和模式修饰符"></a>注释和模式修饰符</h4><h5 id="模式修饰符：-modifier-，例如-i-和-i"><a href="#模式修饰符：-modifier-，例如-i-和-i" class="headerlink" title="模式修饰符：(?modifier)，例如(?i)和(?-i)"></a>模式修饰符：(?modifier)，例如(?i)和(?-i)</h5><p>「(?i)」会启用不区分大小写的匹配，而「(?-i)」会停用此功能。</p>
+<h5 id="模式作用范围：-modifier-…-，例如-i-···"><a href="#模式作用范围：-modifier-…-，例如-i-···" class="headerlink" title="模式作用范围：(?modifier:…)，例如(?i:···)"></a>模式作用范围：(?modifier:…)，例如(?i:···)</h5><p>「<b>(?:(?i)very)</b>」可以简写成「<b>(?i:very)</b>」</p>
+<h4 id="分组，捕获，条件判断和控制"><a href="#分组，捕获，条件判断和控制" class="headerlink" title="分组，捕获，条件判断和控制"></a>分组，捕获，条件判断和控制</h4><h5 id="捕获-分组括号：-…-和-1-2-…"><a href="#捕获-分组括号：-…-和-1-2-…" class="headerlink" title="捕获/分组括号：(…)和\1,\2,…"></a>捕获/分组括号：(…)和\1,\2,…</h5><h5 id="仅用于分组的括号：-…"><a href="#仅用于分组的括号：-…" class="headerlink" title="仅用于分组的括号：(?:…)"></a>仅用于分组的括号：(?:…)</h5><h5 id="命名捕获：-lt-Name-gt-…"><a href="#命名捕获：-lt-Name-gt-…" class="headerlink" title="命名捕获：(?&lt; Name&gt;…)"></a>命名捕获：(?&lt; Name&gt;…)</h5><p>Python和PHP的preg引擎，以及.NET引擎，都能够为捕获内容命名。Python和PHP使用的语法是「(?P&lt; name&gt;…)」，而.NET引擎使用「(?&lt; name&gt;…)」。</p>
+<p>「\b(?P&lt; Area&gt;\d\d\d)-(?P&lt; Exch&gt;\d\d\d)-(?P&lt; Num&gt;\d\d\d\d)\b」</p>
+<p>这个表达式会用美国电话号码的各个部分’’填充”Area、Exch和Num命名的内容。</p>
+<h5 id="固化分组：-gt-…"><a href="#固化分组：-gt-…" class="headerlink" title="固化分组：(?&gt;…)"></a>固化分组：(?&gt;…)</h5><p>可以提高效率。</p>
+<h3 id="二-正则表达式实用技巧"><a href="#二-正则表达式实用技巧" class="headerlink" title="二.正则表达式实用技巧"></a>二.正则表达式实用技巧</h3>
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="">jounetsu</a>
-            </p><p>原文链接：<a href="/2019/04/09/Java中的12个原子操作类/">/2019/04/09/Java中的12个原子操作类/</a>
-            </p><p>发表日期：<a href="/2019/04/09/Java中的12个原子操作类/">April 9th 2019, 11:39:46 am</a>
-            </p><p>更新日期：<a href="/2019/04/09/Java中的12个原子操作类/">April 9th 2019, 4:16:38 pm</a>
+            </p><p>原文链接：<a href="/2019/06/18/正则表达式/">/2019/06/18/正则表达式/</a>
+            </p><p>发表日期：<a href="/2019/06/18/正则表达式/">June 18th 2019, 7:55:04 pm</a>
+            </p><p>更新日期：<a href="/2019/06/18/正则表达式/">August 1st 2019, 9:30:46 am</a>
             </p><p>版权声明：</p>
         </div>
     
@@ -441,16 +456,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/04/09/Java中的并发工具类/" title="(七)Java中的并发工具类">
-                    <div class="nextTitle">(七)Java中的并发工具类</div>
+                <a href="/2019/06/26/python爬虫-基本库的使用/" title="python爬虫-基本库的使用">
+                    <div class="nextTitle">python爬虫-基本库的使用</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/04/03/Java并发容器和框架/" title="(五)Java并发容器和框架">
-                    <div class="prevTitle">(五)Java并发容器和框架</div>
+                <a href="/2019/04/11/Executor框架/" title="(九)Executor框架">
+                    <div class="prevTitle">(九)Executor框架</div>
                 </a>
             
         </li>
@@ -554,7 +569,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#原子更新基本类型类"><span class="toc-number">1.</span> <span class="toc-text">原子更新基本类型类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#原子更新数组"><span class="toc-number">2.</span> <span class="toc-text">原子更新数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#原子更新引用类型"><span class="toc-number">3.</span> <span class="toc-text">原子更新引用类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#原子更新字段类"><span class="toc-number">4.</span> <span class="toc-text">原子更新字段类</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-Egrep元字符"><span class="toc-number">1.</span> <span class="toc-text">一.Egrep元字符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#行的起始和结束"><span class="toc-number">1.1.</span> <span class="toc-text">行的起始和结束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符组"><span class="toc-number">1.2.</span> <span class="toc-text">字符组</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#匹配若干字符之一"><span class="toc-number">1.2.1.</span> <span class="toc-text">匹配若干字符之一</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#排除型字符组"><span class="toc-number">1.2.2.</span> <span class="toc-text">排除型字符组</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用点号匹配任意字符"><span class="toc-number">1.3.</span> <span class="toc-text">用点号匹配任意字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多选结构"><span class="toc-number">1.4.</span> <span class="toc-text">多选结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#匹配任意子表达式"><span class="toc-number">1.4.1.</span> <span class="toc-text">匹配任意子表达式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#忽略大小写"><span class="toc-number">1.5.</span> <span class="toc-text">忽略大小写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单词分界符"><span class="toc-number">1.6.</span> <span class="toc-text">单词分界符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可选项元素"><span class="toc-number">1.7.</span> <span class="toc-text">可选项元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他量词：重复出现"><span class="toc-number">1.8.</span> <span class="toc-text">其他量词：重复出现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#规定重现次数的范围：区间"><span class="toc-number">1.8.1.</span> <span class="toc-text">规定重现次数的范围：区间</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#括号及反向引用"><span class="toc-number">1.9.</span> <span class="toc-text">括号及反向引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#神奇的转义"><span class="toc-number">1.10.</span> <span class="toc-text">神奇的转义</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-常用的元字符和特性"><span class="toc-number">2.</span> <span class="toc-text">二.常用的元字符和特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符组简记法"><span class="toc-number">2.1.</span> <span class="toc-text">字符组简记法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#锚点及其他”零长度断言”"><span class="toc-number">2.2.</span> <span class="toc-text">锚点及其他”零长度断言”</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#行-字符串的起始位置：-、-A"><span class="toc-number">2.2.1.</span> <span class="toc-text">行/字符串的起始位置：^、\A</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#行-字符串的结束为止：-、-Z和-z"><span class="toc-number">2.2.2.</span> <span class="toc-text">行/字符串的结束为止：$、\Z和\z</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#匹配的起始位置（或者是上一次匹配的结束位置）：-G"><span class="toc-number">2.2.3.</span> <span class="toc-text">匹配的起始位置（或者是上一次匹配的结束位置）：\G</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单词分界符：-b、-B、-lt-、-gt"><span class="toc-number">2.3.</span> <span class="toc-text">单词分界符：\b、\B、\ &lt;、\ &gt;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注释和模式修饰符"><span class="toc-number">2.4.</span> <span class="toc-text">注释和模式修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#模式修饰符：-modifier-，例如-i-和-i"><span class="toc-number">2.4.1.</span> <span class="toc-text">模式修饰符：(?modifier)，例如(?i)和(?-i)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#模式作用范围：-modifier-…-，例如-i-···"><span class="toc-number">2.4.2.</span> <span class="toc-text">模式作用范围：(?modifier:…)，例如(?i:···)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分组，捕获，条件判断和控制"><span class="toc-number">2.5.</span> <span class="toc-text">分组，捕获，条件判断和控制</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#捕获-分组括号：-…-和-1-2-…"><span class="toc-number">2.5.1.</span> <span class="toc-text">捕获/分组括号：(…)和\1,\2,…</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#仅用于分组的括号：-…"><span class="toc-number">2.5.2.</span> <span class="toc-text">仅用于分组的括号：(?:…)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#命名捕获：-lt-Name-gt-…"><span class="toc-number">2.5.3.</span> <span class="toc-text">命名捕获：(?&lt; Name&gt;…)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#固化分组：-gt-…"><span class="toc-number">2.5.4.</span> <span class="toc-text">固化分组：(?&gt;…)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-正则表达式实用技巧"><span class="toc-number">3.</span> <span class="toc-text">二.正则表达式实用技巧</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

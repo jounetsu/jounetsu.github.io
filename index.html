@@ -357,6 +357,134 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/15/python爬虫-解析库的使用/">
+            
+                <span>python爬虫-解析库的使用</span>
+        </a>
+        <div class="abstract-content">
+            1.使用XPath1.XPath常用规则
+
+
+表达式
+描述
+
+
+
+
+nodename
+选取此节点的所有子节点
+
+
+/
+从当前节点选择直接子节点
+
+
+//
+从当前节点选取子孙节点
+
+
+.
+选取当前节点
+
+
+..
+选取当前节点的父节点
+
+
+@
+选取属性
+
+
+
+2.使用1.转换123456789101112131415from lxml import etreetext = '''&lt;div&gt;&lt;ul&gt;&lt;li class="item-0"&gt;&lt;a href="link1.html"&gt;first item&lt;/a&gt;&lt;/li&gt;&lt;...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/15</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="python爬虫">python爬虫</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/26/python爬虫-基本库的使用/">
+            
+                <span>python爬虫-基本库的使用</span>
+        </a>
+        <div class="abstract-content">
+            1.使用urllib在python3中，统一使用urllib。它是python内置的HTTP请求库，不需要额外安装即可使用。它包含4个模块。
+
+request：它是最基本的HTTP请求模块，可以用来模拟发送请求。
+error：异常处理模块，如果出现请求错误，可以捕获这些异常，然后进行充实或其他操作以保证程序不会意外终止。
+parse：一个工具模块，提供了许多URL处理方法，比如拆分、解析、合并等。
+robotparser：主要是用来识别网站的robots.txt文件，然后判断哪些网站可以爬，哪些网站不可以爬，用得较少。
+
+1.1发送请求1.urlopen()urllib.request模...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="python爬虫">python爬虫</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/18/正则表达式/">
+            
+                <span>正则表达式</span>
+        </a>
+        <div class="abstract-content">
+            一.Egrep元字符使用·表示空格
+行的起始和结束「^」代表一行的开始，「$」代表结束。
+「^cat$」：匹配的条件是，行开头，然后是字符c·a·t，然后是行末尾。只包含cat的行—没有多余的单词、空白字符……只有’cat’。
+「^$」：匹配的条件是行开头，然后就行末尾。表示是空行。
+「^」：匹配条件是行的开头。应用意义为无意义，每一行都有开头，所以都能匹配，空行也可以。
+字符组匹配若干字符之一使用正则表达式结构体[…]，它容许使用者列出在某处期望匹配的字符，通常被称作字符组。正则表达式[ea]能匹配a或者e。
+在字符组以外，普通字符(例如gr[ae]y中的g和r)都有接下来是的意思—首...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/18</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/11/Executor框架/">
             
                 <span>(九)Executor框架</span>
@@ -538,86 +666,6 @@ AtomicLong：原子更新长整型
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/28</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/22/Java内存模型/">
-            
-                <span>(三)Java内存模型</span>
-        </a>
-        <div class="abstract-content">
-            Java内存模型的基础Java内存模型的抽象结构​    在Java中，所有实例域、静态域和数组元素都存储在堆内存中，堆内存在线程之间共享。局部变量，方法定义参数和异常处理器参数不会在线程之间共享，它们不会有内存可见性问题，也不受内存模型的影响。
-​    Java线程之间的通信由Java内存模型(JMM)控制，JMM定义了一个线程对共享变量的写入何时对另一个线程可见。从抽象的角度来看，JMM定义了线程和主内存之间的抽象关系：线程之间的共享变量存储在主内存中，每个线程都有一个私有的本地内存，本地内存中存储了该线程以读/写共享变量的副本。本地内存是JMM的一个抽象概念，并不真实存在。它涵盖...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/22</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/19/Java并发机制的底层实现原理/">
-            
-                <span>(二)Java并发机制的底层实现原理</span>
-        </a>
-        <div class="abstract-content">
-            volatile定义​    Java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致地更新，线程应该确保通过排他锁单独获得这个变量。Java语言提供了volatile，在某些情况下比锁要更加方便。如果一个字段被声明成volatile，Java线程内存模型确保所有线程看到这个变量的值是一致的。
-实现原则1）Lock前缀指令会引起处理器缓存回写到内存。
-2）一个处理器的缓存回写到内存会导致其他处理器的缓存无效。
-Synchronized利用Synchronized实现同步的基础：Java中的每一个对象都可以作为锁。具体表现在以下三种形式。
-
-对于普通同步方法，锁是当前实例对象。...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/19</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/03/设计模式/">
-            
-                <span>设计模式</span>
-        </a>
-        <div class="abstract-content">
-            观察者模式定义观察者模式定义了对象之间的的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。
-Java内置的观察者模式把对象编程观察者实现观察者接口（java.util.Observer），然后调用任何Observable对象的addObserver()方法。不想再当观察者时，调用deleteObserver()方法。
-可观察者送出通知首先利用java.util.Observable接口产生“可观察者”类，然后，需要两个步骤：
-
-先调用setChanged()方法，标记状态已经改变的事实。
-然后调用两种notifyObservers()方法中的一个：not...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/03</span>
             </div>
             <!-- tags  -->
             
@@ -981,9 +1029,38 @@ Java内置的观察者模式把对象编程观察者实现观察者接口（java
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 16
+        Total : 19
         </div>
         <!-- search  -->
         
@@ -996,6 +1073,21 @@ Java内置的观察者模式把对象编程观察者实现观察者接口（java
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/15</span><a class="archive-post-title" href="/2019/08/15/python爬虫-解析库的使用/">python爬虫-解析库的使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/26</span><a class="archive-post-title" href="/2019/06/26/python爬虫-基本库的使用/">python爬虫-基本库的使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/18</span><a class="archive-post-title" href="/2019/06/18/正则表达式/">正则表达式</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1091,6 +1183,8 @@ Java内置的观察者模式把对象编程观察者实现观察者接口（java
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1124,13 +1218,17 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
-    
         <span class="sidebar-category-name" data-categories="Spring-Cloud"><span class="iconfont-archer">&#xe60a;</span>Spring-Cloud</span>
+    
+        <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
     
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
+        <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
+    
         <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
+    
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
