@@ -346,9 +346,33 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/03/28/Java并发编程基础/">
+            
+                <span>(三)Java并发编程基础</span>
+        </a>
+        <div class="abstract-content">
+            线程简介线程优先级​    现代操作系统基本采用时分的形式调度运行的线程，操作系统会分出一个个时间片，线程会分配到若干时间片，当线程的时间片用完了就会发生线程调度，并等待着下次分配。线程分配到的时间片多少也就决定了线程使用处理器资源的多少，而线程优先级就是决定线程需要多或者少分配一些处理器资源的线程属性。
+​    在Java线程中，通过一个整型成员变量priority来控制优先级，优先级的范围从1～10，在线程构建的时候可以通过setPriority(int)方法来修改优先级，默认优先级是5，优先级高的线程分配时间片的数量要多于优先级低的线程。设置线程优先级时，针对频繁阻塞(休眠或者I...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/28</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/03/22/Java内存模型/">
             
-                <span>(三)Java内存模型</span>
+                <span>(二)Java内存模型</span>
         </a>
         <div class="abstract-content">
             Java内存模型的基础Java内存模型的抽象结构​    在Java中，所有实例域、静态域和数组元素都存储在堆内存中，堆内存在线程之间共享。局部变量，方法定义参数和异常处理器参数不会在线程之间共享，它们不会有内存可见性问题，也不受内存模型的影响。
@@ -372,7 +396,7 @@
     <article class="index-post">
         <a class="abstract-title" href="/2019/03/19/Java并发机制的底层实现原理/">
             
-                <span>(二)Java并发机制的底层实现原理</span>
+                <span>(一)Java并发机制的底层实现原理</span>
         </a>
         <div class="abstract-content">
             volatile定义​    Java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致地更新，线程应该确保通过排他锁单独获得这个变量。Java语言提供了volatile，在某些情况下比锁要更加方便。如果一个字段被声明成volatile，Java线程内存模型确保所有线程看到这个变量的值是一致的。
@@ -885,9 +909,42 @@ Consumer Service：服务消费者，它是一个Eureka Client，消费服务
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 19
+        Total : 20
         </div>
         <!-- search  -->
         
@@ -900,6 +957,11 @@ Consumer Service：服务消费者，它是一个Eureka Client，消费服务
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/python爬虫-数据存储/">python爬虫-数据存储</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -953,12 +1015,12 @@ Consumer Service：服务消费者，它是一个Eureka Client，消费服务
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/22</span><a class="archive-post-title" href="/2019/03/22/Java内存模型/">(三)Java内存模型</a>
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href="/2019/03/22/Java内存模型/">(二)Java内存模型</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/19</span><a class="archive-post-title" href="/2019/03/19/Java并发机制的底层实现原理/">(二)Java并发机制的底层实现原理</a>
+            <span class="archive-post-date">03/19</span><a class="archive-post-title" href="/2019/03/19/Java并发机制的底层实现原理/">(一)Java并发机制的底层实现原理</a>
         </li>
     
     
@@ -1049,13 +1111,13 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
     
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+    
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     
         <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
-    
-        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
