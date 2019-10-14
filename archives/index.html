@@ -346,6 +346,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/10/11/Java内存区域/">
+            
+                <span>Java内存区域</span>
+        </a>
+        <div class="abstract-content">
+            1. 运行时数据区域
+1.1 程序计数器（Program Counter Register）​    程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
+​    由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各条线程之间计数器互不影响，独立存储，这类内存区域为”线程私有“的内存。
+​    如果线程正在执行的是一个Java方法，这个计数器记录的是正在执...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/20/python爬虫-数据存储/">
             
                 <span>python爬虫-数据存储</span>
@@ -638,38 +670,10 @@ AtomicLong：原子更新长整型
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/01/Java中的锁/">
-            
-                <span>(四)Java中的锁</span>
-        </a>
-        <div class="abstract-content">
-            Lock接口​    锁是用来控制多个线程访问共享资源的方式，一般来说，一个锁能够防止多个线程同时访问共享资源。
-​    Lock的使用：
-1234567Lock lock = new ReentrantLock();lock.lock();tyr&#123;&#125; finally&#123;lock.unlock();&#125;
-​    在finally块中释放锁，目的是保证在获取到锁之后，最终能够被释放。
-​    不要将获取锁的过程写在try块中，因为如果在获取锁(自定义锁的实现)时发生了异常，异常抛出的同时，也会导致锁无故释放。
-​    Lock接口提供的synch...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1001,34 +1005,9 @@ AtomicLong：原子更新长整型
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 20
+        Total : 21
         </div>
         <!-- search  -->
         
@@ -1041,6 +1020,11 @@ AtomicLong：原子更新长整型
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span><a class="archive-post-title" href="/2019/10/11/Java内存区域/">Java内存区域</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1156,6 +1140,8 @@ AtomicLong：原子更新长整型
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
+    
         <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
     
     </div>
@@ -1195,9 +1181,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
     
-        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+        <span class="sidebar-category-name" data-categories="JVM笔记"><span class="iconfont-archer">&#xe60a;</span>JVM笔记</span>
     
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
+    
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     

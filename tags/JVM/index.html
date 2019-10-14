@@ -346,25 +346,28 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/18/正则表达式/">
+        <a class="abstract-title" href="/2019/10/11/Java内存区域/">
             
-                <span>正则表达式</span>
+                <span>Java内存区域</span>
         </a>
         <div class="abstract-content">
-            一.Egrep元字符使用·表示空格
-行的起始和结束「^」代表一行的开始，「$」代表结束。
-「^cat$」：匹配的条件是，行开头，然后是字符c·a·t，然后是行末尾。只包含cat的行—没有多余的单词、空白字符……只有’cat’。
-「^$」：匹配的条件是行开头，然后就行末尾。表示是空行。
-「^」：匹配条件是行的开头。应用意义为无意义，每一行都有开头，所以都能匹配，空行也可以。
-字符组匹配若干字符之一使用正则表达式结构体[…]，它容许使用者列出在某处期望匹配的字符，通常被称作字符组。正则表达式[ea]能匹配a或者e。
-在字符组以外，普通字符(例如gr[ae]y中的g和r)都有接下来是的意思—首...
+            1. 运行时数据区域
+1.1 程序计数器（Program Counter Register）​    程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
+​    由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各条线程之间计数器互不影响，独立存储，这类内存区域为”线程私有“的内存。
+​    如果线程正在执行的是一个Java方法，这个计数器记录的是正在执...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/18</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/11</span>
             </div>
             <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
+    
+</div>
             
         </div>
     </article>

@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>Java内存区域 · null</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">jounetsu&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Java内存区域</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">jounetsu's blog</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            Java内存区域
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/10/11</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,39 +399,66 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/18/正则表达式/">
-            
-                <span>正则表达式</span>
-        </a>
-        <div class="abstract-content">
-            一.Egrep元字符使用·表示空格
-行的起始和结束「^」代表一行的开始，「$」代表结束。
-「^cat$」：匹配的条件是，行开头，然后是字符c·a·t，然后是行末尾。只包含cat的行—没有多余的单词、空白字符……只有’cat’。
-「^$」：匹配的条件是行开头，然后就行末尾。表示是空行。
-「^」：匹配条件是行的开头。应用意义为无意义，每一行都有开头，所以都能匹配，空行也可以。
-字符组匹配若干字符之一使用正则表达式结构体[…]，它容许使用者列出在某处期望匹配的字符，通常被称作字符组。正则表达式[ea]能匹配a或者e。
-在字符组以外，普通字符(例如gr[ae]y中的g和r)都有接下来是的意思—首...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/18</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h4 id="1-运行时数据区域"><a href="#1-运行时数据区域" class="headerlink" title="1. 运行时数据区域"></a>1. 运行时数据区域</h4><p><img src="https://segmentfault.com/img/remote/1460000020105061?w=994&amp;h=824" alt="JVM运行时数据区.png"></p>
+<h5 id="1-1-程序计数器（Program-Counter-Register）"><a href="#1-1-程序计数器（Program-Counter-Register）" class="headerlink" title="1.1 程序计数器（Program Counter Register）"></a>1.1 程序计数器（Program Counter Register）</h5><p>​    程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。</p>
+<p>​    由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各条线程之间计数器互不影响，独立存储，这类内存区域为”线程私有“的内存。</p>
+<p>​    如果线程正在执行的是一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址；如果正在执行的是一个Native方法，这个计数器值则为空(Undefined)。此内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域。</p>
+<h5 id="1-2-Java虚拟机栈-Java-Virtual-Machine-Stacks"><a href="#1-2-Java虚拟机栈-Java-Virtual-Machine-Stacks" class="headerlink" title="1.2 Java虚拟机栈(Java Virtual Machine Stacks)"></a>1.2 Java虚拟机栈(Java Virtual Machine Stacks)</h5><p>​    是线程私有的，生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧用于存储局部变量表、操作数栈、动态连接、方法出口等信息。每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。   </p>
+<p>​    局部变量表存放了编译期可知的各种基本数据类型(boolean, byte, char, short, int, long, float, double)、对象引用(reference类型，它不等同于对象本身，可能是一个指向对象起始地址的引用指针，也可能是指向一个代表对象的句柄或其他与此对象相关的位置)和returnAddress类型(指向了一条字节码指令的地址)。</p>
+<p>​    局部变量表所需的内存空间在编译期间完成分配，当进入一个方法时，这个方法需要在帧中分配多大的局部变量空间是完全确定的，在方法运行期间不会改变局部变量表的大小。</p>
+<p>​    如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果虚拟机栈可以动态扩展(当前大部分的Java虚拟机都可以动态扩展，只不过Java虚拟机规范中也允许固定长度的虚拟机栈)，如果扩展时无法申请到足够的内存，就会抛出OutOfMemoryError异常。</p>
+<h5 id="1-3-本地方法栈-Native-Method-Stack"><a href="#1-3-本地方法栈-Native-Method-Stack" class="headerlink" title="1.3 本地方法栈(Native Method Stack)"></a>1.3 本地方法栈(Native Method Stack)</h5><p>​    本地方法栈与虚拟机栈所发挥的作用是非常相似的，它们之间的区别不过是虚拟机栈为虚拟机执行Java方法(也就是字节码)服务，而本地方法栈则为虚拟机使用到的Native方法服务。有的虚拟机(譬如Sun HotSpot虚拟机)直接就把本地方法栈和虚拟机栈合二为一。与虚拟机栈一样，本地方法栈区域也会抛出StackOverflowError和OutOfMemoryError异常。</p>
+<h5 id="1-4-Java堆-Java-Heap"><a href="#1-4-Java堆-Java-Heap" class="headerlink" title="1.4 Java堆(Java Heap)"></a>1.4 Java堆(Java Heap)</h5><p>​    Java堆是Java虚拟机所管理的内存中最大的一块。Java堆事被所有线程共享的一块内存区域，在虚拟机启动时创建。此区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。</p>
+<p>​    Java堆是垃圾收集器管理的主要区域，所以也称为GC堆(Garbage Collected Heap)。由于现在收集器基本采用分代收集算法，所以Java堆也可细分为：新生代和老年代。</p>
+<p>​    Java堆可以处理物理上不连续的空间中，只要逻辑上是连续的即可。如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。</p>
+<h5 id="1-5方法区-Method-Area"><a href="#1-5方法区-Method-Area" class="headerlink" title="1.5方法区(Method Area)"></a>1.5方法区(Method Area)</h5><p>​    方法区与Java堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。</p>
+<p>​    Java虚拟机规范对方法区的限制非常宽松，除了和Java堆一样不需要连续的内存和可以选择固定大小或者可扩展外，还可以选择不实现垃圾收集。这区域的内存回收目标主要是针对常量池的回收和对类型的卸载。</p>
+<p>​    根据Java虚拟机规范的规定，当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常。</p>
+<h5 id="1-6运行时常量池-Runtime-Constant-Pool"><a href="#1-6运行时常量池-Runtime-Constant-Pool" class="headerlink" title="1.6运行时常量池(Runtime Constant Pool)"></a>1.6运行时常量池(Runtime Constant Pool)</h5><p>​    运行时常量池是方法区的一部分。Class文件中有一项信息是常量池，用于存放编译期生成的各种字面量和符号引用，这部分内容将在类加载后进入方法区的运行时常量池中存放。</p>
+<p>​    运行时常量池相对于Class文件常量池的另外一个重要特征是具备动态性，Java语言并不要求常量一定只有编译期才能产生，也就是并非预置入Class文件中常量池的内容才能进入方法区运行时常量池，运行期间也可能将新的常量放入池中，这个特性被利用的比较多的是String类的intern()方法。</p>
+<p>​    当常量池无法再申请到内存时会抛出OutOfMemoryError异常。</p>
+
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="">jounetsu</a>
+            </p><p>原文链接：<a href="/2019/10/11/Java内存区域/">/2019/10/11/Java内存区域/</a>
+            </p><p>发表日期：<a href="/2019/10/11/Java内存区域/">October 11th 2019, 6:21:47 pm</a>
+            </p><p>更新日期：<a href="/2019/10/11/Java内存区域/">October 14th 2019, 7:31:40 pm</a>
+            </p><p>版权声明：</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/08/20/python爬虫-数据存储/" title="python爬虫-数据存储">
+                    <div class="prevTitle">python爬虫-数据存储</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -440,6 +528,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-运行时数据区域"><span class="toc-number">1.</span> <span class="toc-text">1. 运行时数据区域</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-程序计数器（Program-Counter-Register）"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 程序计数器（Program Counter Register）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-Java虚拟机栈-Java-Virtual-Machine-Stacks"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Java虚拟机栈(Java Virtual Machine Stacks)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-本地方法栈-Native-Method-Stack"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 本地方法栈(Native Method Stack)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-4-Java堆-Java-Heap"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 Java堆(Java Heap)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-5方法区-Method-Area"><span class="toc-number">1.5.</span> <span class="toc-text">1.5方法区(Method Area)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-6运行时常量池-Runtime-Constant-Pool"><span class="toc-number">1.6.</span> <span class="toc-text">1.6运行时常量池(Runtime Constant Pool)</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -918,6 +1024,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
