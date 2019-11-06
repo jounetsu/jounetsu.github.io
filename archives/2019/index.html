@@ -346,6 +346,98 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/11/05/类文件结构/">
+            
+                <span>类文件结构</span>
+        </a>
+        <div class="abstract-content">
+            
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/24/基于-Kafka-和-ZooKeeper-的分布式消息队列/">
+            
+                <span>基于 Kafka 和 ZooKeeper 的分布式消息队列</span>
+        </a>
+        <div class="abstract-content">
+            1.Kafka总体架构
+​    一个典型的Kafka体系架构包括若干个Producer（消息生产者），若干broker（作为Kafka节点的服务器），若干Consumer（Group），以及一个ZooKeeper集群。Kafka通过ZooKeeper管理集群配置、选举Leader以及在consumer group发生变化时进行Rebalance（消费者负载均衡）。Producer使用push模式将消息发布到broker，Consumer使用pull模式从broker订阅并消费信息。
+​    Kafka内部结构如下：
+
+
+Producer：生产者，即消息发送者，push消息到Kafka...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/16/垃圾收集器与内存分配策略/">
+            
+                <span>垃圾收集器与内存分配策略</span>
+        </a>
+        <div class="abstract-content">
+            1.对象存活1.1引用计数算法​    给对象中添加一个引用计数器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻计数器为0的对象就是不可能再被使用的。
+​    缺点是难解决对象之间相互循环引用的问题。
+1.2可达性算法​    通过一些列的成为”GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索走过的路径成为引用链(Reference Chain)，当一个对象到GC Roots没有任何引用链相连时，则证明此对象是不可用的。
+
+​    在Java中，可作为GC Roots的对象包括下面几种：
+
+虚拟机栈（栈帧中的本地变量表）中引用的对象。...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/10/11/Java内存区域/">
             
                 <span>Java内存区域</span>
@@ -594,86 +686,10 @@ Executor是一个接口，...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/09/Java中的并发工具类/">
-            
-                <span>(七)Java中的并发工具类</span>
-        </a>
-        <div class="abstract-content">
-            等待多线程完成的CountDownLatch​    CountDownLatch允许一个或多个线程等待其他线程完成操作。
-12345678910111213141516public class CountDownLatchTest &#123;    public static void main(String[] args) throws Exception&#123;        CountDownLatch c = new CountDownLatch(2);        new Thread(new Runnable() &#123;            @Overrid...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/09/Java中的12个原子操作类/">
-            
-                <span>(六)Java中的12个原子操作类</span>
-        </a>
-        <div class="abstract-content">
-            原子更新基本类型类​    使用原子的方式更新基本类型，Atomic包提供了以下3个类。
-
-AtomicBoolean：原子更新布尔型
-AtomicInteger：原子更新整型
-AtomicLong：原子更新长整型
-
-12345678910public class AtomicIntegerTest &#123;    public static void main(String[] args) &#123;        AtomicInteger atomicInteger = new AtomicInteger(1);        System.out.println(atomi...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/03/Java并发容器和框架/">
-            
-                <span>(五)Java并发容器和框架</span>
-        </a>
-        <div class="abstract-content">
-            ConcurrentHashMap的实现原理与使用ConcurrentHashMap的结构​    ConcurrentHashMap是由Segment数组结构和HashEntry数据结构组成。Segment是一种可重入锁(ReentrantLock)，HashEntry则用于存储键值对数据。一个ConcurrentHashMap里包含一个Segment数组。Segment的结构和HashMap类似，是一种数组和链表结构。一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护着一个HashEntry数组里的元素,当对Hash...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/03</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="page-number" href="/archives/2019/page/3/">3</a><a class="extend next" rel="next" href="/archives/2019/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1005,9 +1021,90 @@ AtomicLong：原子更新长整型
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 21
+        Total : 24
         </div>
         <!-- search  -->
         
@@ -1020,6 +1117,21 @@ AtomicLong：原子更新长整型
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href="/2019/11/05/类文件结构/">类文件结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/基于-Kafka-和-ZooKeeper-的分布式消息队列/">基于 Kafka 和 ZooKeeper 的分布式消息队列</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/垃圾收集器与内存分配策略/">垃圾收集器与内存分配策略</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1190,6 +1302,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     
         <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

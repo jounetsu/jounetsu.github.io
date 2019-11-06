@@ -346,6 +346,82 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/09/Java中的并发工具类/">
+            
+                <span>(七)Java中的并发工具类</span>
+        </a>
+        <div class="abstract-content">
+            等待多线程完成的CountDownLatch​    CountDownLatch允许一个或多个线程等待其他线程完成操作。
+12345678910111213141516public class CountDownLatchTest &#123;    public static void main(String[] args) throws Exception&#123;        CountDownLatch c = new CountDownLatch(2);        new Thread(new Runnable() &#123;            @Overrid...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/09/Java中的12个原子操作类/">
+            
+                <span>(六)Java中的12个原子操作类</span>
+        </a>
+        <div class="abstract-content">
+            原子更新基本类型类​    使用原子的方式更新基本类型，Atomic包提供了以下3个类。
+
+AtomicBoolean：原子更新布尔型
+AtomicInteger：原子更新整型
+AtomicLong：原子更新长整型
+
+12345678910public class AtomicIntegerTest &#123;    public static void main(String[] args) &#123;        AtomicInteger atomicInteger = new AtomicInteger(1);        System.out.println(atomi...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/03/Java并发容器和框架/">
+            
+                <span>(五)Java并发容器和框架</span>
+        </a>
+        <div class="abstract-content">
+            ConcurrentHashMap的实现原理与使用ConcurrentHashMap的结构​    ConcurrentHashMap是由Segment数组结构和HashEntry数据结构组成。Segment是一种可重入锁(ReentrantLock)，HashEntry则用于存储键值对数据。一个ConcurrentHashMap里包含一个Segment数组。Segment的结构和HashMap类似，是一种数组和链表结构。一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护着一个HashEntry数组里的元素,当对Hash...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/03</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/01/Java中的锁/">
             
                 <span>(四)Java中的锁</span>
@@ -527,83 +603,6 @@ Hystrix的设计原则
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/01/08/Feign/">
-            
-                <span>Feign</span>
-        </a>
-        <div class="abstract-content">
-            编写Feign客户端增加Feign的起步依赖spring-cloud-starter-feig、Eureka Client的起步依赖spring-cloud-starter-eureka、Web功能的起步依赖spring-boot-starter-web，pom文件如下：
-12345678910111213141516171819&lt;dependencies&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;        &lt;artifactId&gt...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/08</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/01/07/Ribbon/">
-            
-                <span>Ribbon</span>
-        </a>
-        <div class="abstract-content">
-            RestTemplateRestTemplate是Spring Resources中一个访问第三方RESTful API接口的网络请求框架。RestTemplate是用来消费REST服务的，所以RestTemplate的主要方法都与REST的Http协议的一些方法紧密相连，例如HEAD、GET、POST、DELETE和OPTIONS等方法，这些方法在RestTemplate类对应的方法为headForHeaders()、getForObject()、postForObject()、put()和delete()等。以下代码可以将返回的JSON字符串转换成一个User对象。
-1User us...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/07</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/01/05/Eureka/">
-            
-                <span>Eureka</span>
-        </a>
-        <div class="abstract-content">
-            Eureka简介什么是EurekaEureka是一个用于服务注册和发现的组件。Eureka分为Eureka Server和Eureka Client，Eureka Server为Eureka服务注册中心，Eureka Client为Eureka客户端。
-Eureka的基本架构主要包括以下3种角色
-
-Register Service:：服务注册中心，它是一个Eureka Server，提供服务注册和发现的功能
-Provide Service：服务提供者，它是一个Eureka Client，提供服务
-Consumer Service：服务消费者，它是一个Eureka Client，消费服务
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/05</span>
             </div>
             <!-- tags  -->
             
@@ -945,9 +944,90 @@ Consumer Service：服务消费者，它是一个Eureka Client，消费服务
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 21
+        Total : 24
         </div>
         <!-- search  -->
         
@@ -960,6 +1040,21 @@ Consumer Service：服务消费者，它是一个Eureka Client，消费服务
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href="/2019/11/05/类文件结构/">类文件结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/基于-Kafka-和-ZooKeeper-的分布式消息队列/">基于 Kafka 和 ZooKeeper 的分布式消息队列</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/垃圾收集器与内存分配策略/">垃圾收集器与内存分配策略</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1130,6 +1225,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     
         <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
