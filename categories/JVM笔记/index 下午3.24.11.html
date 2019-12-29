@@ -346,29 +346,25 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/10/Java中的线程池/">
+        <a class="abstract-title" href="/2019/11/05/类文件结构/">
             
-                <span>(八)Java中的线程池</span>
+                <span>类文件结构</span>
         </a>
         <div class="abstract-content">
-            使用线程池的好处：
-
-降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。
-提高响应速度。当任务到达时，任务可以不需要等到线程创建就能立即执行。
-提高线程的课管理型。线程是稀缺资源，如果无限制地创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一分配、调优和监控。
-
-线程池的实现原理​    当提交一个新任务到线程池时，线程池的处理流程如下。
-
-线程池判断核心线程池里的线程是否都在执行任务。如果不是，则创建一个新的工作线程来执行任务。如果核心线程池都在执行任务，则进入下个流程。
-
-线程池判断工作队列是否已经满。如果工作队列没有满，则将新提交的任务存储在这...
+            
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/10</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/05</span>
             </div>
             <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
+    
+</div>
             
         </div>
     </article>
@@ -379,49 +375,31 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/09/Java中的并发工具类/">
+        <a class="abstract-title" href="/2019/10/16/垃圾收集器与内存分配策略/">
             
-                <span>(七)Java中的并发工具类</span>
+                <span>垃圾收集器与内存分配策略</span>
         </a>
         <div class="abstract-content">
-            等待多线程完成的CountDownLatch​    CountDownLatch允许一个或多个线程等待其他线程完成操作。
-12345678910111213141516public class CountDownLatchTest &#123;    public static void main(String[] args) throws Exception&#123;        CountDownLatch c = new CountDownLatch(2);        new Thread(new Runnable() &#123;            @Overrid...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/09/Java中的12个原子操作类/">
-            
-                <span>(六)Java中的12个原子操作类</span>
-        </a>
-        <div class="abstract-content">
-            原子更新基本类型类​    使用原子的方式更新基本类型，Atomic包提供了以下3个类。
+            1.对象存活1.1引用计数算法​    给对象中添加一个引用计数器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻计数器为0的对象就是不可能再被使用的。
+​    缺点是难解决对象之间相互循环引用的问题。
+1.2可达性算法​    通过一些列的成为”GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索走过的路径成为引用链(Reference Chain)，当一个对象到GC Roots没有任何引用链相连时，则证明此对象是不可用的。
 
-AtomicBoolean：原子更新布尔型
-AtomicInteger：原子更新整型
-AtomicLong：原子更新长整型
+​    在Java中，可作为GC Roots的对象包括下面几种：
 
-12345678910public class AtomicIntegerTest &#123;    public static void main(String[] args) &#123;        AtomicInteger atomicInteger = new AtomicInteger(1);        System.out.println(atomi...
+虚拟机栈（栈帧中的本地变量表）中引用的对象。...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
             </div>
             <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
+    
+</div>
             
         </div>
     </article>
@@ -432,192 +410,33 @@ AtomicLong：原子更新长整型
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/03/Java并发容器和框架/">
+        <a class="abstract-title" href="/2019/10/11/Java内存区域/">
             
-                <span>(五)Java并发容器和框架</span>
+                <span>Java内存区域</span>
         </a>
         <div class="abstract-content">
-            ConcurrentHashMap的实现原理与使用ConcurrentHashMap的结构​    ConcurrentHashMap是由Segment数组结构和HashEntry数据结构组成。Segment是一种可重入锁(ReentrantLock)，HashEntry则用于存储键值对数据。一个ConcurrentHashMap里包含一个Segment数组。Segment的结构和HashMap类似，是一种数组和链表结构。一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护着一个HashEntry数组里的元素,当对Hash...
+            1. 运行时数据区域
+1.1 程序计数器（Program Counter Register）​    程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
+​    由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各条线程之间计数器互不影响，独立存储，这类内存区域为”线程私有“的内存。
+​    如果线程正在执行的是一个Java方法，这个计数器记录的是正在执...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/03</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/11</span>
             </div>
             <!-- tags  -->
             
-        </div>
-    </article>
+            <div class="abstract-tags">
     
+        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
     
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/01/Java中的锁/">
-            
-                <span>(四)Java中的锁</span>
-        </a>
-        <div class="abstract-content">
-            Lock接口​    锁是用来控制多个线程访问共享资源的方式，一般来说，一个锁能够防止多个线程同时访问共享资源。
-​    Lock的使用：
-1234567Lock lock = new ReentrantLock();lock.lock();tyr&#123;&#125; finally&#123;lock.unlock();&#125;
-​    在finally块中释放锁，目的是保证在获取到锁之后，最终能够被释放。
-​    不要将获取锁的过程写在try块中，因为如果在获取锁(自定义锁的实现)时发生了异常，异常抛出的同时，也会导致锁无故释放。
-​    Lock接口提供的synch...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/28/Java并发编程基础/">
-            
-                <span>(三)Java并发编程基础</span>
-        </a>
-        <div class="abstract-content">
-            线程简介线程优先级​    现代操作系统基本采用时分的形式调度运行的线程，操作系统会分出一个个时间片，线程会分配到若干时间片，当线程的时间片用完了就会发生线程调度，并等待着下次分配。线程分配到的时间片多少也就决定了线程使用处理器资源的多少，而线程优先级就是决定线程需要多或者少分配一些处理器资源的线程属性。
-​    在Java线程中，通过一个整型成员变量priority来控制优先级，优先级的范围从1～10，在线程构建的时候可以通过setPriority(int)方法来修改优先级，默认优先级是5，优先级高的线程分配时间片的数量要多于优先级低的线程。设置线程优先级时，针对频繁阻塞(休眠或者I...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/28</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/22/Java内存模型/">
-            
-                <span>(二)Java内存模型</span>
-        </a>
-        <div class="abstract-content">
-            Java内存模型的基础Java内存模型的抽象结构​    在Java中，所有实例域、静态域和数组元素都存储在堆内存中，堆内存在线程之间共享。局部变量，方法定义参数和异常处理器参数不会在线程之间共享，它们不会有内存可见性问题，也不受内存模型的影响。
-​    Java线程之间的通信由Java内存模型(JMM)控制，JMM定义了一个线程对共享变量的写入何时对另一个线程可见。从抽象的角度来看，JMM定义了线程和主内存之间的抽象关系：线程之间的共享变量存储在主内存中，每个线程都有一个私有的本地内存，本地内存中存储了该线程以读/写共享变量的副本。本地内存是JMM的一个抽象概念，并不真实存在。它涵盖...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/22</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/19/Java并发机制的底层实现原理/">
-            
-                <span>(一)Java并发机制的底层实现原理</span>
-        </a>
-        <div class="abstract-content">
-            volatile定义​    Java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致地更新，线程应该确保通过排他锁单独获得这个变量。Java语言提供了volatile，在某些情况下比锁要更加方便。如果一个字段被声明成volatile，Java线程内存模型确保所有线程看到这个变量的值是一致的。
-实现原则1）Lock前缀指令会引起处理器缓存回写到内存。
-2）一个处理器的缓存回写到内存会导致其他处理器的缓存无效。
-Synchronized利用Synchronized实现同步的基础：Java中的每一个对象都可以作为锁。具体表现在以下三种形式。
-
-对于普通同步方法，锁是当前实例对象。...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/19</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/03/设计模式/">
-            
-                <span>设计模式</span>
-        </a>
-        <div class="abstract-content">
-            观察者模式定义观察者模式定义了对象之间的的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。
-Java内置的观察者模式把对象编程观察者实现观察者接口（java.util.Observer），然后调用任何Observable对象的addObserver()方法。不想再当观察者时，调用deleteObserver()方法。
-可观察者送出通知首先利用java.util.Observable接口产生“可观察者”类，然后，需要两个步骤：
-
-先调用setChanged()方法，标记状态已经改变的事实。
-然后调用两种notifyObservers()方法中的一个：not...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/03</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/14/Zuul/">
-            
-                <span>Zuul</span>
-        </a>
-        <div class="abstract-content">
-            为什么需要ZuulZuul作为路由网关组件体现在以下6个方面：
-
-Zuul、Ribbon以及Eureak相结合，可以实现智能路由和负载均衡的功能，Zuul能够将请求流量按某种策略分发到集群状态的多个服务实例。
-网关将所有服务的API接口统一聚合，并统一对外暴露。
-网关服务可以做用户身份认证和权限认证，防止非法请求操作API接口，对服务器起到保护作用。
-网关可以实现监控功能，实时日志输出，对请求进行记录。
-网关可以用来实现流量监控，在高流量的情况下，对服务进行降级。
-API接口从内部服务分离出来，方便做测试。 
-
-Zuul的工作原理Zuul是通过Servlet实现的，Zuul通过自定义的Z...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/14</span>
-            </div>
-            <!-- tags  -->
+</div>
             
         </div>
     </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">NEXT &#62;</a>
-    </nav>
     
 </main>
             <!-- profile -->
@@ -1002,9 +821,36 @@ Zuul的工作原理Zuul是通过Servlet实现的，Zuul通过自定义的Z...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 25
+        Total : 24
         </div>
         <!-- search  -->
         
@@ -1017,11 +863,6 @@ Zuul的工作原理Zuul是通过Servlet实现的，Zuul通过自定义的Z...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/01</span><a class="archive-post-title" href="/2019/12/01/redis设计与实现-数据结构与对象/">redis设计与实现-数据结构与对象</a>
-        </li>
     
     
         <li class="archive-post-item">
@@ -1157,9 +998,9 @@ Zuul的工作原理Zuul是通过Servlet实现的，Zuul通过自定义的Z...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
-    
         <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
+    
+        <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1198,19 +1039,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
     
+        <span class="sidebar-category-name" data-categories="JVM笔记"><span class="iconfont-archer">&#xe60a;</span>JVM笔记</span>
+    
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
-        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
-    
-        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
-    
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     
-        <span class="sidebar-category-name" data-categories="JVM笔记"><span class="iconfont-archer">&#xe60a;</span>JVM笔记</span>
-    
         <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
