@@ -351,7 +351,10 @@
                 <span>redis设计与实现-单机数据库的实现</span>
         </a>
         <div class="abstract-content">
-            
+            1. 数据库1.1 服务器中的数据库​    Redis服务器将所有数据库都保存在服务器状态redis.h/redisServer结构的db数组中，db数组的每个项都是一个redis.h/redisDb结构，每个redisDb结构代表一个数据库：
+123456struct redisServer&#123;  //...  //一个数组，保存着服务器中的所有数据库  redisDb *db;  //...&#125;;
+​    在初始化服务器时，程序会根据服务器状态的dbnum属性来决定应该创建多少个数据库:
+123456struct redisServer&#123;  //... ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -521,35 +524,6 @@ Producer：生产者，即消息发送者，push消息到Kafka...
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/20/python爬虫-数据存储/">
-            
-                <span>python爬虫-数据存储</span>
-        </a>
-        <div class="abstract-content">
-            1.文件存储1.TXT文本存储
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python爬虫">python爬虫</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href="/2019/08/15/python爬虫-解析库的使用/">
             
                 <span>python爬虫-解析库的使用</span>
@@ -666,6 +640,38 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/18</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/11/Executor框架/">
+            
+                <span>(九)Executor框架</span>
+        </a>
+        <div class="abstract-content">
+            简介Executor框架的结构​    Executor框架主要由3大部分组成。
+
+任务。包括被执行任务需要实现的接口：Runnable接口或Callable接口。
+
+任务的执行。包括任务执行机制的核心接口Executor，以及继承自Executor的ExecutorService接口。Executor框架有两个关键类实现了ExecutorService接口(ThreadPoolExecutor和ScheduledThreadPoolExecutor)
+
+异步计算的结果。包括接口Future和实现Future接口的FutureTask类。
+类和接口的简介。
+
+Executor是一个接口，...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/11</span>
             </div>
             <!-- tags  -->
             
@@ -1091,6 +1097,20 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
     
     
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2020/04/20/一-线程安全性/">一.线程安全性</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
@@ -1122,11 +1142,6 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/11</span><a class="archive-post-title" href="/2019/10/11/Java内存区域/">Java内存区域</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/python爬虫-数据存储/">python爬虫-数据存储</a>
         </li>
     
     
@@ -1242,6 +1257,8 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
         <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
     
+        <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1287,9 +1304,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
-        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
+        <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
     
         <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
     

@@ -357,12 +357,47 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/04/20/一-线程安全性/">
+            
+                <span>一.线程安全性</span>
+        </a>
+        <div class="abstract-content">
+            1.定义​    正确性的含义：某个类的行为与其规范完全一致。在良好的规范中通常会定义各种不变性条件来约束对象的状态，以及定义各种后验条件来描述对象操作的结果。
+​    线程安全性：当多个线程访问某个类时，不管运行环境采用何种调度方式或者这些线程将如何交替执行，并且在调代码中不需要任何额外的同步或协同，这个类都能表现出正确的行为，那么就称这个类是线程安全的。
+​    无状态对象一定是线程安全的。
+2.原子性2.1竞态条件​    当某个计算的正确性取决于多个线程的交替执行时序时，那么就会发生竞态条件。最常见的竞态条件类型就是”先检查后执行（Check-Then-Act）“操作，即通过...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/12/29/redis设计与实现-单机数据库的实现/">
             
                 <span>redis设计与实现-单机数据库的实现</span>
         </a>
         <div class="abstract-content">
-            
+            1. 数据库1.1 服务器中的数据库​    Redis服务器将所有数据库都保存在服务器状态redis.h/redisServer结构的db数组中，db数组的每个项都是一个redis.h/redisDb结构，每个redisDb结构代表一个数据库：
+123456struct redisServer&#123;  //...  //一个数组，保存着服务器中的所有数据库  redisDb *db;  //...&#125;;
+​    在初始化服务器时，程序会根据服务器状态的dbnum属性来决定应该创建多少个数据库:
+123456struct redisServer&#123;  //... ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -520,35 +555,6 @@ Producer：生产者，即消息发送者，push消息到Kafka...
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/20/python爬虫-数据存储/">
-            
-                <span>python爬虫-数据存储</span>
-        </a>
-        <div class="abstract-content">
-            1.文件存储1.TXT文本存储
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python爬虫">python爬虫</a>
     
 </div>
             
@@ -1157,6 +1163,20 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
     
     
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2020/04/20/一-线程安全性/">一.线程安全性</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
@@ -1188,11 +1208,6 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/11</span><a class="archive-post-title" href="/2019/10/11/Java内存区域/">Java内存区域</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/python爬虫-数据存储/">python爬虫-数据存储</a>
         </li>
     
     
@@ -1308,6 +1323,8 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
         <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
     
+        <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1353,9 +1370,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
-        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
+        <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
     
         <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
     
