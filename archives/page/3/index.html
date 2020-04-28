@@ -346,6 +346,34 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/03/19/Java并发机制的底层实现原理/">
+            
+                <span>(一)Java并发机制的底层实现原理</span>
+        </a>
+        <div class="abstract-content">
+            volatile定义​    Java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致地更新，线程应该确保通过排他锁单独获得这个变量。Java语言提供了volatile，在某些情况下比锁要更加方便。如果一个字段被声明成volatile，Java线程内存模型确保所有线程看到这个变量的值是一致的。
+实现原则1）Lock前缀指令会引起处理器缓存回写到内存。
+2）一个处理器的缓存回写到内存会导致其他处理器的缓存无效。
+Synchronized利用Synchronized实现同步的基础：Java中的每一个对象都可以作为锁。具体表现在以下三种形式。
+
+对于普通同步方法，锁是当前实例对象。...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/19</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/03/03/设计模式/">
             
                 <span>设计模式</span>
@@ -960,9 +988,28 @@ Consumer Service：服务消费者，它是一个Eureka Client，消费服务
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 27
+        Total : 28
         </div>
         <!-- search  -->
         
@@ -978,7 +1025,12 @@ Consumer Service：服务消费者，它是一个Eureka Client，消费服务
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/二-对象的共享/">[Untitled Post]</a>
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2020/04/28/二-对象的共享/">二.对象的共享</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/27</span><a class="archive-post-title" href="/2020/04/27/三-对象的组合/">三.对象的组合</a>
         </li>
     
     
@@ -1185,11 +1237,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
     
+        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
+    
         <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
-    
-        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
     
         <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
     

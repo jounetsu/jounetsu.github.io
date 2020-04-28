@@ -357,22 +357,62 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2020/04/23/二-对象的共享/">
+        <a class="abstract-title" href="/2020/04/28/二-对象的共享/">
             
-                <span>[Untitled Post]</span>
+                <span>二.对象的共享</span>
         </a>
         <div class="abstract-content">
-            title: 二.对象的共享date: 2020-04-23 16:14:49tags: 并发编程categories: java并发编程实战笔记
-1.可见性1.1失效数据​    在缺乏同步的程序中可能产生错误的一种情况：失效数据。当读线程查看某个变量时，可能会得到一个已经失效的值。更糟糕的是，失效值可能不会同时出现：一个线程可能获得某个变量的最新值，而获得另一个变量的失效值。
+            1.可见性1.1失效数据​    在缺乏同步的程序中可能产生错误的一种情况：失效数据。当读线程查看某个变量时，可能会得到一个已经失效的值。更糟糕的是，失效值可能不会同时出现：一个线程可能获得某个变量的最新值，而获得另一个变量的失效值。
 1.2非原子的64位操作​    当线程在没有同步的情况下读取变量时，可能会得到一个失效值，但至少这个值是由之前某个线程设置的值，而不是一个随机值。这种安全性保证也被称为最低安全性。
-​    最低安全性适用于...
+​    最低安全性适用于绝大多数变量，但是存在一个例外：非volatile类型的64位数值变量(double和long)。Java内存模型要求，变量的读取操作和写入操作都必...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/23</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/28</span>
             </div>
             <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/04/27/三-对象的组合/">
+            
+                <span>三.对象的组合</span>
+        </a>
+        <div class="abstract-content">
+            1.设计线程安全的类​    在设计线程安全类的过程中，需要包含以下三个基本要素：
+
+找出构成对象状态的所有变量。
+找出约束状态变量的不变性条件。
+建立对象状态的并发访问管理策略。
+
+1.1收集同步需求
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/27</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
             
         </div>
     </article>
@@ -638,42 +678,6 @@ nodename
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python爬虫">python爬虫</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/26/python爬虫-基本库的使用/">
-            
-                <span>python爬虫-基本库的使用</span>
-        </a>
-        <div class="abstract-content">
-            1.使用urllib在python3中，统一使用urllib。它是python内置的HTTP请求库，不需要额外安装即可使用。它包含4个模块。
-
-request：它是最基本的HTTP请求模块，可以用来模拟发送请求。
-error：异常处理模块，如果出现请求错误，可以捕获这些异常，然后进行充实或其他操作以bao证程序不会意外终止。
-parse：一个工具模块，提供了许多URL处理方法，比如拆分、解析、合并等。
-robotparser：主要是用来识别网站的robots.txt文件，然后判断哪些网站可以爬，哪些网站不可以爬，用得较少。
-
-1.1发送请求1.urlopen()urllib.reques...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/26</span>
             </div>
             <!-- tags  -->
             
@@ -1168,9 +1172,28 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 27
+        Total : 28
         </div>
         <!-- search  -->
         
@@ -1186,7 +1209,12 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2020/04/23/二-对象的共享/">[Untitled Post]</a>
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2020/04/28/二-对象的共享/">二.对象的共享</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/27</span><a class="archive-post-title" href="/2020/04/27/三-对象的组合/">三.对象的组合</a>
         </li>
     
     
@@ -1393,11 +1421,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
     
+        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
+    
         <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
-    
-        <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
     
         <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
     

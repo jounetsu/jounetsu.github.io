@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>二.对象的共享 · null</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">jounetsu&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">二.对象的共享</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">jounetsu's blog</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            二.对象的共享
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.6k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/04/28</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,39 +399,106 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/18/正则表达式/">
-            
-                <span>正则表达式</span>
-        </a>
-        <div class="abstract-content">
-            一.Egrep元字符使用·表示空格
-行的起始和结束「^」代表一行的开始，「$」代表结束。
-「^cat$」：匹配的条件是，行开头，然后是字符c·a·t，然后是行末尾。只包含cat的行—没有多余的单词、空白字符……只有’cat’。
-「^$」：匹配的条件是行开头，然后就行末尾。表示是空行。
-「^」：匹配条件是行的开头。应用意义为无意义，每一行都有开头，所以都能匹配，空行也可以。
-字符组匹配若干字符之一使用正则表达式结构体[…]，它容许使用者列出在某处期望匹配的字符，通常被称作字符组。正则表达式[ea]能匹配a或者e。
-在字符组以外，普通字符(例如gr[ae]y中的g和r)都有接下来是的意思—首...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/18</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h4 id="1-可见性"><a href="#1-可见性" class="headerlink" title="1.可见性"></a>1.可见性</h4><h5 id="1-1失效数据"><a href="#1-1失效数据" class="headerlink" title="1.1失效数据"></a>1.1失效数据</h5><p>​    在缺乏同步的程序中可能产生错误的一种情况：失效数据。当读线程查看某个变量时，可能会得到一个已经失效的值。更糟糕的是，失效值可能不会同时出现：一个线程可能获得某个变量的最新值，而获得另一个变量的失效值。</p>
+<h5 id="1-2非原子的64位操作"><a href="#1-2非原子的64位操作" class="headerlink" title="1.2非原子的64位操作"></a>1.2非原子的64位操作</h5><p>​    当线程在没有同步的情况下读取变量时，可能会得到一个失效值，但至少这个值是由之前某个线程设置的值，而不是一个随机值。这种安全性保证也被称为最低安全性。</p>
+<p>​    最低安全性适用于绝大多数变量，但是存在一个例外：非volatile类型的64位数值变量(double和long)。Java内存模型要求，变量的读取操作和写入操作都必须是原子操作，但对于非volatile类型的long和double变量，JVM允许将64位的读操作或血操作分解为两个32位的操作。因此，即使不考虑失效数据问题，在多线程程序中使用共享且可变的long和double等类型的变量也是不安全的，除非用关键字volatile来生命它们，或者用锁保护起来。</p>
+<h5 id="1-3加锁与可见性"><a href="#1-3加锁与可见性" class="headerlink" title="1.3加锁与可见性"></a>1.3加锁与可见性</h5><p>​    内置锁可以用于确保某个线程以一种可预测的方式来查看另一个线程的执行结果。</p>
+<p>​    加锁的含义不仅仅局限于互斥行为，也包括内存可见性。为了确保所有线程都能看到共享变量的最新值，所有执行读操作或写操作的线程都必须在同一个锁上同步。</p>
+<h5 id="1-4Volatile变量"><a href="#1-4Volatile变量" class="headerlink" title="1.4Volatile变量"></a>1.4Volatile变量</h5><p>​    Java语言提供了一种稍弱的同步机制，即volatile变量，用来确保将变量的更新操作通知到其他线程。当把变量声明为volatile类型后，编译器与处理器都会注意到这个变量是共享的，因此不会将该变量上的操作与其他内存一起重排序。volatile变量不会被缓存在寄存器或者对其他处理器不可见的地方，因此在读取volatile类型的变量时总会返回最新写入的值。</p>
+<p>​    仅当volatile变量能简化代码的实现以及对同步策略的验证时，才应该使用它们。如果在验证正确性时需要对可见性进行复杂的判断，那么就不要使用volatile变量。volatile变量的正确使用方式包括：确保它们自身状态的可见性，确保它们所引用对象的状态的可见性，以及标识一些重要的程序生命周期事件的发生（例如，初始化或关闭）。</p>
+<p>​    加锁机制既可以确保可见性又可以确保原子性，而volatile变量只能确保可见性。</p>
+<p>​    当且仅当满足以下所有条件时，才应该使用volatile变量：</p>
+<ul>
+<li>对变量的写入操作不依赖变量的当前值，或者能确保只有单个线程更新变量的值</li>
+<li>该变量不会与其他状态变量一起纳入不变性条件中。</li>
+<li>在访问变量时不需要加锁。</li>
+</ul>
+<h4 id="2-发布与逸出"><a href="#2-发布与逸出" class="headerlink" title="2.发布与逸出"></a>2.发布与逸出</h4><p>​    “发布（Publish）一个对象的意思是指，使对象能够在当前作用域之外的代码中使用。当某个不应该发布的对象被发布时，这种情况就被称为逸出（Escape）。</p>
+<h4 id="3-线程封闭"><a href="#3-线程封闭" class="headerlink" title="3.线程封闭"></a>3.线程封闭</h4><p>​    当访问共享的可变数据时，通常需要使用同步。一种避免使用同步的方式就是不共享数据。如果仅在单线程内访问数据，就不需要同步。这种技术被称为线程封闭（Thread Confinement），它是实现线程安全性的最简单方式之一。当某个对象封闭在一个线程中时，这种用法将自动实现线程安全性，即使被封闭的对象本身不是线程安全的。</p>
+<h5 id="3-1Ad-hoc线程封闭"><a href="#3-1Ad-hoc线程封闭" class="headerlink" title="3.1Ad-hoc线程封闭"></a>3.1Ad-hoc线程封闭</h5><p>​    Ad-hoc线程封闭是指，维护线程封闭性职责完全由程序实现来承担。</p>
+<h5 id="3-2栈封闭"><a href="#3-2栈封闭" class="headerlink" title="3.2栈封闭"></a>3.2栈封闭</h5><p>​    栈封闭是线程封闭的一种特例，在栈封闭中，只能通过局部变量才能访问对象。</p>
+<h5 id="3-3ThreadLocal类"><a href="#3-3ThreadLocal类" class="headerlink" title="3.3ThreadLocal类"></a>3.3ThreadLocal类</h5><p>​    维持线程封闭性的一种更规范方法是使用ThreadLocal，这个类能使线程中的某个值与保持值的对象关联起来。ThreadLocal提供了get与set等访问接口或方法，这些方法为每个使用该变量的线程都存有一份独立的副本，因此get总是返回由当前执行线程在调用set时设置的最新值。</p>
+<h4 id="4-不变性"><a href="#4-不变性" class="headerlink" title="4.不变性"></a>4.不变性</h4><p>​    满足同步需求的另一种方法是使用不可变对象。如果某个对象在被创建后其状态就不能被修改，那么这个对象就被称为不可变对象。线程安全性是不可变对象的固有属性之一，不可变对象一定是线程安全的。</p>
+<p>​    当满足以下条件时，对象才是不可变的：</p>
+<ul>
+<li>对象创建以后其状态就不能修改。</li>
+<li>对象的所有域都是final类型。</li>
+<li>对象是正确创建的（在对象的创建期间，this引用没有逸出）。</li>
+</ul>
+<h5 id="4-1Final域"><a href="#4-1Final域" class="headerlink" title="4.1Final域"></a>4.1Final域</h5><p>​    final类型的域是不能修改的，在Java内存模型中，final域还有着特殊的语义。final域能确保初始化过程的安全性，从而可以不受限制地访问不可变对象，并在共享这些对象时无须同步。</p>
+<h4 id="5-安全发布"><a href="#5-安全发布" class="headerlink" title="5.安全发布"></a>5.安全发布</h4><h5 id="5-1不可变对象与初始化安全性"><a href="#5-1不可变对象与初始化安全性" class="headerlink" title="5.1不可变对象与初始化安全性"></a>5.1不可变对象与初始化安全性</h5><p>​    任何线程都可以在不需要额外同步的情况下安全地访问不可变对象，即使在发布这些对象时没有使用同步。这种保证还将延伸到被正确创建对象中所有final类型的域。在没有额外同步的情况下，也可以安全地访问final类型的域。然而，如果final类型的域所指向的是可变对象，那么在访问这些域所指向的对象的状态时仍然需要同步。</p>
+<h5 id="5-2安全发布的常用模式"><a href="#5-2安全发布的常用模式" class="headerlink" title="5.2安全发布的常用模式"></a>5.2安全发布的常用模式</h5><p>​    要安全地发布一个对象，对象的引用以及对象的状态必须同时对其他线程可见。一个正确构造的对象可以通过以下方式来安全地发布：</p>
+<ul>
+<li>在静态初始化函数中初始化一个对象引用。</li>
+<li>将对象的引用保存到volatile类型的域或者AtomicReferance对象中。</li>
+<li>将对象的引用保存到某个正确构造对象的final类型域中。</li>
+<li>将对象的引用保存到一个由锁保护的域中。</li>
+</ul>
+<p>线程安全库中的容器类提供了以下的安全发布保证：</p>
+<ul>
+<li>通过将一个键或值放入HashTable、synchronizedMap或者ConcurrentMap中，可以安全地将它发布给任何从这些容器中访问它的线程（无论是直接访问还是通过迭代器访问）。</li>
+<li>通过将某个元素放入Vector、CopyOnWriteArrayList、CopyOnWriteArraySet、synchronizedList或者synchronizedSet中，可以将该元素安全地发布到任何从这些容器中访问该元素的线程。</li>
+<li>通过将某个元素放入BlockingQueue或者ConcurrentLinkedQueue中，可以将该元素安全地发布到任何从这些队列中访问该元素的线程。</li>
+</ul>
+<p>通常，要发布一个静态构造的对象，最简单和最安全的方式是使用静态的初始化器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Holder holder = <span class="keyword">new</span> Holder(<span class="number">42</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="5-3事实不可变对象"><a href="#5-3事实不可变对象" class="headerlink" title="5.3事实不可变对象"></a>5.3事实不可变对象</h5><p>​    所有的安全发布机制都能确保，当对象的引用对所有访问该对象的线程可见时，对象发布时的状态对于所有线程也将是可见的，并且如果对象状态不会再改变，那么就足以确保任何访问都是安全的。</p>
+<p>​    如果对象从技术上来看是可变的，但其状态再发布后不会再改变，那么把这种对象称为“事实不可变对象（Effectively Immutable Object）”。</p>
+<p>​    在没有额外的同步的情况下，任何线程都可以安全地使用被安全发布的事实不可变对象。</p>
+<h5 id="5-4可变对象"><a href="#5-4可变对象" class="headerlink" title="5.4可变对象"></a>5.4可变对象</h5><p>​    如果对象在构造后可以修改，那么安全发布智能确保“发布当时”状态的可见性。对于可变对象，不仅在发布对象时需要使用同步，而且在每次对象访问时同样需要使用同步来确保后续修改操作的可见性。要安全地共享可变对象，这些对象就必须被安全地发布，并且必须是线程安全的或者由某个锁保护起来。</p>
+<p>​    对象的发布需求取决于它的可变性：</p>
+<ul>
+<li>不可变对象可以通过任意机制来发布。</li>
+<li>事实不可变对象必须通过安全方式来发布。</li>
+<li>可变对象必须通过安全方式来发布，并且必须是线程安全的或者由某个锁保护起来。</li>
+</ul>
+<h5 id="5-5安全地共享对象"><a href="#5-5安全地共享对象" class="headerlink" title="5.5安全地共享对象"></a>5.5安全地共享对象</h5><p>​    在并发程序中使用和共享对象时，可以使用一些实用的策略，包括：</p>
+<p>​    线程封闭。线程封闭的对象只能由一个线程拥有，对象被封闭在该线程中，并且只能由这个线程修改。</p>
+<p>​    只读共享。在没有额外同步的情况下，共享的只读对象可以由多个线程并发访问，但任何线程都不能修改它。共享的只读对象包括不可变对象和事实不可变对象。</p>
+<p>​    线程安全共享。线程安全的对象在其内部实现同步，因此多个线程可以通过对象的公有接口来进行访问而不需要进一步的同步。</p>
+<p>​    保护对象。被保护的对象只能通过持有特定的锁来访问。保护对象包括封装在其他线程安全对象中的对象，以及已发布的并且由某个特定锁保护的对象。</p>
+
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="">jounetsu</a>
+            </p><p>原文链接：<a href="/2020/04/28/二-对象的共享/">/2020/04/28/二-对象的共享/</a>
+            </p><p>发表日期：<a href="/2020/04/28/二-对象的共享/">April 28th 2020, 10:22:46 am</a>
+            </p><p>更新日期：<a href="/2020/04/28/二-对象的共享/">April 28th 2020, 10:23:13 am</a>
+            </p><p>版权声明：</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2020/04/27/三-对象的组合/" title="三.对象的组合">
+                    <div class="prevTitle">三.对象的组合</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -440,6 +568,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-可见性"><span class="toc-number">1.</span> <span class="toc-text">1.可见性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1失效数据"><span class="toc-number">1.1.</span> <span class="toc-text">1.1失效数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2非原子的64位操作"><span class="toc-number">1.2.</span> <span class="toc-text">1.2非原子的64位操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3加锁与可见性"><span class="toc-number">1.3.</span> <span class="toc-text">1.3加锁与可见性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-4Volatile变量"><span class="toc-number">1.4.</span> <span class="toc-text">1.4Volatile变量</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-发布与逸出"><span class="toc-number">2.</span> <span class="toc-text">2.发布与逸出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-线程封闭"><span class="toc-number">3.</span> <span class="toc-text">3.线程封闭</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1Ad-hoc线程封闭"><span class="toc-number">3.1.</span> <span class="toc-text">3.1Ad-hoc线程封闭</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2栈封闭"><span class="toc-number">3.2.</span> <span class="toc-text">3.2栈封闭</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3ThreadLocal类"><span class="toc-number">3.3.</span> <span class="toc-text">3.3ThreadLocal类</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-不变性"><span class="toc-number">4.</span> <span class="toc-text">4.不变性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1Final域"><span class="toc-number">4.1.</span> <span class="toc-text">4.1Final域</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-安全发布"><span class="toc-number">5.</span> <span class="toc-text">5.安全发布</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-1不可变对象与初始化安全性"><span class="toc-number">5.1.</span> <span class="toc-text">5.1不可变对象与初始化安全性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2安全发布的常用模式"><span class="toc-number">5.2.</span> <span class="toc-text">5.2安全发布的常用模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3事实不可变对象"><span class="toc-number">5.3.</span> <span class="toc-text">5.3事实不可变对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-4可变对象"><span class="toc-number">5.4.</span> <span class="toc-text">5.4可变对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-5安全地共享对象"><span class="toc-number">5.5.</span> <span class="toc-text">5.5安全地共享对象</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1081,6 +1227,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
