@@ -346,6 +346,36 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/05/06/四-基础构建模块/">
+            
+                <span>四.基础构建模块</span>
+        </a>
+        <div class="abstract-content">
+            1.同步容器类​    同步容器类包括Vector和Hashtable等，这些同步的封装器类是由Collections.synchronizedXxx等工厂方法创建的。这些类实现线程安全的方式是：将它们的状态封装起来，并对每个公有方法都进行同步，使得每次只有一个线程能访问容器的状态。
+1.1同步容器类的问题​    同步容器类都是线程安全的，但在某些情况下可能需要额外的客户端加锁来保护复合操作。容器上常见的复合操作包括：迭代（反复访问元素，直到遍历完容器中所有的元素）、跳转（根据制定顺序找到当前元素的下一个元素）以及条件运算。在同步容器类中，这些复合操作在没有客户端加锁的情况下仍然是线程...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/04/27/三-对象的组合/">
             
                 <span>三.对象的组合</span>
@@ -357,7 +387,8 @@
 找出约束状态变量的不变性条件。
 建立对象状态的并发访问管理策略。
 
-1.1收集同步需求
+1.1收集同步需求​    要确保类的线程安全性，就需要确保它的不变性条件不会在并发访问的情况下被破坏，这就需要对其状态进行推断。对象与变量都有一个状态空间，即所有可能的取值。状态空间越小，就越容易判断线程的状态。final类型的域使用得越多，就越能简化对象可能状态的分析过程。（在极端的情况中，不可变对象只有唯一的状态。）
+1.2依赖状态的操作​    类的不变性条件与后验条件约束了在对象上有哪些状态和状态...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -610,69 +641,6 @@ Producer：生产者，即消息发送者，push消息到Kafka...
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/15/python爬虫-解析库的使用/">
-            
-                <span>python爬虫-解析库的使用</span>
-        </a>
-        <div class="abstract-content">
-            1.使用XPath1.XPath常用规则
-
-
-表达式
-描述
-
-
-
-
-nodename
-选取此节点的所有子节点
-
-
-/
-从当前节点选择直接子节点
-
-
-//
-从当前节点选取子孙节点
-
-
-.
-选取当前节点
-
-
-..
-选取当前节点的父节点
-
-
-@
-选取属性
-
-
-
-2.使用1.转换123456789101112131415from lxml import etreetext = '''&lt;div&gt;&lt;ul&gt;&lt;li class="item-0"&gt;&lt;a href="link1.html"&gt;first item&lt;/a&gt;&lt;/li&gt;&lt;...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python爬虫">python爬虫</a>
     
 </div>
             
@@ -1125,9 +1093,10 @@ nodename
     
     
     
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 29
         </div>
         <!-- search  -->
         
@@ -1140,6 +1109,11 @@ nodename
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/06</span><a class="archive-post-title" href="/2020/05/06/四-基础构建模块/">四.基础构建模块</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1351,13 +1325,13 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
+        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+    
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
     
         <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
-    
-        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     

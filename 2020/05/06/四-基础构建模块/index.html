@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Eureka · null</title>
+    <title>四.基础构建模块 · null</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">jounetsu&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Eureka</a>
+                <a href="#" class="post-name">四.基础构建模块</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Eureka
+            四.基础构建模块
             <!-- 404 -->
             
         </h1>
@@ -264,14 +264,20 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">658</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.1k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/01/05</span>
+                    <span class="post-intro-time">2020/05/06</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,55 +401,49 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="Eureka简介"><a href="#Eureka简介" class="headerlink" title="Eureka简介"></a>Eureka简介</h2><h4 id="什么是Eureka"><a href="#什么是Eureka" class="headerlink" title="什么是Eureka"></a>什么是Eureka</h4><p>Eureka是一个用于服务注册和发现的组件。Eureka分为Eureka Server和Eureka Client，Eureka Server为Eureka服务注册中心，Eureka Client为Eureka客户端。</p>
-<h4 id="Eureka的基本架构"><a href="#Eureka的基本架构" class="headerlink" title="Eureka的基本架构"></a>Eureka的基本架构</h4><p>主要包括以下3种角色</p>
-<ul>
-<li>Register Service:：服务注册中心，它是一个Eureka Server，提供服务注册和发现的功能</li>
-<li>Provide Service：服务提供者，它是一个Eureka Client，提供服务</li>
-<li>Consumer Service：服务消费者，它是一个Eureka Client，消费服务</li>
-</ul>
-<h4 id="Eureka-Server"><a href="#Eureka-Server" class="headerlink" title="Eureka Server"></a>Eureka Server</h4><p>在pom文件中引入Eureka Server依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在application.yml中做配置。通过server.port制定Eureka Server的端口为8761。在默认情况下，Eureka Server 会向自己注册，这时需要配置eureka.client.registerWithEurkea和eureka.client.fetchRegistry为false，防止自己注册自己。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8761</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">    hostname: localhost</span><br><span class="line">  client:</span><br><span class="line">    registerWithEureka: false</span><br><span class="line">    fetchRegistry: false</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span><br></pre></td></tr></table></figure>
-<p>在工程的启动类EurekaServerApplication加上注解@EnableEurekaServer，开启Eureka Server的功能。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaServerApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(EurekaServerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Eureka-Client"><a href="#Eureka-Client" class="headerlink" title="Eureka Client"></a>Eureka Client</h4><p>在pom中引入依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在bootstrap.yml做Eureka Client客户端的相关配置，配置了程序名为eureka-client，程序端口为8762，服务注册地址为<a href="http://localhost:8761/eureka/" target="_blank" rel="noopener">http://localhost:8761/eureka/</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8762</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: eureka-client</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka</span><br></pre></td></tr></table></figure>
-<p>在程序的启动类加上@EnableEurekaClient开启Eureka Client功能</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaClientApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(EurekaClientApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Eureka概念"><a href="#Eureka概念" class="headerlink" title="Eureka概念"></a>Eureka概念</h4><ul>
-<li>Register–服务注册</li>
-</ul>
-<p>当Eureka Client向Eureka Server注册时，Eureka Client提供自身的元数据，比如IP地址、端口、运行状况指标的Url、主页地址等信息。</p>
-<ul>
-<li>Renew–服务续约</li>
-</ul>
-<p>Eureka Client在默认的情况下会每隔30秒发送一次心跳来进行服务续约。通过服务续约来告知Eureka Server该Eureka Client仍然可用，没有出现故障。</p>
-<ul>
-<li>Fetch Registries–获取服务注册列表信息</li>
-</ul>
-<p>Eureka Client从Eureka Server获取服务注册表信息，并将其缓存在本地。</p>
-<ul>
-<li>Cancel–服务下线</li>
-</ul>
-<p>Eureka Client在程序关闭时可以向Eureka Server发送下线请求。发送请求后，该客户端的实例信息将从Eureka Server的服务注册列表中删除。该下线请求不会自动完成，需要在程序中调用:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DiscoveryManager.getInstance().shutdownComponent();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Eviction–服务剔除</li>
-</ul>
-<p>在默认情况下，当Eureka Client连续90秒没有向Eureka Server发送服务续约(即心跳)时，Eureka Server会将该服务实例从服务注册列表中删除。</p>
+        <h4 id="1-同步容器类"><a href="#1-同步容器类" class="headerlink" title="1.同步容器类"></a>1.同步容器类</h4><p>​    同步容器类包括Vector和Hashtable等，这些同步的封装器类是由Collections.synchronizedXxx等工厂方法创建的。这些类实现线程安全的方式是：将它们的状态封装起来，并对每个公有方法都进行同步，使得每次只有一个线程能访问容器的状态。</p>
+<h5 id="1-1同步容器类的问题"><a href="#1-1同步容器类的问题" class="headerlink" title="1.1同步容器类的问题"></a>1.1同步容器类的问题</h5><p>​    同步容器类都是线程安全的，但在某些情况下可能需要额外的客户端加锁来保护复合操作。容器上常见的复合操作包括：迭代（反复访问元素，直到遍历完容器中所有的元素）、跳转（根据制定顺序找到当前元素的下一个元素）以及条件运算。在同步容器类中，这些复合操作在没有客户端加锁的情况下仍然是线程安全的，但当其他线程并发地修改容器时，它们可能会表现出意料之外的行为。</p>
+<h4 id="2-并发容器"><a href="#2-并发容器" class="headerlink" title="2.并发容器"></a>2.并发容器</h4><p>​    通过并发容器来代替同步容器，可以极大地提高伸缩性并降低风险。</p>
+<h5 id="2-1-ConcurrentHashMap"><a href="#2-1-ConcurrentHashMap" class="headerlink" title="2.1 ConcurrentHashMap"></a>2.1 ConcurrentHashMap</h5><p>​    与HashMap一样，ConcurrentHashMap也是一个基于散列的Map，但它使用了一种完全不同的加锁策略来提供更高的并发性和伸缩性。ConcurrentHashMap并不是将每个方法都在同一个锁上同步并使得每次只能有一个线程访问容器，而是使用一种粒度更细的加锁机制来实现更大程序的共享，这种机制称为分段锁（Lock Striping）。</p>
+<p>​    ConcurrentHashMap与其他并发容器一起增强了同步容器类：它们提供的迭代器不会抛出ConcurrentModificationException，因此不需要在迭代过程中对容器加锁。ConcurrentHashMap返回的迭代器具有弱一致性（Weakly Consistent），而并非“及时失败”。弱一致性的迭代器可以容忍并发的修改，当创建迭代器时会遍历已有的元素，并可以（但是不保证）在迭代器被构造后将修改操作反映给容器。</p>
+<p>​    在ConcurrentHashMap中没有实现对Map加锁以提供独占访问。在Hashtable和synchronizedMap中，获得Map的锁能防止其他线程访问这个Map。</p>
+<h5 id="2-2-CopyOnWriteArrayList"><a href="#2-2-CopyOnWriteArrayList" class="headerlink" title="2.2 CopyOnWriteArrayList"></a>2.2 CopyOnWriteArrayList</h5><p>​    CopyOnWriteArrayList用于替代同步List，在某些情况下它提供了更好的并发性能，并且在迭代期间不需要对容器进行加锁或复制。（类似地，CopyOnWriteArraySet的作用是替代同步Set）</p>
+<p>​    “写入时复制（Copy-On-Write）”容器的线程安全性在于，只要正确地发布一个事实不可变的对象，那么在访问该对象时就不再需要进一步的同步。在每次修改时，都会创建并重新发布一个新的容器副本，从而实现可变性。“写入时复制”容器的迭代器保留一个指向底层基础数组的引用，这个数组当前位于迭代器的起始位置，由于它不会被修改，因此在对其进行同步时只需确保数组内容的可见性。因此，多个线程可以同时对这个容器进行迭代，而不会彼此干扰或者与修改容器的线程相互干扰。“写入时复制”容器返回的迭代器不会抛出ConcurrentModificationExecption，并且返回的元素与迭代器创建时的元素完全一致，而不必考虑之后修改操作所带来的影响。</p>
+<h4 id="3-阻塞队列和生产者-消费者模式"><a href="#3-阻塞队列和生产者-消费者模式" class="headerlink" title="3.阻塞队列和生产者-消费者模式"></a>3.阻塞队列和生产者-消费者模式</h4><p>​    阻塞队列提供了可阻塞的put和take方法，以及支持定时的offer和poll方法。如果队列已经满了，那么put方法将阻塞直到有空间可用；如果队列为空，那么take方法将会阻塞直到有元素可用。队列可以是有界的也可以是无界的，无界队列永远都不会充满，所以无界队列的put方法永远也不会阻塞。</p>
+<p>​    在基于阻塞队列构建的生产者-消费者设计中，当数据生成时，生产者把数据放入队列，而当消费者准备处理数据时，将从队列中获取数据。生产者不需要知道消费者的标识或数量，或者它们是否是唯一的生产者，而只需将数据放入队列即可。同样，消费者也不需要知道生产者是谁，或者工作来自何处。一种常见的生产者-消费者设计模式就是线程池与工作队列的组合，在Executor任务执行框架中就体现了这种模式。</p>
+<p>​    阻塞队列提供了一个offer方法，如果数据项不能被添加到队列中，那么将返回一个失败状态。</p>
+<p>​    在构建高可靠的应用程序时，有界队列是一种强大的资源管理工具：它们能抑制并防止产生过的工作项，使应用程序在负荷过载的情况下变得更加健壮。</p>
+<p>​    在类库中包含了BlockingQueue的多种实现，其中，LinkedBlockingQueue和ArrayBlockingQueue是FIFO队列，二者分别与LinkedList和ArrayList类似，但比同步List拥有更好的并发性能。PriorityBlockingQueue是一个按优先级排序的队列。</p>
+<p>​    最后一个BlockingQueue实现是SynchronousQueue，实际上它不是一个真正的队列，因为它不会为队列中元素维护存储空间。与其他队列不同的是，它维护一组线程，这些线程在等待把元素加入或移出队列。</p>
+<h5 id="3-1串行线程关闭"><a href="#3-1串行线程关闭" class="headerlink" title="3.1串行线程关闭"></a>3.1串行线程关闭</h5><p>​    对于可变对象，生产者-消费者这种设计与阻塞队列一起，促进了串行线程封闭，从而将对象所有权从生产者交付给消费者。线程封闭对象只能由单个线程拥有，但可以通过安全发布对象来“转移”所有权。在转移所有权之后，也只有另一个线程能获得这个对象的访问限制，并且发布对象的线程不会再访问它。</p>
+<h5 id="3-2双端队列与工作密取"><a href="#3-2双端队列与工作密取" class="headerlink" title="3.2双端队列与工作密取"></a>3.2双端队列与工作密取</h5><p>​    双端队列适用于另一种相关模式，即工作密取。在生产者-消费者设计中，所有消费者有一个共享的工作队列，而在工作密取设计中，每个消费者都有自己的双端队列。如果一个消费者完成了自己双端队列中的全部工作，那么它可以从其他消费者双端队列末尾秘密地获取工作。</p>
+<h4 id="4-阻塞方法与中断方法"><a href="#4-阻塞方法与中断方法" class="headerlink" title="4.阻塞方法与中断方法"></a>4.阻塞方法与中断方法</h4><p>​    线程可能会阻塞或暂停执行，原因有多种：等待I/O操作结束，等待获得一个锁，等待从Thread.sleep方法中醒来，或是等待另一个线程的计算结果。当线程阻塞时，它通常被挂起，并处于某种阻塞状态（BLOCKED、WAITING或TIMED_WAITING）。阻塞线程与执行时间很长的普通操作的差别在于，被阻塞的队列必须等待某个不受它控制的事件发生后才能继续执行。当某个外部事件发生时，线程被置回RUNNABLE状态，并可以再次被调度执行。</p>
+<p>​    Thread提供了interrupt方法，用于中断线程或者查询这个线程是否已经被中断。每个线程都有一个布尔类型的属性，表示线程的中断状态，当中断线程时讲设置这个状态。</p>
+<p>​    中断是一种协作机制。一个线程不能强制其他线程停止正在执行的操作而去执行求他的操作。</p>
+<p>​    挡在代码中调用了一个将抛出InterruptedExcepiton异常的方法时，自己的方法也就变成了一个阻塞方法，并且必须要处理对应中断的响应。对于库代码来说，有两种基本选择：</p>
+<p>​    传递InterruptedException。只需把InterruptedException传递给方法的调用者。传递InterruptedException的方法包括，根本不捕获该异常，或者捕获该异常，然后在执行某种简单的清理工作后再次抛出该异常。</p>
+<p>​    恢复中断。有时候不能抛出InterruptedException，例如当代码是Runnable的一部分时。在这些情况下，必须捕获InterruptedException，并通过调用当前线程上的interrupt方法恢复中断状态，这样在调用栈中更高层的代码将看到引发了一个中断。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TaskRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">		BlockingQueue&lt;Task&gt; queue;</span><br><span class="line">  	...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    		<span class="keyword">try</span> &#123;</span><br><span class="line">          	processTask(queue.take());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">          	<span class="comment">//恢复中断的状态</span></span><br><span class="line">          	Thread.currentThread().interrupt();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5-同步工具类"><a href="#5-同步工具类" class="headerlink" title="5.同步工具类"></a>5.同步工具类</h4><h5 id="5-1闭锁"><a href="#5-1闭锁" class="headerlink" title="5.1闭锁"></a>5.1闭锁</h5><p>​    闭锁是一种同步工具类，可以延迟线程的进度直到其到达终止状态。当闭锁到达结束状态之后，将不会再改变状态。闭锁可以确保某些活动直到其他活动都完成后才继续执行。</p>
+<p>​    CountDownLatch是一种灵活的闭锁实现，它可以使一个或多个线程等待一组事件发生。闭锁状态包括一个计数器，该计数器被初始化为一个正数，表示需要等待的事件数量。countDown方法递减计数器，表示有一个事件已经发生了，而await方法等待计数器达到零，这表示所有需要等待的事件都已经发生。如果计数器的值非零，那么await会一直阻塞到计数器为零，或者等待中的线程中断，或者等待超时。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">timeTasks</span><span class="params">(<span class="keyword">int</span> nThreads, Runnable task)</span> <span class="keyword">throws</span> InterruptedException</span>&#123;</span><br><span class="line">		<span class="keyword">final</span> CountDownLatch startGate = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">final</span> CountDownLatch endGate = <span class="keyword">new</span> CountDownLatch(nThreads);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nThreads; i++) &#123;</span><br><span class="line">      Thread t = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          startGate.await();</span><br><span class="line">          <span class="keyword">try</span>&#123;</span><br><span class="line">            task.run();</span><br><span class="line">          &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            endGate.countDown();</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException ignored) &#123;&#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      t.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> start = System.nanoTime();</span><br><span class="line">    startGate.countDown();</span><br><span class="line">    endGate.await();</span><br><span class="line">    <span class="keyword">long</span> end = System.nanoTime();</span><br><span class="line">    <span class="keyword">return</span> end - start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#####5.2FutureTask</p>
+<p>​    FutureTask也可以用做闭锁。FutureTask表示的计算是通过Callable来实现的，相当于一种可生成结果的Runnable，并且可以处于以下3种状态：等待运行（Waiting to run）,正在运行（Running）和运行完成（Completed）。</p>
+<p>​    Future.get()的行为取决于任务的状态。如果任务已经完成，那么get会立即返回结果，否则get将阻塞直到任务进入完成状态，然后返回结果或者抛出异常。</p>
+<h5 id="5-3信号量"><a href="#5-3信号量" class="headerlink" title="5.3信号量"></a>5.3信号量</h5><p>​    计数信号量（Counting Semaphore）用来控制同时访问某个特定资源的操作数量，或者同时执行某个执行操作的数量。计数信号量还可以用来实现某种资源池，或者对容器施加边界。    </p>
+<p>​    Semaphore中管理着一组虚拟的许可（permit），许可的初始数量可通过构造函数来指定。在执行操作时可以首先获得许可（只要还有剩余的许可），并在使用以后释放许可。如果没有许可，那么acquire将阻塞直到所有许可（或许直到被中断或操作超时）。release方法将返回一个许可给信号量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BoundedHashSet</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Set&lt;T&gt; set;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Semaphore sem;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BoundedHashSet</span><span class="params">(<span class="keyword">int</span> bound)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.set = Collections.synchronizedSet(<span class="keyword">new</span> HashSet&lt;T&gt;());</span><br><span class="line">        <span class="keyword">this</span>.sem = <span class="keyword">new</span> Semaphore(bound);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(T o)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        sem.acquire();</span><br><span class="line">        <span class="keyword">boolean</span> wasAdded = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            wasAdded = set.add(o);</span><br><span class="line">            <span class="keyword">return</span> wasAdded;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!wasAdded) &#123;</span><br><span class="line">                sem.release();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(T o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> wasRemove = set.remove(o);</span><br><span class="line">        <span class="keyword">if</span> (wasRemove) &#123;</span><br><span class="line">            sem.release();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> wasRemove;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="5-4栅栏"><a href="#5-4栅栏" class="headerlink" title="5.4栅栏"></a>5.4栅栏</h5><p>​    栅栏（Barrier）类似于闭锁，它能阻塞一组线程直到某个事件发生。栅栏与闭锁的关键区别在于，所有线程必须同时到达栅栏位置，才能继续执行。闭锁用于等待事件，而栅栏用于等待其他线程。</p>
+<p>​    CyclicBarrier可以使一定数量的参与方式反复地在栅栏位置汇集，它在并行迭代算法中非常有用：这种算法通常将一个问题拆分成一系列相互独立的子问题。当线程到达栅栏位置时将调用await方法，这个方法将阻塞直到所有线程到达栅栏位置。如果所有线程到达了栅栏位置，那么栅栏将打开，此时所有线程都被释放，而栅栏将重置以便下次使用。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="">jounetsu</a>
-            </p><p>原文链接：<a href="/2019/01/05/Eureka/">/2019/01/05/Eureka/</a>
-            </p><p>发表日期：<a href="/2019/01/05/Eureka/">January 5th 2019, 9:13:26 pm</a>
-            </p><p>更新日期：<a href="/2019/01/05/Eureka/">October 24th 2019, 11:22:58 am</a>
+            </p><p>原文链接：<a href="/2020/05/06/四-基础构建模块/">/2020/05/06/四-基础构建模块/</a>
+            </p><p>发表日期：<a href="/2020/05/06/四-基础构建模块/">May 6th 2020, 11:17:40 am</a>
+            </p><p>更新日期：<a href="/2020/05/06/四-基础构建模块/">May 14th 2020, 11:32:39 am</a>
             </p><p>版权声明：</p>
         </div>
     
@@ -451,17 +451,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/01/07/Ribbon/" title="Ribbon">
-                    <div class="nextTitle">Ribbon</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2018/12/17/Spring-Boot/" title="Spring Boot">
-                    <div class="prevTitle">Spring Boot</div>
+                <a href="/2020/04/27/三-对象的组合/" title="三.对象的组合">
+                    <div class="prevTitle">三.对象的组合</div>
                 </a>
             
         </li>
@@ -565,7 +560,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka简介"><span class="toc-number">1.</span> <span class="toc-text">Eureka简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是Eureka"><span class="toc-number">1.0.1.</span> <span class="toc-text">什么是Eureka</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka的基本架构"><span class="toc-number">1.0.2.</span> <span class="toc-text">Eureka的基本架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka-Server"><span class="toc-number">1.0.3.</span> <span class="toc-text">Eureka Server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka-Client"><span class="toc-number">1.0.4.</span> <span class="toc-text">Eureka Client</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka概念"><span class="toc-number">1.0.5.</span> <span class="toc-text">Eureka概念</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-同步容器类"><span class="toc-number">1.</span> <span class="toc-text">1.同步容器类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1同步容器类的问题"><span class="toc-number">1.1.</span> <span class="toc-text">1.1同步容器类的问题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-并发容器"><span class="toc-number">2.</span> <span class="toc-text">2.并发容器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-ConcurrentHashMap"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 ConcurrentHashMap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-CopyOnWriteArrayList"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 CopyOnWriteArrayList</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-阻塞队列和生产者-消费者模式"><span class="toc-number">3.</span> <span class="toc-text">3.阻塞队列和生产者-消费者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1串行线程关闭"><span class="toc-number">3.1.</span> <span class="toc-text">3.1串行线程关闭</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2双端队列与工作密取"><span class="toc-number">3.2.</span> <span class="toc-text">3.2双端队列与工作密取</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-阻塞方法与中断方法"><span class="toc-number">4.</span> <span class="toc-text">4.阻塞方法与中断方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-同步工具类"><span class="toc-number">5.</span> <span class="toc-text">5.同步工具类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-1闭锁"><span class="toc-number">5.1.</span> <span class="toc-text">5.1闭锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3信号量"><span class="toc-number">5.2.</span> <span class="toc-text">5.3信号量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-4栅栏"><span class="toc-number">5.3.</span> <span class="toc-text">5.4栅栏</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

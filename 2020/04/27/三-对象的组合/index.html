@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">83</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">997</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -407,7 +407,18 @@ height:50vh;
 <li>找出约束状态变量的不变性条件。</li>
 <li>建立对象状态的并发访问管理策略。</li>
 </ul>
-<h5 id="1-1收集同步需求"><a href="#1-1收集同步需求" class="headerlink" title="1.1收集同步需求"></a>1.1收集同步需求</h5>
+<h5 id="1-1收集同步需求"><a href="#1-1收集同步需求" class="headerlink" title="1.1收集同步需求"></a>1.1收集同步需求</h5><p>​    要确保类的线程安全性，就需要确保它的不变性条件不会在并发访问的情况下被破坏，这就需要对其状态进行推断。对象与变量都有一个状态空间，即所有可能的取值。状态空间越小，就越容易判断线程的状态。final类型的域使用得越多，就越能简化对象可能状态的分析过程。（在极端的情况中，不可变对象只有唯一的状态。）</p>
+<h5 id="1-2依赖状态的操作"><a href="#1-2依赖状态的操作" class="headerlink" title="1.2依赖状态的操作"></a>1.2依赖状态的操作</h5><p>​    类的不变性条件与后验条件约束了在对象上有哪些状态和状态转换是有效的。在某些对象的方法中还包含一些基于状态的先验条件。例如，不能从空队列中移除一个元素，在删除元素之前，队列必须处于非空的状态。如果在某个操作中包含有基于状态的先验条件，那么这个操作就被称为依赖状态的操作。</p>
+<p>​    在单线程程序中，如果某个操作无法满足先验条件，那么就只能失败。但在并发程序中，先验条件可能会由于其他线程执行的操作而变成真。在并发程序中要一直等到先验条件为真，然后再执行该操作。</p>
+<h5 id="1-3状态的所有权"><a href="#1-3状态的所有权" class="headerlink" title="1.3状态的所有权"></a>1.3状态的所有权</h5><p>​    许多情况下，所有权与封装性总是相互关联的：对象封装它拥有的状态，反之也成立，即对它封装的状态拥有所有权。状态变量的所有者将决定采用何种加锁协议来维持变量状态的完整性。所有权意味着控制权。</p>
+<h4 id="2-实例封闭"><a href="#2-实例封闭" class="headerlink" title="2.实例封闭"></a>2.实例封闭</h4><p>​    封装简化了线程安全类的实现过程，它提供了一种实例封闭机制，通常也简称为“封闭”。当一个对象被封装到另一个对象中时，能够访问被封装对象的所有代码路径都是已知的。</p>
+<p>​    将数据封装在对象内部，可以将数据的访问限制在对象的方法上，从而更容易确保线程在访问数据时总能持有正确的锁。</p>
+<p>​    实例封闭式构建线程安全类的一种最简单方式，它还使得在锁策略的选择上拥有了更多的灵活性。只要自始至终都使用同一个锁，就可以保护状态。实例封闭还使得不同的状态变量可以由不同的锁来保护。</p>
+<h5 id="2-1Java监视器模式"><a href="#2-1Java监视器模式" class="headerlink" title="2.1Java监视器模式"></a>2.1Java监视器模式</h5><p>​    Java监视器模式仅仅是一种编写代码的约定，对于任何一种锁对象，只要自始至终都使用该锁对象，都可以用来保护对象的状态。</p>
+<h4 id="3-线程安全性的委托"><a href="#3-线程安全性的委托" class="headerlink" title="3.线程安全性的委托"></a>3.线程安全性的委托</h4><p>​    如果一个变量是线程安全的，并且没有任何不变性条件来约束它的值，在变量的操作上也不存在任何不允许的状态转换，那么就可以安全地发布这个变量。</p>
+<h4 id="4-在现有的线程安全类中添加功能"><a href="#4-在现有的线程安全类中添加功能" class="headerlink" title="4.在现有的线程安全类中添加功能"></a>4.在现有的线程安全类中添加功能</h4><h5 id="4-1客户端加锁机制"><a href="#4-1客户端加锁机制" class="headerlink" title="4.1客户端加锁机制"></a>4.1客户端加锁机制</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@hreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListHelper</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> List&lt;E&gt; list = </span><br><span class="line">    Collections.synchronizedList(<span class="keyword">new</span> ArrayList&lt;E&gt;());</span><br><span class="line">  ...</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">pufIfAbsent</span><span class="params">(E x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (list) &#123;</span><br><span class="line">      <span class="keyword">boolean</span> absent = !list.contains(x);</span><br><span class="line">      <span class="keyword">if</span> (absent) &#123;</span><br><span class="line">        list.add(x);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> absent;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="4-2组合"><a href="#4-2组合" class="headerlink" title="4.2组合"></a>4.2组合</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImprovedList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> List&lt;T&gt; list;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ImprovedList</span><span class="params">(List&lt;T&gt; list)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.list = list;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">boolean</span> <span class="title">putIfAbsent</span><span class="params">(T x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> contains = list.contains(x);</span><br><span class="line">    <span class="keyword">if</span>(contains) &#123;</span><br><span class="line">      list.add(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> !contains;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
     </article>
     <!-- license  -->
     
@@ -415,13 +426,18 @@ height:50vh;
             <p>原文作者：<a href="">jounetsu</a>
             </p><p>原文链接：<a href="/2020/04/27/三-对象的组合/">/2020/04/27/三-对象的组合/</a>
             </p><p>发表日期：<a href="/2020/04/27/三-对象的组合/">April 27th 2020, 4:30:38 pm</a>
-            </p><p>更新日期：<a href="/2020/04/27/三-对象的组合/">April 28th 2020, 10:22:14 am</a>
+            </p><p>更新日期：<a href="/2020/04/27/三-对象的组合/">May 6th 2020, 11:16:24 am</a>
             </p><p>版权声明：</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2020/05/06/四-基础构建模块/" title="四.基础构建模块">
+                    <div class="nextTitle">四.基础构建模块</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -532,7 +548,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-设计线程安全的类"><span class="toc-number">1.</span> <span class="toc-text">1.设计线程安全的类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1收集同步需求"><span class="toc-number">1.1.</span> <span class="toc-text">1.1收集同步需求</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-设计线程安全的类"><span class="toc-number">1.</span> <span class="toc-text">1.设计线程安全的类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1收集同步需求"><span class="toc-number">1.1.</span> <span class="toc-text">1.1收集同步需求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2依赖状态的操作"><span class="toc-number">1.2.</span> <span class="toc-text">1.2依赖状态的操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3状态的所有权"><span class="toc-number">1.3.</span> <span class="toc-text">1.3状态的所有权</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-实例封闭"><span class="toc-number">2.</span> <span class="toc-text">2.实例封闭</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1Java监视器模式"><span class="toc-number">2.1.</span> <span class="toc-text">2.1Java监视器模式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-线程安全性的委托"><span class="toc-number">3.</span> <span class="toc-text">3.线程安全性的委托</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-在现有的线程安全类中添加功能"><span class="toc-number">4.</span> <span class="toc-text">4.在现有的线程安全类中添加功能</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1客户端加锁机制"><span class="toc-number">4.1.</span> <span class="toc-text">4.1客户端加锁机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2组合"><span class="toc-number">4.2.</span> <span class="toc-text">4.2组合</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -905,9 +921,10 @@ top:50vh;
     
     
     
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 29
         </div>
         <!-- search  -->
         
@@ -920,6 +937,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/06</span><a class="archive-post-title" href="/2020/05/06/四-基础构建模块/">四.基础构建模块</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1131,13 +1153,13 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
+        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+    
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
     
         <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
-    
-        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     
