@@ -346,6 +346,69 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/05/27/七-线程池的使用/">
+            
+                <span>七.线程池的使用</span>
+        </a>
+        <div class="abstract-content">
+            1. 在任务与执行策略之间的隐性耦合​    有些类型的任务需要明确地制定执行策略，包括：
+​    依赖性任务。大多数行为正确的任务都是独立的：它们不依赖于其他任务的执行时序、执行结果或其他效果。当在线程中执行独立的任务时，可以随意地改变线程池的大小和配置，这些修改只会对执行性能产生影响。
+​    使用线程封闭机制的任务。对象可以封闭在任务线程中，使得在该线程中执行的任务在访问该对象时不需要同步，即使这些资源不是线程安全的也没有问题。
+​    对响应时间敏感的任务。如果将一个运行时间较长的任务提交到单线程的Executor中，或者将多个运行时间较长的任务提交到一个只包含少量线程的线...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/27</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/20/六-取消与关闭/">
+            
+                <span>六.取消与关闭</span>
+        </a>
+        <div class="abstract-content">
+            1.任务取消​    如果外部代码能在某个操作正常完成之前将其置入“完成”状态，那么这个操作就可以称为可取消的。
+1.1 中断​    线程中断是一种协作机制，线程可以通过这种机制来通知另一个线程，告诉它在合适的或者可能的情况下停止当前工作，并转而执行其他的工作。
+​    每个线程都有一个boolean类型的中断状态。当中断线程时，这个线程的中断状态就被设置为true。在Thread中包含了中断线程以及查询线程中断状态的方法。interrupt方法能中断目标线程，而isInterrupted方法能返回目标线程的中断状态。静态的interrupted方法将清除当前线程的中断状态，并返回它...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/05/14/五-任务执行/">
             
                 <span>五.任务执行</span>
@@ -984,9 +1047,12 @@
     
     
     
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 31
+        Total : 32
         </div>
         <!-- search  -->
         
@@ -999,6 +1065,11 @@
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/27</span><a class="archive-post-title" href="/2020/05/27/七-线程池的使用/">七.线程池的使用</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1180,9 +1251,9 @@
     
         <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
-        <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
-    
         <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
+    
+        <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1225,17 +1296,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
-        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
     
-        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     
-        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

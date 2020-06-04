@@ -346,6 +346,34 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/10/24/基于-Kafka-和-ZooKeeper-的分布式消息队列/">
+            
+                <span>基于 Kafka 和 ZooKeeper 的分布式消息队列</span>
+        </a>
+        <div class="abstract-content">
+            1.Kafka总体架构
+​    一个典型的Kafka体系架构包括若干个Producer（消息生产者），若干broker（作为Kafka节点的服务器），若干Consumer（Group），以及一个ZooKeeper集群。Kafka通过ZooKeeper管理集群配置、选举Leader以及在consumer group发生变化时进行Rebalance（消费者负载均衡）。Producer使用push模式将消息发布到broker，Consumer使用pull模式从broker订阅并消费信息。
+​    Kafka内部结构如下：
+
+
+Producer：生产者，即消息发送者，push消息到Kafka...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/10/16/垃圾收集器与内存分配策略/">
             
                 <span>垃圾收集器与内存分配策略</span>
@@ -647,29 +675,6 @@ AtomicLong：原子更新长整型
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/03/Java并发容器和框架/">
-            
-                <span>(五)Java并发容器和框架</span>
-        </a>
-        <div class="abstract-content">
-            ConcurrentHashMap的实现原理与使用ConcurrentHashMap的结构​    ConcurrentHashMap是由Segment数组结构和HashEntry数据结构组成。Segment是一种可重入锁(ReentrantLock)，HashEntry则用于存储键值对数据。一个ConcurrentHashMap里包含一个Segment数组。Segment的结构和HashMap类似，是一种数组和链表结构。一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护着一个HashEntry数组里的元素,当对Hash...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/03</span>
             </div>
             <!-- tags  -->
             
@@ -1165,9 +1170,12 @@ AtomicLong：原子更新长整型
     
     
     
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 31
+        Total : 32
         </div>
         <!-- search  -->
         
@@ -1180,6 +1188,11 @@ AtomicLong：原子更新长整型
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/27</span><a class="archive-post-title" href="/2020/05/27/七-线程池的使用/">七.线程池的使用</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1361,9 +1374,9 @@ AtomicLong：原子更新长整型
     
         <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
-        <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
-    
         <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
+    
+        <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1406,17 +1419,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
-        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
     
-        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     
-        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
