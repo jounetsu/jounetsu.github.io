@@ -357,6 +357,38 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/04/八-避免活跃性危险/">
+            
+                <span>八.避免活跃性危险</span>
+        </a>
+        <div class="abstract-content">
+            1. 死锁​    当一个线程永远地持有一个锁，并且其他线程都尝试获得这个锁时，那么它们将永远被阻塞。在线程A持有锁L想获得锁M的同时，线程B持有锁M并尝试获得锁L，那么这两个线程将永远地等待下去。这种情况就是最简单的死锁形式（或者成为“抱死”），其中多个线程由于存在环路的锁依赖关系而永远地等待下去。
+1.1 锁顺序死锁​    两个线程试图以不同的顺序来获得相同的锁。如果按照相同的顺序来请求锁，那么就不会出现循环的加锁依赖性，因此也就不会产生死锁。
+​    如果所有线程都以固定的顺序来获得锁，那么在程序中就不会出现顺序死锁问题。
+1.2 动态的锁顺序死锁​    如果执行时序不当，线...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/05/27/七-线程池的使用/">
             
                 <span>七.线程池的使用</span>
@@ -620,38 +652,6 @@ height:50vh;
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/01</span>
             </div>
             <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/11/05/类文件结构/">
-            
-                <span>类文件结构</span>
-        </a>
-        <div class="abstract-content">
-            1. Class类文件的结构​    Class文件是一组以8位字节为基础单位的二进制流，各个数据项目严格按照顺序紧凑地排列在Class文件之中，中间没有添加任何分隔符。
-​    Class文件格式采用一种类似C语言结构体的伪结构来存储数据，这种伪结构中只有两种数据类型：无符号数和表。
-1.1 魔数与Class文件的版本​    每个Class文件的头4个字节称为魔数，它唯一的作用是确定这个文件是否为一个能被虚拟机接受的Class文件。Class文件的魔数值为：0xCAFEBABE。
-​    紧接着魔数的4个字节存储的是Class文件的版本号：第5和第6个字节是次版本号，第7和第8个...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
-    
-</div>
             
         </div>
     </article>
@@ -1203,9 +1203,26 @@ height:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -1218,6 +1235,11 @@ height:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2020/06/04/八-避免活跃性危险/">八.避免活跃性危险</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1404,9 +1426,9 @@ height:50vh;
     
         <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
-        <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
-    
         <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
+    
+        <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1441,19 +1463,19 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Spring-Cloud"><span class="iconfont-archer">&#xe60a;</span>Spring-Cloud</span>
-    
         <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="Spring-Cloud"><span class="iconfont-archer">&#xe60a;</span>Spring-Cloud</span>
     
         <span class="sidebar-category-name" data-categories="JVM笔记"><span class="iconfont-archer">&#xe60a;</span>JVM笔记</span>
     
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
-        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
     
-        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     

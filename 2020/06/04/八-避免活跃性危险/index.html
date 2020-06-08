@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>八.避免活跃性危险 · null</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">jounetsu&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">八.避免活跃性危险</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">jounetsu's blog</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            八.避免活跃性危险
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">860</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/06/04</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,319 +399,60 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/06/04/八-避免活跃性危险/">
-            
-                <span>八.避免活跃性危险</span>
-        </a>
-        <div class="abstract-content">
-            1. 死锁​    当一个线程永远地持有一个锁，并且其他线程都尝试获得这个锁时，那么它们将永远被阻塞。在线程A持有锁L想获得锁M的同时，线程B持有锁M并尝试获得锁L，那么这两个线程将永远地等待下去。这种情况就是最简单的死锁形式（或者成为“抱死”），其中多个线程由于存在环路的锁依赖关系而永远地等待下去。
-1.1 锁顺序死锁​    两个线程试图以不同的顺序来获得相同的锁。如果按照相同的顺序来请求锁，那么就不会出现循环的加锁依赖性，因此也就不会产生死锁。
-​    如果所有线程都以固定的顺序来获得锁，那么在程序中就不会出现顺序死锁问题。
-1.2 动态的锁顺序死锁​    如果执行时序不当，线...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/27/七-线程池的使用/">
-            
-                <span>七.线程池的使用</span>
-        </a>
-        <div class="abstract-content">
-            1. 在任务与执行策略之间的隐性耦合​    有些类型的任务需要明确地制定执行策略，包括：
-​    依赖性任务。大多数行为正确的任务都是独立的：它们不依赖于其他任务的执行时序、执行结果或其他效果。当在线程中执行独立的任务时，可以随意地改变线程池的大小和配置，这些修改只会对执行性能产生影响。
-​    使用线程封闭机制的任务。对象可以封闭在任务线程中，使得在该线程中执行的任务在访问该对象时不需要同步，即使这些资源不是线程安全的也没有问题。
-​    对响应时间敏感的任务。如果将一个运行时间较长的任务提交到单线程的Executor中，或者将多个运行时间较长的任务提交到一个只包含少量线程的线...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/20/六-取消与关闭/">
-            
-                <span>六.取消与关闭</span>
-        </a>
-        <div class="abstract-content">
-            1.任务取消​    如果外部代码能在某个操作正常完成之前将其置入“完成”状态，那么这个操作就可以称为可取消的。
-1.1 中断​    线程中断是一种协作机制，线程可以通过这种机制来通知另一个线程，告诉它在合适的或者可能的情况下停止当前工作，并转而执行其他的工作。
-​    每个线程都有一个boolean类型的中断状态。当中断线程时，这个线程的中断状态就被设置为true。在Thread中包含了中断线程以及查询线程中断状态的方法。interrupt方法能中断目标线程，而isInterrupted方法能返回目标线程的中断状态。静态的interrupted方法将清除当前线程的中断状态，并返回它...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/14/五-任务执行/">
-            
-                <span>五.任务执行</span>
-        </a>
-        <div class="abstract-content">
-            1.Executor123public interface Executor &#123;		void execute (Runnable command);&#125;
-1.1基于Executor的Web服务器123456789101112131415161718class TaskExecutionWebServer &#123;  private static final int NTHREADS = 100;  private static final Executor exec     	= Executors.newFiexdThreadPool(NTHRADS);    p...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/05/06/四-基础构建模块/">
-            
-                <span>四.基础构建模块</span>
-        </a>
-        <div class="abstract-content">
-            1.同步容器类​    同步容器类包括Vector和Hashtable等，这些同步的封装器类是由Collections.synchronizedXxx等工厂方法创建的。这些类实现线程安全的方式是：将它们的状态封装起来，并对每个公有方法都进行同步，使得每次只有一个线程能访问容器的状态。
-1.1同步容器类的问题​    同步容器类都是线程安全的，但在某些情况下可能需要额外的客户端加锁来保护复合操作。容器上常见的复合操作包括：迭代（反复访问元素，直到遍历完容器中所有的元素）、跳转（根据制定顺序找到当前元素的下一个元素）以及条件运算。在同步容器类中，这些复合操作在没有客户端加锁的情况下仍然是线程...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/27/三-对象的组合/">
-            
-                <span>三.对象的组合</span>
-        </a>
-        <div class="abstract-content">
-            1.设计线程安全的类​    在设计线程安全类的过程中，需要包含以下三个基本要素：
+            <main class="main post-page">
+    <article class="article-entry">
+        <h4 id="1-死锁"><a href="#1-死锁" class="headerlink" title="1. 死锁"></a>1. 死锁</h4><p>​    当一个线程永远地持有一个锁，并且其他线程都尝试获得这个锁时，那么它们将永远被阻塞。在线程A持有锁L想获得锁M的同时，线程B持有锁M并尝试获得锁L，那么这两个线程将永远地等待下去。这种情况就是最简单的死锁形式（或者成为“抱死”），其中多个线程由于存在环路的锁依赖关系而永远地等待下去。</p>
+<h5 id="1-1-锁顺序死锁"><a href="#1-1-锁顺序死锁" class="headerlink" title="1.1 锁顺序死锁"></a>1.1 锁顺序死锁</h5><p>​    两个线程试图以不同的顺序来获得相同的锁。如果按照相同的顺序来请求锁，那么就不会出现循环的加锁依赖性，因此也就不会产生死锁。</p>
+<p>​    如果所有线程都以固定的顺序来获得锁，那么在程序中就不会出现顺序死锁问题。</p>
+<h5 id="1-2-动态的锁顺序死锁"><a href="#1-2-动态的锁顺序死锁" class="headerlink" title="1.2 动态的锁顺序死锁"></a>1.2 动态的锁顺序死锁</h5><p>​    如果执行时序不当，线程的顺序将会被打乱，造成死锁。</p>
+<h5 id="1-3-在协作对象之间发生的死锁"><a href="#1-3-在协作对象之间发生的死锁" class="headerlink" title="1.3 在协作对象之间发生的死锁"></a>1.3 在协作对象之间发生的死锁</h5><p>​    如果在持有锁时调用某个外部方法，那么将出现活跃性问题。在这个外部方法中可能会获取其他锁（这可能会产生死锁），或者阻塞时间过长，导致其他线程无法及时获得当前被持有的锁。</p>
+<h5 id="1-4-开放调用"><a href="#1-4-开放调用" class="headerlink" title="1.4 开放调用"></a>1.4 开放调用</h5><p>​    如果在调用某个方法时不需要持有锁，那么这种调用被称为开放调用。依赖于开放调用的类通常能表现出更好的行为，并且与那么在调用方法时需要持有锁的类相比，也更易于编写。通过尽可能地使用开放调用，将更易于找出那些需要获取多个锁的代码路径，因此也就更容易采用一致的顺序来获得锁。</p>
+<h5 id="1-5-资源死锁"><a href="#1-5-资源死锁" class="headerlink" title="1.5 资源死锁"></a>1.5 资源死锁</h5><p>​    正如当多个线程相互持有彼此正在等待的锁而又不释放自己已持有的锁时会发生死锁，当它们在相同的资源集合上等待时，也会发生死锁。</p>
+<h4 id="2-其他活跃性危险"><a href="#2-其他活跃性危险" class="headerlink" title="2. 其他活跃性危险"></a>2. 其他活跃性危险</h4><h5 id="2-1-饥饿"><a href="#2-1-饥饿" class="headerlink" title="2.1 饥饿"></a>2.1 饥饿</h5><p>​    由于线程无法访问它所需要的资源而不能继续进行时，就发生了“饥饿”。引发饥饿的最常见资源就是CPU时钟周期。如果在JAVA应用程序中对线程的优先级使用不当，或者在持有锁时执行了一些无法结束的结构（例如无限循环，或者无限制地等待某个资源），那么也有可能导致饥饿，因为其他需要这个锁的序线程将无法得到它。</p>
+<p>​    要避免使用线程优先级，因为这会增加平台依赖性，并可能导致活跃性问题。在大多数并发应用程序中，都可以使用默认的线程优先级。</p>
+<h5 id="2-2-活锁"><a href="#2-2-活锁" class="headerlink" title="2.2 活锁"></a>2.2 活锁</h5><p>​    活锁是另一种形式的活跃性问题，该问题尽管不会阻塞线程，但也不能继续执行，因为线程将不断重复执行相同的操作，而且总会失败。活锁通常发生在处理事务消息的应用程序中：如果不能成功地处理某个消息，那么消息处理机制将回滚整个事务，并将它重新放到队列的开头。</p>
+<p>​    </p>
+<p>​    </p>
 
-找出构成对象状态的所有变量。
-找出约束状态变量的不变性条件。
-建立对象状态的并发访问管理策略。
-
-1.1收集同步需求​    要确保类的线程安全性，就需要确保它的不变性条件不会在并发访问的情况下被破坏，这就需要对其状态进行推断。对象与变量都有一个状态空间，即所有可能的取值。状态空间越小，就越容易判断线程的状态。final类型的域使用得越多，就越能简化对象可能状态的分析过程。（在极端的情况中，不可变对象只有唯一的状态。）
-1.2依赖状态的操作​    类的不变性条件与后验条件约束了在对象上有哪些状态和状态...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/25/二-对象的共享/">
-            
-                <span>二.对象的共享</span>
-        </a>
-        <div class="abstract-content">
-            1.可见性1.1失效数据​    在缺乏同步的程序中可能产生错误的一种情况：失效数据。当读线程查看某个变量时，可能会得到一个已经失效的值。更糟糕的是，失效值可能不会同时出现：一个线程可能获得某个变量的最新值，而获得另一个变量的失效值。
-1.2非原子的64位操作​    当线程在没有同步的情况下读取变量时，可能会得到一个失效值，但至少这个值是由之前某个线程设置的值，而不是一个随机值。这种安全性保证也被称为最低安全性。
-​    最低安全性适用于绝大多数变量，但是存在一个例外：非volatile类型的64位数值变量(double和long)。Java内存模型要求，变量的读取操作和写入操作都必...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="">jounetsu</a>
+            </p><p>原文链接：<a href="/2020/06/04/八-避免活跃性危险/">/2020/06/04/八-避免活跃性危险/</a>
+            </p><p>发表日期：<a href="/2020/06/04/八-避免活跃性危险/">June 4th 2020, 6:44:47 pm</a>
+            </p><p>更新日期：<a href="/2020/06/04/八-避免活跃性危险/">June 8th 2020, 2:48:58 pm</a>
+            </p><p>版权声明：</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/20/一-线程安全性/">
-            
-                <span>一.线程安全性</span>
-        </a>
-        <div class="abstract-content">
-            1.定义​    正确性的含义：某个类的行为与其规范完全一致。在良好的规范中通常会定义各种不变性条件来约束对象的状态，以及定义各种后验条件来描述对象操作的结果。
-​    线程安全性：当多个线程访问某个类时，不管运行环境采用何种调度方式或者这些线程将如何交替执行，并且在调代码中不需要任何额外的同步或协同，这个类都能表现出正确的行为，那么就称这个类是线程安全的。
-​    无状态对象一定是线程安全的。
-2.原子性2.1竞态条件​    当某个计算的正确性取决于多个线程的交替执行时序时，那么就会发生竞态条件。最常见的竞态条件类型就是”先检查后执行（Check-Then-Act）“操作，即通过...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/12/29/redis设计与实现-单机数据库的实现/">
-            
-                <span>redis设计与实现-单机数据库的实现</span>
-        </a>
-        <div class="abstract-content">
-            1. 数据库1.1 服务器中的数据库​    Redis服务器将所有数据库都保存在服务器状态redis.h/redisServer结构的db数组中，db数组的每个项都是一个redis.h/redisDb结构，每个redisDb结构代表一个数据库：
-123456struct redisServer&#123;  //...  //一个数组，保存着服务器中的所有数据库  redisDb *db;  //...&#125;;
-​    在初始化服务器时，程序会根据服务器状态的dbnum属性来决定应该创建多少个数据库:
-123456struct redisServer&#123;  //... ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/29</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/12/01/redis设计与实现-数据结构与对象/">
-            
-                <span>redis设计与实现-数据结构与对象</span>
-        </a>
-        <div class="abstract-content">
-            1. 简单动态字符串​    Redis没有直接使用C语言传统的字符串表示，而是自己构建了一种名为简单动态字符串（simple dynamic string，SDS）的抽象类型，并将SDS用作Redis的默认字符串表示。
-​    除了用来保存数据库中的字符串值之外，SDS还被用作缓冲区：AOF模块中的AOF缓冲区，以及客户端状态中的输入缓冲区，都是由SDS实现的。
-1.1 SDS的定义123456789struct sdshdr&#123;	//记录buf数组中已使用字节的数量	//等于SDS所保存字符串的长度	int len;	//记录buf数组中未使用字节的数量	int free;...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2020/05/27/七-线程池的使用/" title="七.线程池的使用">
+                    <div class="prevTitle">七.线程池的使用</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -720,6 +522,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-死锁"><span class="toc-number">1.</span> <span class="toc-text">1. 死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-锁顺序死锁"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 锁顺序死锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-动态的锁顺序死锁"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 动态的锁顺序死锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-在协作对象之间发生的死锁"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 在协作对象之间发生的死锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-4-开放调用"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 开放调用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-5-资源死锁"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 资源死锁</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-其他活跃性危险"><span class="toc-number">2.</span> <span class="toc-text">2. 其他活跃性危险</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-饥饿"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 饥饿</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-活锁"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 活锁</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1449,6 +1269,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
