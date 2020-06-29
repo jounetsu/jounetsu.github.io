@@ -346,6 +346,89 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/04/20/一-线程安全性/">
+            
+                <span>一.线程安全性</span>
+        </a>
+        <div class="abstract-content">
+            1.定义​    正确性的含义：某个类的行为与其规范完全一致。在良好的规范中通常会定义各种不变性条件来约束对象的状态，以及定义各种后验条件来描述对象操作的结果。
+​    线程安全性：当多个线程访问某个类时，不管运行环境采用何种调度方式或者这些线程将如何交替执行，并且在调代码中不需要任何额外的同步或协同，这个类都能表现出正确的行为，那么就称这个类是线程安全的。
+​    无状态对象一定是线程安全的。
+2.原子性2.1竞态条件​    当某个计算的正确性取决于多个线程的交替执行时序时，那么就会发生竞态条件。最常见的竞态条件类型就是”先检查后执行（Check-Then-Act）“操作，即通过...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/12/29/redis设计与实现-单机数据库的实现/">
+            
+                <span>redis设计与实现-单机数据库的实现</span>
+        </a>
+        <div class="abstract-content">
+            1. 数据库1.1 服务器中的数据库​    Redis服务器将所有数据库都保存在服务器状态redis.h/redisServer结构的db数组中，db数组的每个项都是一个redis.h/redisDb结构，每个redisDb结构代表一个数据库：
+123456struct redisServer&#123;  //...  //一个数组，保存着服务器中的所有数据库  redisDb *db;  //...&#125;;
+​    在初始化服务器时，程序会根据服务器状态的dbnum属性来决定应该创建多少个数据库:
+123456struct redisServer&#123;  //... ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/29</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/12/01/redis设计与实现-数据结构与对象/">
+            
+                <span>redis设计与实现-数据结构与对象</span>
+        </a>
+        <div class="abstract-content">
+            1. 简单动态字符串​    Redis没有直接使用C语言传统的字符串表示，而是自己构建了一种名为简单动态字符串（simple dynamic string，SDS）的抽象类型，并将SDS用作Redis的默认字符串表示。
+​    除了用来保存数据库中的字符串值之外，SDS还被用作缓冲区：AOF模块中的AOF缓冲区，以及客户端状态中的输入缓冲区，都是由SDS实现的。
+1.1 SDS的定义123456789struct sdshdr&#123;	//记录buf数组中已使用字节的数量	//等于SDS所保存字符串的长度	int len;	//记录buf数组中未使用字节的数量	int free;...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/01</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/11/05/类文件结构/">
             
                 <span>类文件结构</span>
@@ -589,95 +672,6 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/18</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/11/Executor框架/">
-            
-                <span>(九)Executor框架</span>
-        </a>
-        <div class="abstract-content">
-            简介Executor框架的结构​    Executor框架主要由3大部分组成。
-
-任务。包括被执行任务需要实现的接口：Runnable接口或Callable接口。
-
-任务的执行。包括任务执行机制的核心接口Executor，以及继承自Executor的ExecutorService接口。Executor框架有两个关键类实现了ExecutorService接口(ThreadPoolExecutor和ScheduledThreadPoolExecutor)
-
-异步计算的结果。包括接口Future和实现Future接口的FutureTask类。
-类和接口的简介。
-
-Executor是一个接口，...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/11</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/10/Java中的线程池/">
-            
-                <span>(八)Java中的线程池</span>
-        </a>
-        <div class="abstract-content">
-            使用线程池的好处：
-
-降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。
-提高响应速度。当任务到达时，任务可以不需要等到线程创建就能立即执行。
-提高线程的课管理型。线程是稀缺资源，如果无限制地创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一分配、调优和监控。
-
-线程池的实现原理​    当提交一个新任务到线程池时，线程池的处理流程如下。
-
-线程池判断核心线程池里的线程是否都在执行任务。如果不是，则创建一个新的工作线程来执行任务。如果核心线程池都在执行任务，则进入下个流程。
-
-线程池判断工作队列是否已经满。如果工作队列没有满，则将新提交的任务存储在这...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/10</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/09/Java中的并发工具类/">
-            
-                <span>(七)Java中的并发工具类</span>
-        </a>
-        <div class="abstract-content">
-            等待多线程完成的CountDownLatch​    CountDownLatch允许一个或多个线程等待其他线程完成操作。
-12345678910111213141516public class CountDownLatchTest &#123;    public static void main(String[] args) throws Exception&#123;        CountDownLatch c = new CountDownLatch(2);        new Thread(new Runnable() &#123;            @Overrid...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/09</span>
             </div>
             <!-- tags  -->
             
@@ -1193,9 +1187,58 @@ Executor是一个接口，...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 33
+        Total : 36
         </div>
         <!-- search  -->
         
@@ -1208,6 +1251,21 @@ Executor是一个接口，...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/23</span><a class="archive-post-title" href="/2020/06/23/十一-原子变量与非阻塞同步机制/">十一.原子变量与非阻塞同步机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/17</span><a class="archive-post-title" href="/2020/06/17/十-显式锁/">十.显式锁</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/08</span><a class="archive-post-title" href="/2020/06/08/九-性能与可伸缩性/">九.性能与可伸缩性</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1399,9 +1457,9 @@ Executor是一个接口，...
     
         <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
-        <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
-    
         <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
+    
+        <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1436,25 +1494,25 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
-    
         <span class="sidebar-category-name" data-categories="Spring-Cloud"><span class="iconfont-archer">&#xe60a;</span>Spring-Cloud</span>
+    
+        <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
     
         <span class="sidebar-category-name" data-categories="JVM笔记"><span class="iconfont-archer">&#xe60a;</span>JVM笔记</span>
     
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
-        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
     
-        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+    
+        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     
         <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
-    
-        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

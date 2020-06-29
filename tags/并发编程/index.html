@@ -346,6 +346,97 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/23/十一-原子变量与非阻塞同步机制/">
+            
+                <span>十一.原子变量与非阻塞同步机制</span>
+        </a>
+        <div class="abstract-content">
+            1. 锁的劣势​    如果有多个线程同时请求锁，那么JVM就需要借助操作系统的功能。如果出现了这种情况，那么一些线程将被挂起并且在稍后恢复运行。当线程恢复执行时，必须等待其他线程执行完它们的时间片以后，才能被调度执行。在挂起和恢复线程等过程中存在着很大的开销，并且通常存在着较长时间的中断。如果在基于锁的类中包含有细粒度的操作（例如同步容器类，在其大多数方法中只包含了少量操作），那么当在锁上存在着激烈的竞争时，调度开销与工作开销的比值会非常高。
+​    与锁相比，volatile变量时一种更轻量级的同步机制，因为在使用这些变量时不会发生上下文切换或线程调度等操作。然而，volatile...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/06/17/十-显式锁/">
+            
+                <span>十.显式锁</span>
+        </a>
+        <div class="abstract-content">
+            1. Lock与ReentrantLock​    与内置加锁机制不同的是，Lock提供了一种无条件的、可轮询的、定时的以及可中断的锁获取操作，所有加锁和解锁的方法都是显式的。在Lock的实现中必须提供与内部锁相同的内存可见性语义，但在加锁语义、调度算法、顺序保证以及性能特性等方面可以有所不同。
+12345678910public interface Lock &#123;  	void lock();  	void lockInterruptibly()         throws InterruptedException;  	boolean tryLock();  	boolea...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/06/08/九-性能与可伸缩性/">
+            
+                <span>九.性能与可伸缩性</span>
+        </a>
+        <div class="abstract-content">
+            1. 对性能的思考​    提升性能意味着更少的资源做更多的事情。“资源”的含义很广。对于一个给定的操作，通常会缺乏某种特定的资源，例如CPU时钟周期、内存、网络带宽、I/O带宽、数据库请求、磁盘空间以及其他资源。
+​    尽管使用多个线程的目标是提升整体性能，但与单线程的方法相比，使用多个线程总会引起一些额外的性能开销。造成这些开销的操作包括：线程之间的协调（例如加锁、触发信号以及内存同步等），增加的上下文切换，线程的创建和销毁，以及线程的调度等。
+1.1 性能与可伸缩性​    应用程序的性能可以采用多个指标来衡量，例如服务时间、延迟时间、吞吐率、效率、可伸缩性以及容量等。其中一些...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/06/04/八-避免活跃性危险/">
             
                 <span>八.避免活跃性危险</span>
@@ -562,39 +653,11 @@
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/20/一-线程安全性/">
-            
-                <span>一.线程安全性</span>
-        </a>
-        <div class="abstract-content">
-            1.定义​    正确性的含义：某个类的行为与其规范完全一致。在良好的规范中通常会定义各种不变性条件来约束对象的状态，以及定义各种后验条件来描述对象操作的结果。
-​    线程安全性：当多个线程访问某个类时，不管运行环境采用何种调度方式或者这些线程将如何交替执行，并且在调代码中不需要任何额外的同步或协同，这个类都能表现出正确的行为，那么就称这个类是线程安全的。
-​    无状态对象一定是线程安全的。
-2.原子性2.1竞态条件​    当某个计算的正确性取决于多个线程的交替执行时序时，那么就会发生竞态条件。最常见的竞态条件类型就是”先检查后执行（Check-Then-Act）“操作，即通过...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/tags/并发编程/page/2/">2</a><a class="extend next" rel="next" href="/tags/并发编程/page/2/">NEXT &#62;</a>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -1099,9 +1162,58 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 33
+        Total : 36
         </div>
         <!-- search  -->
         
@@ -1114,6 +1226,21 @@
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/23</span><a class="archive-post-title" href="/2020/06/23/十一-原子变量与非阻塞同步机制/">十一.原子变量与非阻塞同步机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/17</span><a class="archive-post-title" href="/2020/06/17/十-显式锁/">十.显式锁</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/08</span><a class="archive-post-title" href="/2020/06/08/九-性能与可伸缩性/">九.性能与可伸缩性</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1305,9 +1432,9 @@
     
         <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
-        <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
-    
         <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
+    
+        <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1342,25 +1469,25 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
-    
         <span class="sidebar-category-name" data-categories="Spring-Cloud"><span class="iconfont-archer">&#xe60a;</span>Spring-Cloud</span>
+    
+        <span class="sidebar-category-name" data-categories="并发编程笔记"><span class="iconfont-archer">&#xe60a;</span>并发编程笔记</span>
     
         <span class="sidebar-category-name" data-categories="JVM笔记"><span class="iconfont-archer">&#xe60a;</span>JVM笔记</span>
     
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
-        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
     
-        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+    
+        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     
         <span class="sidebar-category-name" data-categories="学习笔记"><span class="iconfont-archer">&#xe60a;</span>学习笔记</span>
-    
-        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
