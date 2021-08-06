@@ -346,6 +346,259 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/06/08/九-性能与可伸缩性/">
+            
+                <span>九.性能与可伸缩性</span>
+        </a>
+        <div class="abstract-content">
+            1. 对性能的思考​    提升性能意味着更少的资源做更多的事情。“资源”的含义很广。对于一个给定的操作，通常会缺乏某种特定的资源，例如CPU时钟周期、内存、网络带宽、I/O带宽、数据库请求、磁盘空间以及其他资源。
+​    尽管使用多个线程的目标是提升整体性能，但与单线程的方法相比，使用多个线程总会引起一些额外的性能开销。造成这些开销的操作包括：线程之间的协调（例如加锁、触发信号以及内存同步等），增加的上下文切换，线程的创建和销毁，以及线程的调度等。
+1.1 性能与可伸缩性​    应用程序的性能可以采用多个指标来衡量，例如服务时间、延迟时间、吞吐率、效率、可伸缩性以及容量等。其中一些...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/06/04/八-避免活跃性危险/">
+            
+                <span>八.避免活跃性危险</span>
+        </a>
+        <div class="abstract-content">
+            1. 死锁​    当一个线程永远地持有一个锁，并且其他线程都尝试获得这个锁时，那么它们将永远被阻塞。在线程A持有锁L想获得锁M的同时，线程B持有锁M并尝试获得锁L，那么这两个线程将永远地等待下去。这种情况就是最简单的死锁形式（或者成为“抱死”），其中多个线程由于存在环路的锁依赖关系而永远地等待下去。
+1.1 锁顺序死锁​    两个线程试图以不同的顺序来获得相同的锁。如果按照相同的顺序来请求锁，那么就不会出现循环的加锁依赖性，因此也就不会产生死锁。
+​    如果所有线程都以固定的顺序来获得锁，那么在程序中就不会出现顺序死锁问题。
+1.2 动态的锁顺序死锁​    如果执行时序不当，线...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/27/七-线程池的使用/">
+            
+                <span>七.线程池的使用</span>
+        </a>
+        <div class="abstract-content">
+            1. 在任务与执行策略之间的隐性耦合​    有些类型的任务需要明确地制定执行策略，包括：
+​    依赖性任务。大多数行为正确的任务都是独立的：它们不依赖于其他任务的执行时序、执行结果或其他效果。当在线程中执行独立的任务时，可以随意地改变线程池的大小和配置，这些修改只会对执行性能产生影响。
+​    使用线程封闭机制的任务。对象可以封闭在任务线程中，使得在该线程中执行的任务在访问该对象时不需要同步，即使这些资源不是线程安全的也没有问题。
+​    对响应时间敏感的任务。如果将一个运行时间较长的任务提交到单线程的Executor中，或者将多个运行时间较长的任务提交到一个只包含少量线程的线...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/27</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/20/六-取消与关闭/">
+            
+                <span>六.取消与关闭</span>
+        </a>
+        <div class="abstract-content">
+            1.任务取消​    如果外部代码能在某个操作正常完成之前将其置入“完成”状态，那么这个操作就可以称为可取消的。
+1.1 中断​    线程中断是一种协作机制，线程可以通过这种机制来通知另一个线程，告诉它在合适的或者可能的情况下停止当前工作，并转而执行其他的工作。
+​    每个线程都有一个boolean类型的中断状态。当中断线程时，这个线程的中断状态就被设置为true。在Thread中包含了中断线程以及查询线程中断状态的方法。interrupt方法能中断目标线程，而isInterrupted方法能返回目标线程的中断状态。静态的interrupted方法将清除当前线程的中断状态，并返回它...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/14/五-任务执行/">
+            
+                <span>五.任务执行</span>
+        </a>
+        <div class="abstract-content">
+            1.Executor123public interface Executor &#123;		void execute (Runnable command);&#125;
+1.1基于Executor的Web服务器123456789101112131415161718class TaskExecutionWebServer &#123;  private static final int NTHREADS = 100;  private static final Executor exec     	= Executors.newFiexdThreadPool(NTHRADS);    p...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/14</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/06/四-基础构建模块/">
+            
+                <span>四.基础构建模块</span>
+        </a>
+        <div class="abstract-content">
+            1.同步容器类​    同步容器类包括Vector和Hashtable等，这些同步的封装器类是由Collections.synchronizedXxx等工厂方法创建的。这些类实现线程安全的方式是：将它们的状态封装起来，并对每个公有方法都进行同步，使得每次只有一个线程能访问容器的状态。
+1.1同步容器类的问题​    同步容器类都是线程安全的，但在某些情况下可能需要额外的客户端加锁来保护复合操作。容器上常见的复合操作包括：迭代（反复访问元素，直到遍历完容器中所有的元素）、跳转（根据制定顺序找到当前元素的下一个元素）以及条件运算。在同步容器类中，这些复合操作在没有客户端加锁的情况下仍然是线程...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/04/27/三-对象的组合/">
+            
+                <span>三.对象的组合</span>
+        </a>
+        <div class="abstract-content">
+            1.设计线程安全的类​    在设计线程安全类的过程中，需要包含以下三个基本要素：
+
+找出构成对象状态的所有变量。
+找出约束状态变量的不变性条件。
+建立对象状态的并发访问管理策略。
+
+1.1收集同步需求​    要确保类的线程安全性，就需要确保它的不变性条件不会在并发访问的情况下被破坏，这就需要对其状态进行推断。对象与变量都有一个状态空间，即所有可能的取值。状态空间越小，就越容易判断线程的状态。final类型的域使用得越多，就越能简化对象可能状态的分析过程。（在极端的情况中，不可变对象只有唯一的状态。）
+1.2依赖状态的操作​    类的不变性条件与后验条件约束了在对象上有哪些状态和状态...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/27</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/04/25/二-对象的共享/">
+            
+                <span>二.对象的共享</span>
+        </a>
+        <div class="abstract-content">
+            1.可见性1.1失效数据​    在缺乏同步的程序中可能产生错误的一种情况：失效数据。当读线程查看某个变量时，可能会得到一个已经失效的值。更糟糕的是，失效值可能不会同时出现：一个线程可能获得某个变量的最新值，而获得另一个变量的失效值。
+1.2非原子的64位操作​    当线程在没有同步的情况下读取变量时，可能会得到一个失效值，但至少这个值是由之前某个线程设置的值，而不是一个随机值。这种安全性保证也被称为最低安全性。
+​    最低安全性适用于绝大多数变量，但是存在一个例外：非volatile类型的64位数值变量(double和long)。Java内存模型要求，变量的读取操作和写入操作都必...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程">并发编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/04/20/一-线程安全性/">
             
                 <span>一.线程安全性</span>
@@ -398,290 +651,10 @@
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/12/01/redis设计与实现-数据结构与对象/">
-            
-                <span>redis设计与实现-数据结构与对象</span>
-        </a>
-        <div class="abstract-content">
-            1. 简单动态字符串​    Redis没有直接使用C语言传统的字符串表示，而是自己构建了一种名为简单动态字符串（simple dynamic string，SDS）的抽象类型，并将SDS用作Redis的默认字符串表示。
-​    除了用来保存数据库中的字符串值之外，SDS还被用作缓冲区：AOF模块中的AOF缓冲区，以及客户端状态中的输入缓冲区，都是由SDS实现的。
-1.1 SDS的定义123456789struct sdshdr&#123;	//记录buf数组中已使用字节的数量	//等于SDS所保存字符串的长度	int len;	//记录buf数组中未使用字节的数量	int free;...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/11/05/类文件结构/">
-            
-                <span>类文件结构</span>
-        </a>
-        <div class="abstract-content">
-            1. Class类文件的结构​    Class文件是一组以8位字节为基础单位的二进制流，各个数据项目严格按照顺序紧凑地排列在Class文件之中，中间没有添加任何分隔符。
-​    Class文件格式采用一种类似C语言结构体的伪结构来存储数据，这种伪结构中只有两种数据类型：无符号数和表。
-1.1 魔数与Class文件的版本​    每个Class文件的头4个字节称为魔数，它唯一的作用是确定这个文件是否为一个能被虚拟机接受的Class文件。Class文件的魔数值为：0xCAFEBABE。
-​    紧接着魔数的4个字节存储的是Class文件的版本号：第5和第6个字节是次版本号，第7和第8个...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/24/基于-Kafka-和-ZooKeeper-的分布式消息队列/">
-            
-                <span>基于 Kafka 和 ZooKeeper 的分布式消息队列</span>
-        </a>
-        <div class="abstract-content">
-            1.Kafka总体架构
-​    一个典型的Kafka体系架构包括若干个Producer（消息生产者），若干broker（作为Kafka节点的服务器），若干Consumer（Group），以及一个ZooKeeper集群。Kafka通过ZooKeeper管理集群配置、选举Leader以及在consumer group发生变化时进行Rebalance（消费者负载均衡）。Producer使用push模式将消息发布到broker，Consumer使用pull模式从broker订阅并消费信息。
-​    Kafka内部结构如下：
-
-
-Producer：生产者，即消息发送者，push消息到Kafka...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/16/垃圾收集器与内存分配策略/">
-            
-                <span>垃圾收集器与内存分配策略</span>
-        </a>
-        <div class="abstract-content">
-            1.对象存活1.1引用计数算法​    给对象中添加一个引用计数器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻计数器为0的对象就是不可能再被使用的。
-​    缺点是难解决对象之间相互循环引用的问题。
-1.2可达性算法​    通过一些列的成为”GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索走过的路径成为引用链(Reference Chain)，当一个对象到GC Roots没有任何引用链相连时，则证明此对象是不可用的。
-
-​    在Java中，可作为GC Roots的对象包括下面几种：
-
-虚拟机栈（栈帧中的本地变量表）中引用的对象。...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/11/Java内存区域/">
-            
-                <span>Java内存区域</span>
-        </a>
-        <div class="abstract-content">
-            1. 运行时数据区域
-1.1 程序计数器（Program Counter Register）​    程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。
-​    由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各条线程之间计数器互不影响，独立存储，这类内存区域为”线程私有“的内存。
-​    如果线程正在执行的是一个Java方法，这个计数器记录的是正在执...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JVM">JVM</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/15/python爬虫-解析库的使用/">
-            
-                <span>python爬虫-解析库的使用</span>
-        </a>
-        <div class="abstract-content">
-            1.使用XPath1.XPath常用规则
-
-
-表达式
-描述
-
-
-
-
-nodename
-选取此节点的所有子节点
-
-
-/
-从当前节点选择直接子节点
-
-
-//
-从当前节点选取子孙节点
-
-
-.
-选取当前节点
-
-
-..
-选取当前节点的父节点
-
-
-@
-选取属性
-
-
-
-2.使用1.转换123456789101112131415from lxml import etreetext = '''&lt;div&gt;&lt;ul&gt;&lt;li class="item-0"&gt;&lt;a href="link1.html"&gt;first item&lt;/a&gt;&lt;/li&gt;&lt;...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python爬虫">python爬虫</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/26/python爬虫-基本库的使用/">
-            
-                <span>python爬虫-基本库的使用</span>
-        </a>
-        <div class="abstract-content">
-            1.使用urllib在python3中，统一使用urllib。它是python内置的HTTP请求库，不需要额外安装即可使用。它包含4个模块。
-
-request：它是最基本的HTTP请求模块，可以用来模拟发送请求。
-error：异常处理模块，如果出现请求错误，可以捕获这些异常，然后进行充实或其他操作以bao证程序不会意外终止。
-parse：一个工具模块，提供了许多URL处理方法，比如拆分、解析、合并等。
-robotparser：主要是用来识别网站的robots.txt文件，然后判断哪些网站可以爬，哪些网站不可以爬，用得较少。
-
-1.1发送请求1.urlopen()urllib.reques...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python爬虫">python爬虫</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/18/正则表达式/">
-            
-                <span>正则表达式</span>
-        </a>
-        <div class="abstract-content">
-            一.Egrep元字符使用·表示空格
-行的起始和结束「^」代表一行的开始，「$」代表结束。
-「^cat$」：匹配的条件是，行开头，然后是字符c·a·t，然后是行末尾。只包含cat的行—没有多余的单词、空白字符……只有’cat’。
-「^$」：匹配的条件是行开头，然后就行末尾。表示是空行。
-「^」：匹配条件是行的开头。应用意义为无意义，每一行都有开头，所以都能匹配，空行也可以。
-字符组匹配若干字符之一使用正则表达式结构体[…]，它容许使用者列出在某处期望匹配的字符，通常被称作字符组。正则表达式[ea]能匹配a或者e。
-在字符组以外，普通字符(例如gr[ae]y中的g和r)都有接下来是的意思—首...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/18</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/3/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/archives/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/3/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1244,9 +1217,95 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 36
+        Total : 42
         </div>
         <!-- search  -->
         
@@ -1256,6 +1315,55 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2021/07/12/线程安全与锁优化/">线程安全与锁优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/09</span><a class="archive-post-title" href="/2021/07/09/Java内存模型与线程/">Java内存模型与线程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href="/2021/07/01/虚拟机类加载机制/">虚拟机类加载机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/17</span><a class="archive-post-title" href="/2021/06/17/类文件结构/">类文件结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/10</span><a class="archive-post-title" href="/2021/06/10/垃圾收集器与内存分配策略/">垃圾收集器与内存分配策略</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href="/2021/05/10/MySQL实战笔记-实践篇/">MySQL实战笔记-实践篇</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2021/04/23/MySQL实战笔记-基础篇/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/17</span><a class="archive-post-title" href="/2021/04/17/一-Spring基础/">一-Spring基础</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -1336,17 +1444,7 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/05</span><a class="archive-post-title" href="/2019/11/05/类文件结构/">类文件结构</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/基于-Kafka-和-ZooKeeper-的分布式消息队列/">基于 Kafka 和 ZooKeeper 的分布式消息队列</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/垃圾收集器与内存分配策略/">垃圾收集器与内存分配策略</a>
         </li>
     
     
@@ -1465,6 +1563,8 @@ robotparser：主要是用来识别网站的robots.txt文件，然后判断哪�
     
         <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
         <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
     
         <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
@@ -1508,13 +1608,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="JVM笔记"><span class="iconfont-archer">&#xe60a;</span>JVM笔记</span>
     
+        <span class="sidebar-category-name" data-categories="MySQL实战笔记"><span class="iconfont-archer">&#xe60a;</span>MySQL实战笔记</span>
+    
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
-        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+        <span class="sidebar-category-name" data-categories="Spring实战笔记"><span class="iconfont-archer">&#xe60a;</span>Spring实战笔记</span>
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     

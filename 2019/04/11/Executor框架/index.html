@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.8k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,10 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><h5 id="Executor框架的结构"><a href="#Executor框架的结构" class="headerlink" title="Executor框架的结构"></a>Executor框架的结构</h5><p>​    Executor框架主要由3大部分组成。</p>
+        <h4 id="Executor简介"><a href="#Executor简介" class="headerlink" title="Executor简介"></a>Executor简介</h4><h5 id="Executor框架的两级调度模型"><a href="#Executor框架的两级调度模型" class="headerlink" title="Executor框架的两级调度模型"></a>Executor框架的两级调度模型</h5><p>​    在HotSpot VM的线程模型中，Java线程(java.lang.Thread)被一对一映射为本地操作系统线程。Java线程启动时会创建一个本地操作系统线程；当该Java线程终止时，这个操作系统线程也会被收回。操作系统会调度所有线程并将它们分配给可用的CPU。</p>
+<p>​    在上层，Java多线程程序通常把应用分解为若干个任务，然后使用用户级的调度器(Executor框架)将这些任务映射为固定数量的线程；在底层，操作系统内核将这些线程映射到硬件处理器上。</p>
+<p>​    应用程序通过Executor框架控制上层的调度；而下层的调度由操作系统内核控制，下层的调度不受应用程序的控制。</p>
+<h5 id="Executor框架的结构"><a href="#Executor框架的结构" class="headerlink" title="Executor框架的结构"></a>Executor框架的结构</h5><p>​    Executor框架主要由3大部分组成。</p>
 <ul>
 <li><p>任务。包括被执行任务需要实现的接口：Runnable接口或Callable接口。</p>
 </li>
@@ -469,7 +472,7 @@ height:50vh;
             <p>原文作者：<a href="">jounetsu</a>
             </p><p>原文链接：<a href="/2019/04/11/Executor框架/">/2019/04/11/Executor框架/</a>
             </p><p>发表日期：<a href="/2019/04/11/Executor框架/">April 11th 2019, 9:18:59 pm</a>
-            </p><p>更新日期：<a href="/2019/04/11/Executor框架/">April 13th 2019, 2:11:59 pm</a>
+            </p><p>更新日期：<a href="/2019/04/11/Executor框架/">January 15th 2021, 10:40:07 am</a>
             </p><p>版权声明：</p>
         </div>
     
@@ -591,7 +594,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Executor框架的结构"><span class="toc-number">1.1.</span> <span class="toc-text">Executor框架的结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Executor框架的成员"><span class="toc-number">1.2.</span> <span class="toc-text">Executor框架的成员</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ThreadPoolExecutor详解"><span class="toc-number">2.</span> <span class="toc-text">ThreadPoolExecutor详解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#FixedThreadPool详解"><span class="toc-number">2.1.</span> <span class="toc-text">FixedThreadPool详解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SingleThreadExecutor详解"><span class="toc-number">2.2.</span> <span class="toc-text">SingleThreadExecutor详解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#CachedThreadPool详解"><span class="toc-number">2.3.</span> <span class="toc-text">CachedThreadPool详解</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ScheduledThreadPoolExecutor详解"><span class="toc-number">3.</span> <span class="toc-text">ScheduledThreadPoolExecutor详解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ScheduledThreadPoolExecutor的运行机制"><span class="toc-number">3.1.</span> <span class="toc-text">ScheduledThreadPoolExecutor的运行机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ScheduledThreadPoolExecutor的实现"><span class="toc-number">3.2.</span> <span class="toc-text">ScheduledThreadPoolExecutor的实现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FutureTask详解"><span class="toc-number">4.</span> <span class="toc-text">FutureTask详解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#FutureTask简介"><span class="toc-number">4.1.</span> <span class="toc-text">FutureTask简介</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Executor简介"><span class="toc-number">1.</span> <span class="toc-text">Executor简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Executor框架的两级调度模型"><span class="toc-number">1.1.</span> <span class="toc-text">Executor框架的两级调度模型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Executor框架的结构"><span class="toc-number">1.2.</span> <span class="toc-text">Executor框架的结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Executor框架的成员"><span class="toc-number">1.3.</span> <span class="toc-text">Executor框架的成员</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ThreadPoolExecutor详解"><span class="toc-number">2.</span> <span class="toc-text">ThreadPoolExecutor详解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#FixedThreadPool详解"><span class="toc-number">2.1.</span> <span class="toc-text">FixedThreadPool详解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SingleThreadExecutor详解"><span class="toc-number">2.2.</span> <span class="toc-text">SingleThreadExecutor详解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#CachedThreadPool详解"><span class="toc-number">2.3.</span> <span class="toc-text">CachedThreadPool详解</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ScheduledThreadPoolExecutor详解"><span class="toc-number">3.</span> <span class="toc-text">ScheduledThreadPoolExecutor详解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ScheduledThreadPoolExecutor的运行机制"><span class="toc-number">3.1.</span> <span class="toc-text">ScheduledThreadPoolExecutor的运行机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ScheduledThreadPoolExecutor的实现"><span class="toc-number">3.2.</span> <span class="toc-text">ScheduledThreadPoolExecutor的实现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FutureTask详解"><span class="toc-number">4.</span> <span class="toc-text">FutureTask详解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#FutureTask简介"><span class="toc-number">4.1.</span> <span class="toc-text">FutureTask简介</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1084,9 +1087,95 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 36
+        Total : 42
         </div>
         <!-- search  -->
         
@@ -1096,6 +1185,55 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2021/07/12/线程安全与锁优化/">线程安全与锁优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/09</span><a class="archive-post-title" href="/2021/07/09/Java内存模型与线程/">Java内存模型与线程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href="/2021/07/01/虚拟机类加载机制/">虚拟机类加载机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/17</span><a class="archive-post-title" href="/2021/06/17/类文件结构/">类文件结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/10</span><a class="archive-post-title" href="/2021/06/10/垃圾收集器与内存分配策略/">垃圾收集器与内存分配策略</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href="/2021/05/10/MySQL实战笔记-实践篇/">MySQL实战笔记-实践篇</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2021/04/23/MySQL实战笔记-基础篇/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/17</span><a class="archive-post-title" href="/2021/04/17/一-Spring基础/">一-Spring基础</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -1176,17 +1314,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/05</span><a class="archive-post-title" href="/2019/11/05/类文件结构/">类文件结构</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/基于-Kafka-和-ZooKeeper-的分布式消息队列/">基于 Kafka 和 ZooKeeper 的分布式消息队列</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/垃圾收集器与内存分配策略/">垃圾收集器与内存分配策略</a>
         </li>
     
     
@@ -1305,6 +1433,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
         <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
     
         <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
@@ -1348,13 +1478,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="JVM笔记"><span class="iconfont-archer">&#xe60a;</span>JVM笔记</span>
     
+        <span class="sidebar-category-name" data-categories="MySQL实战笔记"><span class="iconfont-archer">&#xe60a;</span>MySQL实战笔记</span>
+    
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
-        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+        <span class="sidebar-category-name" data-categories="Spring实战笔记"><span class="iconfont-archer">&#xe60a;</span>Spring实战笔记</span>
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     

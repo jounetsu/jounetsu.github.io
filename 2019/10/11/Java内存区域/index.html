@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.8k</span>阅读时长: <span class="post-count reading-time">9 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -401,24 +401,43 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h4 id="1-运行时数据区域"><a href="#1-运行时数据区域" class="headerlink" title="1. 运行时数据区域"></a>1. 运行时数据区域</h4><p><img src="https://segmentfault.com/img/remote/1460000020105061?w=994&amp;h=824" alt="JVM运行时数据区.png"></p>
+        <h4 id="1-运行时数据区域"><a href="#1-运行时数据区域" class="headerlink" title="1. 运行时数据区域"></a>1. 运行时数据区域</h4><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1grazm5onc9j60ex0c53zp02.jpg" alt="page71image36837680.jpg"> </p>
 <h5 id="1-1-程序计数器（Program-Counter-Register）"><a href="#1-1-程序计数器（Program-Counter-Register）" class="headerlink" title="1.1 程序计数器（Program Counter Register）"></a>1.1 程序计数器（Program Counter Register）</h5><p>​    程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。</p>
 <p>​    由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各条线程之间计数器互不影响，独立存储，这类内存区域为”线程私有“的内存。</p>
 <p>​    如果线程正在执行的是一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址；如果正在执行的是一个Native方法，这个计数器值则为空(Undefined)。此内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域。</p>
-<h5 id="1-2-Java虚拟机栈-Java-Virtual-Machine-Stacks"><a href="#1-2-Java虚拟机栈-Java-Virtual-Machine-Stacks" class="headerlink" title="1.2 Java虚拟机栈(Java Virtual Machine Stacks)"></a>1.2 Java虚拟机栈(Java Virtual Machine Stacks)</h5><p>​    是线程私有的，生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧用于存储局部变量表、操作数栈、动态连接、方法出口等信息。每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。   </p>
+<h5 id="1-2-Java虚拟机栈-Java-Virtual-Machine-Stacks"><a href="#1-2-Java虚拟机栈-Java-Virtual-Machine-Stacks" class="headerlink" title="1.2 Java虚拟机栈(Java Virtual Machine Stacks)"></a>1.2 Java虚拟机栈(Java Virtual Machine Stacks)</h5><p>​    是线程私有的，生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧用于存储<strong>局部变量表、操作数栈、动态连接、方法出口</strong>等信息。每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。   </p>
 <p>​    局部变量表存放了编译期可知的各种基本数据类型(boolean, byte, char, short, int, long, float, double)、对象引用(reference类型，它不等同于对象本身，可能是一个指向对象起始地址的引用指针，也可能是指向一个代表对象的句柄或其他与此对象相关的位置)和returnAddress类型(指向了一条字节码指令的地址)。</p>
 <p>​    局部变量表所需的内存空间在编译期间完成分配，当进入一个方法时，这个方法需要在帧中分配多大的局部变量空间是完全确定的，在方法运行期间不会改变局部变量表的大小。</p>
 <p>​    如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果虚拟机栈可以动态扩展(当前大部分的Java虚拟机都可以动态扩展，只不过Java虚拟机规范中也允许固定长度的虚拟机栈)，如果扩展时无法申请到足够的内存，就会抛出OutOfMemoryError异常。</p>
 <h5 id="1-3-本地方法栈-Native-Method-Stack"><a href="#1-3-本地方法栈-Native-Method-Stack" class="headerlink" title="1.3 本地方法栈(Native Method Stack)"></a>1.3 本地方法栈(Native Method Stack)</h5><p>​    本地方法栈与虚拟机栈所发挥的作用是非常相似的，它们之间的区别不过是虚拟机栈为虚拟机执行Java方法(也就是字节码)服务，而本地方法栈则为虚拟机使用到的Native方法服务。有的虚拟机(譬如Sun HotSpot虚拟机)直接就把本地方法栈和虚拟机栈合二为一。与虚拟机栈一样，本地方法栈区域也会抛出StackOverflowError和OutOfMemoryError异常。</p>
-<h5 id="1-4-Java堆-Java-Heap"><a href="#1-4-Java堆-Java-Heap" class="headerlink" title="1.4 Java堆(Java Heap)"></a>1.4 Java堆(Java Heap)</h5><p>​    Java堆是Java虚拟机所管理的内存中最大的一块。Java堆事被所有线程共享的一块内存区域，在虚拟机启动时创建。此区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。</p>
+<h5 id="1-4-Java堆-Java-Heap"><a href="#1-4-Java堆-Java-Heap" class="headerlink" title="1.4 Java堆(Java Heap)"></a>1.4 Java堆(Java Heap)</h5><p>​    Java堆是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。此区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。</p>
 <p>​    Java堆是垃圾收集器管理的主要区域，所以也称为GC堆(Garbage Collected Heap)。由于现在收集器基本采用分代收集算法，所以Java堆也可细分为：新生代和老年代。</p>
 <p>​    Java堆可以处理物理上不连续的空间中，只要逻辑上是连续的即可。如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。</p>
-<h5 id="1-5方法区-Method-Area"><a href="#1-5方法区-Method-Area" class="headerlink" title="1.5方法区(Method Area)"></a>1.5方法区(Method Area)</h5><p>​    方法区与Java堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。</p>
+<h5 id="1-5-方法区-Method-Area"><a href="#1-5-方法区-Method-Area" class="headerlink" title="1.5 方法区(Method Area)"></a>1.5 方法区(Method Area)</h5><p>​    方法区与Java堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的<strong>类信息、常量、静态变量、即时编译器编译后的代码</strong>等数据。</p>
 <p>​    Java虚拟机规范对方法区的限制非常宽松，除了和Java堆一样不需要连续的内存和可以选择固定大小或者可扩展外，还可以选择不实现垃圾收集。这区域的内存回收目标主要是针对常量池的回收和对类型的卸载。</p>
 <p>​    根据Java虚拟机规范的规定，当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常。</p>
-<h5 id="1-6运行时常量池-Runtime-Constant-Pool"><a href="#1-6运行时常量池-Runtime-Constant-Pool" class="headerlink" title="1.6运行时常量池(Runtime Constant Pool)"></a>1.6运行时常量池(Runtime Constant Pool)</h5><p>​    运行时常量池是方法区的一部分。Class文件中有一项信息是常量池，用于存放编译期生成的各种字面量和符号引用，这部分内容将在类加载后进入方法区的运行时常量池中存放。</p>
+<h5 id="1-6-运行时常量池-Runtime-Constant-Pool"><a href="#1-6-运行时常量池-Runtime-Constant-Pool" class="headerlink" title="1.6 运行时常量池(Runtime Constant Pool)"></a>1.6 运行时常量池(Runtime Constant Pool)</h5><p>​    运行时常量池是方法区的一部分。Class文件中有一项信息是常量池，用于存放编译期生成的各种字面量和符号引用，这部分内容将在类加载后进入方法区的运行时常量池中存放。</p>
 <p>​    运行时常量池相对于Class文件常量池的另外一个重要特征是具备动态性，Java语言并不要求常量一定只有编译期才能产生，也就是并非预置入Class文件中常量池的内容才能进入方法区运行时常量池，运行期间也可能将新的常量放入池中，这个特性被利用的比较多的是String类的intern()方法。</p>
 <p>​    当常量池无法再申请到内存时会抛出OutOfMemoryError异常。</p>
+<h5 id="1-7-直接内存"><a href="#1-7-直接内存" class="headerlink" title="1.7 直接内存"></a>1.7 直接内存</h5><p>​    直接内存（Direct Memory）并不是虚拟机运行时数据区的一部分，也不是《Java虚拟机规范》中定义的内存区域。但是这部分内存也被频繁地使用，而且也可能导致OutOfMemoryError异常出现。</p>
+<p>​    在JDK 1.4中新加入了NIO(New Input/Output)类，引入了一种基于通道(Channel)与缓冲区 (Buffer)的I/O方式，它可以使用Native函数库直接分配堆外内存，然后通过一个存储在Java堆里面的DirectByteBuffer对象作为这块内存的引用进行操作。这样能在一些场景中显著提高性能，因为避免了在Java堆和N at ive堆中来回复制数据。</p>
+<h4 id="2-HotSpot虚拟机"><a href="#2-HotSpot虚拟机" class="headerlink" title="2. HotSpot虚拟机"></a>2. HotSpot虚拟机</h4><h5 id="2-1-对象的创建"><a href="#2-1-对象的创建" class="headerlink" title="2.1 对象的创建"></a>2.1 对象的创建</h5><p>​    当Java虚拟机遇到一条字节码new指令时，首先将去检查这个指令的参数是否能在常量池中定位到 一个类的符号引用，并且检查这个符号引用代表的类是否已被加载、解析和初始化过。如果没有，那必须先执行相应的类加载过程。</p>
+<p>​    在类加载检查通过后，接下来虚拟机将为新生对象分配内存。对象所需内存的大小在类加载完成后便可完全确定，为对象分配空间的任务实际上便等同于把一块确定大小的内存块从Java堆中划分出来。</p>
+<h5 id="2-2-对象的内存布局"><a href="#2-2-对象的内存布局" class="headerlink" title="2.2 对象的内存布局"></a>2.2 对象的内存布局</h5><p>​    在HotSpot虚拟机里，对象在堆内存中的存储布局可以划分为三个部分：对象头（Header）、实例数据（Instance Data）和对象填充（Padding）。</p>
+<p>​    HotSpot虚拟机对象的对象头部分包括两类信息。第一类是用于存储对象自身的运行时数据，如哈希码（HashCode）、GC分戴年龄、锁状态标志、线程持有的锁、偏向线程ID、偏向时间戳等，这部分数据的长度在32位和64位虚拟机（未开启压缩指针）中分别为32位和64位，官方称它为“Mark Word”。例如在32位的HotSpot虚拟机中，如对象未被同步锁锁定的状态 下，Mark Word的32位存储空间中的25位用于存储对象哈希码，4位用于存储对象分代年龄，2位用于存储锁标志位，1位固定为0，在其他状态(轻量级锁定、重量级锁定、GC标记、可偏向)下对象的存储内容如表所示。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1grdaxi5ogbj30um07pdh7.jpg" alt="page84image37118080.jpg"> </p>
+<p>​    对象头的另一部分是类型指针，即对象指向它的类型元数据的指针，Java虚拟机通过这个指针来确定该对象是哪个类的实例。并不是所有的虚拟机实现都必须在对象数据上保留类型指针，换句话说，查找对象的元数据信息并不一定要经过对象本身。如果对象是一个Java数组，那在对象头中还必须有一块用于记录数组长度的数据，因为虚拟机可以通过普通Java对象的元数据信息确定Java对象的大小，但是如果数组的长度是不确定的，将无法通过元数据中的信息推断出数组的大小。</p>
+<p>​    实例数据部分是对象真正存储的有效信息，即我们在程序代码里面所定义的各种类型的字段内容，无论是从父类继承下来的，还是在子类中定义的字段都必须记录起来。</p>
+<p>​    对象的第三部分是对齐填充，这并不是必然存在的，也没有特别的含义，它仅仅起着占位符的作用。由于HotSpot虚拟机的自动内存管理系统要求对象起始地址必须是8字节的整数倍。</p>
+<h5 id="2-3-对象的访问定位"><a href="#2-3-对象的访问定位" class="headerlink" title="2.3 对象的访问定位"></a>2.3 对象的访问定位</h5><p>​    对象访问方式是由虚拟机实现而定的，主流的访问方式主要有使用句柄和直接指针两种：</p>
+<ul>
+<li><p>如果使用句柄访问的话Java堆中将可能会划分出一块内存来作为句柄池，reference中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自具体的地址信息。<img src="https://tva1.sinaimg.cn/large/008i3skNly1grdbbimwiej30nr0algn0.jpg" alt="page86image37488672.jpg"></p>
+</li>
+<li><p>如果使用直接指针访问的话，Java堆中对象的内存布局就必须考虑如何放置访问类型数据的相关信息，reference中存储的直接就是对象地址，如果只是访问对象本身的话，就不需要多一次间接访问的开销。  <img src="https://tva1.sinaimg.cn/large/008i3skNly1grdbbluqycj30nl0aj0tw.jpg" alt="page87image37490128.jpg"> </p>
+</li>
+</ul>
+<p>​    这两种对象访问方式各有优势，使用句柄来访问的最大好处就是reference中存储的是稳定句柄地址，在对象被移动(垃圾收集时移动对象是非常普遍的行为)时只会改变句柄中的实例数据指针，而reference本身不需要被修改。</p>
+<p>​    使用直接指针来访问最大的好处就是速度更快，它节省了一次指针定位的时间开销，由于对象访问在Java中非常频繁，因此这类开销积少成多也是一项极为可观的执行成本。</p>
 
     </article>
     <!-- license  -->
@@ -427,7 +446,7 @@ height:50vh;
             <p>原文作者：<a href="">jounetsu</a>
             </p><p>原文链接：<a href="/2019/10/11/Java内存区域/">/2019/10/11/Java内存区域/</a>
             </p><p>发表日期：<a href="/2019/10/11/Java内存区域/">October 11th 2019, 6:21:47 pm</a>
-            </p><p>更新日期：<a href="/2019/10/11/Java内存区域/">October 14th 2019, 7:31:40 pm</a>
+            </p><p>更新日期：<a href="/2019/10/11/Java内存区域/">August 6th 2021, 2:38:58 pm</a>
             </p><p>版权声明：</p>
         </div>
     
@@ -436,8 +455,8 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/10/16/垃圾收集器与内存分配策略/" title="垃圾收集器与内存分配策略">
-                    <div class="nextTitle">垃圾收集器与内存分配策略</div>
+                <a href="/2019/10/24/基于-Kafka-和-ZooKeeper-的分布式消息队列/" title="基于 Kafka 和 ZooKeeper 的分布式消息队列">
+                    <div class="nextTitle">基于 Kafka 和 ZooKeeper 的分布式消息队列</div>
                 </a>
             
         </li>
@@ -549,7 +568,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-运行时数据区域"><span class="toc-number">1.</span> <span class="toc-text">1. 运行时数据区域</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-程序计数器（Program-Counter-Register）"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 程序计数器（Program Counter Register）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-Java虚拟机栈-Java-Virtual-Machine-Stacks"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Java虚拟机栈(Java Virtual Machine Stacks)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-本地方法栈-Native-Method-Stack"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 本地方法栈(Native Method Stack)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-4-Java堆-Java-Heap"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 Java堆(Java Heap)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-5方法区-Method-Area"><span class="toc-number">1.5.</span> <span class="toc-text">1.5方法区(Method Area)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-6运行时常量池-Runtime-Constant-Pool"><span class="toc-number">1.6.</span> <span class="toc-text">1.6运行时常量池(Runtime Constant Pool)</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-运行时数据区域"><span class="toc-number">1.</span> <span class="toc-text">1. 运行时数据区域</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-程序计数器（Program-Counter-Register）"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 程序计数器（Program Counter Register）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-Java虚拟机栈-Java-Virtual-Machine-Stacks"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Java虚拟机栈(Java Virtual Machine Stacks)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-本地方法栈-Native-Method-Stack"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 本地方法栈(Native Method Stack)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-4-Java堆-Java-Heap"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 Java堆(Java Heap)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-5-方法区-Method-Area"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 方法区(Method Area)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-6-运行时常量池-Runtime-Constant-Pool"><span class="toc-number">1.6.</span> <span class="toc-text">1.6 运行时常量池(Runtime Constant Pool)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-7-直接内存"><span class="toc-number">1.7.</span> <span class="toc-text">1.7 直接内存</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-HotSpot虚拟机"><span class="toc-number">2.</span> <span class="toc-text">2. HotSpot虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-对象的创建"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 对象的创建</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-对象的内存布局"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 对象的内存布局</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-对象的访问定位"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 对象的访问定位</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1042,9 +1061,95 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 36
+        Total : 42
         </div>
         <!-- search  -->
         
@@ -1054,6 +1159,55 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2021/07/12/线程安全与锁优化/">线程安全与锁优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/09</span><a class="archive-post-title" href="/2021/07/09/Java内存模型与线程/">Java内存模型与线程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href="/2021/07/01/虚拟机类加载机制/">虚拟机类加载机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/17</span><a class="archive-post-title" href="/2021/06/17/类文件结构/">类文件结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/10</span><a class="archive-post-title" href="/2021/06/10/垃圾收集器与内存分配策略/">垃圾收集器与内存分配策略</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href="/2021/05/10/MySQL实战笔记-实践篇/">MySQL实战笔记-实践篇</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2021/04/23/MySQL实战笔记-基础篇/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/17</span><a class="archive-post-title" href="/2021/04/17/一-Spring基础/">一-Spring基础</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -1134,17 +1288,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/05</span><a class="archive-post-title" href="/2019/11/05/类文件结构/">类文件结构</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/基于-Kafka-和-ZooKeeper-的分布式消息队列/">基于 Kafka 和 ZooKeeper 的分布式消息队列</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/垃圾收集器与内存分配策略/">垃圾收集器与内存分配策略</a>
         </li>
     
     
@@ -1263,6 +1407,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
         <span class="sidebar-tag-name" data-tags="python爬虫"><span class="iconfont-archer">&#xe606;</span>python爬虫</span>
     
         <span class="sidebar-tag-name" data-tags="并发编程"><span class="iconfont-archer">&#xe606;</span>并发编程</span>
@@ -1306,13 +1452,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="JVM笔记"><span class="iconfont-archer">&#xe60a;</span>JVM笔记</span>
     
+        <span class="sidebar-category-name" data-categories="MySQL实战笔记"><span class="iconfont-archer">&#xe60a;</span>MySQL实战笔记</span>
+    
         <span class="sidebar-category-name" data-categories="Spring-Boot"><span class="iconfont-archer">&#xe60a;</span>Spring-Boot</span>
     
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
-        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
+        <span class="sidebar-category-name" data-categories="Spring实战笔记"><span class="iconfont-archer">&#xe60a;</span>Spring实战笔记</span>
     
         <span class="sidebar-category-name" data-categories="java并发编程实战笔记"><span class="iconfont-archer">&#xe60a;</span>java并发编程实战笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="redis"><span class="iconfont-archer">&#xe60a;</span>redis</span>
     
         <span class="sidebar-category-name" data-categories="正则表达式"><span class="iconfont-archer">&#xe60a;</span>正则表达式</span>
     
